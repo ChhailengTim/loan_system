@@ -90,31 +90,31 @@ export default {
                         {
                             icon: 'fas fa-people-arrows',
                             label: 'loan_calculate',
-                            to: '/loan_calculate',
+                            to: '/loan_management/loan_calculate',
                             key: 'loan_calculate',
                         },
                         {
                             icon: 'fas fa-people-arrows',
                             label: 'create_loan',
-                            to: '/create_loan',
+                            to: '/loan_management/create_loan',
                             key: 'create_loan',
                         },
                         {
                             icon: 'fas fa-people-arrows',
                             label: 'loan_contract',
-                            to: '/loan_contract',
+                            to: '/loan_management/loan_contract',
                             key: 'loan_contract',
                         },
                         {
                             icon: 'fas fa-people-arrows',
                             label: 'all_loan',
-                            to: '/all_loan',
+                            to: '/loan_management/all_loan',
                             key: 'all_loan',
                         },
                         {
                             icon: 'fas fa-people-arrows',
                             label: 'unpaid_loan',
-                            to: '/unpaid_loan',
+                            to: '/loan_management/unpaid_loan',
                             key: 'unpaid_loan',
                         },
                     ]
