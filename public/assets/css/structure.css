@@ -754,7 +754,7 @@ code {
 #sidebar .ps__thumb-y {
   right: 4px; }
 
-#sidebar ul.menu-categories li > .dropdown-toggle[data-active="true"] svg.feather-chevron-right, #sidebar ul.menu-categories li > .dropdown-toggle[aria-expanded="true"] svg.feather-chevron-right {
+#sidebar ul.menu-categories li > .dropdown-toggle[data-active="true"] .fa-chevron-right, #sidebar ul.menu-categories li > .dropdown-toggle[aria-expanded="true"] .fa-chevron-right {
   transform: rotate(90deg); }
 
 #sidebar ul.menu-categories li.menu:first-child ul.submenu > li a {
@@ -773,7 +773,7 @@ code {
   justify-content: space-between;
   cursor: pointer;
   font-size: 13px;
-  color: #0e1726;
+  color: white;
   padding: 11px 14px;
   transition: .600s;
   margin-bottom: 4px;
