@@ -839,6 +839,8 @@ code {
   display: flex;
   justify-content: space-between;
   padding: 10px 12px 10px 48px;
+  margin-top: 3px;
+  margin-bottom: 3px;
   font-size: 13px;
   color: #515365; }
   #sidebar ul.menu-categories ul.submenu > li a span{

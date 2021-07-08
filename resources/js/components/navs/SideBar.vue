@@ -93,6 +93,30 @@ export default {
                             to: '/loan_calculate',
                             key: 'loan_calculate',
                         },
+                        {
+                            icon: 'fas fa-people-arrows',
+                            label: 'create_loan',
+                            to: '/create_loan',
+                            key: 'create_loan',
+                        },
+                        {
+                            icon: 'fas fa-people-arrows',
+                            label: 'loan_contract',
+                            to: '/loan_contract',
+                            key: 'loan_contract',
+                        },
+                        {
+                            icon: 'fas fa-people-arrows',
+                            label: 'all_loan',
+                            to: '/all_loan',
+                            key: 'all_loan',
+                        },
+                        {
+                            icon: 'fas fa-people-arrows',
+                            label: 'unpaid_loan',
+                            to: '/unpaid_loan',
+                            key: 'unpaid_loan',
+                        },
                     ]
                 },
             ],
@@ -163,5 +187,6 @@ i {
 .submenu a:hover{
     background: hsla(0,0%,100%,.09);
     color: white !important;
+    border-radius: 6px;
 }
 </style>

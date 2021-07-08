@@ -81,5 +81,7 @@ export default {
 /deep/ .submenu .router-link-active{
     background: hsla(0,0%,100%,.09);
     color: white !important;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 </style>
