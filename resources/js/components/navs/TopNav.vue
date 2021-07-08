@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li class="nav-item theme-text">
-                <a href="index.html" class="nav-link text-white"> Loan System </a>
+                <a href="index.html" class="nav-link text-white"> {{ $t('loan_management_system') }} </a>
             </li>
         </ul>
 

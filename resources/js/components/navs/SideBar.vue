@@ -3,7 +3,7 @@
     <nav id="sidebar">
         <ul class="list-unstyled menu-categories" id="accordionExample">
 
-            <li class="menu" v-for="(item, index) in  getMenuItems()" :key="index" @click="activeMenu(item.key, index)">
+            <li class="menu" v-for="(item, index) in getMenuItems()" :key="index">
                 <a
                     v-if="item.subs"
                     :href="'#'+item.key"
@@ -22,7 +22,9 @@
                     :id="item.key"
                 >
                     <li v-for="(sub, index) in item.subs" :key="index" >
-                        <router-link :to="sub.to">{{ $t(sub.label) }}</router-link>
+                        <router-link :to="sub.to">
+                            <span>{{ $t(sub.label) }}</span>
+                        </router-link>
                     </li>
                 </ul>
                  <router-link
@@ -30,7 +32,7 @@
                     class="text-white dropdown-toggle"
                     :to="item.to"
                  >
-                    <div @click="activeMenu(item.key, index)">
+                    <div>
                         <span><i :class="item.icon" class="pr-2"></i>{{ $t(item.label) }}</span>
                     </div>
                 </router-link>
@@ -54,7 +56,44 @@ export default {
                     label: 'dashboard',
                     to: '/dashboard',
                     key: 'dashboard',
-                    active: false,
+                },
+                {
+                    icon: 'fas fa-building',
+                    label: 'company',
+                    to: '/company',
+                    key: 'company',
+                },
+                {
+                    icon: 'fas fa-bezier-curve',
+                    label: 'branch',
+                    to: '/branch',
+                    key: 'branch',
+                },
+                {
+                    icon: 'fas fa-user-friends',
+                    label: 'borrower',
+                    to: '/borrower',
+                    key: 'borrower',
+                },
+                {
+                    icon: 'fas fa-people-arrows',
+                    label: 'borrower_guarantor',
+                    to: '/borrower_guarantor',
+                    key: 'borrower_guarantor',
+                },
+                {
+                    icon: 'fas fa-people-arrows',
+                    label: 'loan_management',
+                    to: '/loan_management',
+                    key: 'loan_management',
+                    subs: [
+                        {
+                            icon: 'fas fa-people-arrows',
+                            label: 'loan_calculate',
+                            to: '/loan_calculate',
+                            key: 'loan_calculate',
+                        },
+                    ]
                 },
             ],
             is_active: false,
@@ -72,10 +111,7 @@ export default {
         getMenuItems(){
             let vm = this
 
-            // filter module only menu
-            let moduleMenu = this.rolePermission
             let menu = []
-            // menu.push(this.items[0])
             this.items.forEach((obj) => {
                 // if menu no subs
                 if (vm.$helpers.nullToVoid(obj.subs) == '') {
@@ -83,7 +119,11 @@ export default {
                 } else {
                     // if menu has subs
                     let subs = []
-                    subs.push(obj.subs)
+
+                    obj.subs.forEach((subsObj) => {
+                        subs.push(subsObj)
+                    })
+
 
                     if (vm.$helpers.nullToVoid(subs) != '') {
                         menu.push({
@@ -91,7 +131,6 @@ export default {
                             label: obj.label,
                             to: obj.to,
                             key: obj.key,
-                            active: obj.active,
                             subs: subs,
                         })
                     }
@@ -114,7 +153,6 @@ i {
     margin-bottom: -2px;
     font-size: 15px;
     color: rgba(111, 111, 111, 0.8);
-    /* color: white; */
 }
 .submenu li a{
     color: #ababab !important;
@@ -123,6 +161,7 @@ i {
     color: rgb(54, 52, 52) !important;
 }
 .submenu a:hover{
+    background: hsla(0,0%,100%,.09);
     color: white !important;
 }
 </style>

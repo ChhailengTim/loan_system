@@ -839,19 +839,19 @@ code {
   display: flex;
   justify-content: space-between;
   padding: 10px 12px 10px 48px;
-  padding-left: 24px;
-  margin-left: 36px;
   font-size: 13px;
   color: #515365; }
-
+  #sidebar ul.menu-categories ul.submenu > li a span{
+    margin-left: 17px;
+  }
 #sidebar ul.menu-categories li.menu ul.submenu > li a:before {
   content: '';
   background-color: #d3d3d3;
   position: absolute;
   height: 3px;
   width: 3px;
-  top: 17.5px;
-  left: 13px;
+  top: 19px;
+  left: 49px;
   border-radius: 50%; }
 
 #sidebar ul.menu-categories ul.submenu > li.active a {
