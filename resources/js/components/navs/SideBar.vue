@@ -10,7 +10,7 @@
                     data-toggle="collapse"
                     class="dropdown-toggle"
                 >
-                    <div class="text-white">
+                    <div>
                         <span><i :class="item.icon" class="pr-2"></i>{{ $t(item.label) }}</span>
                     </div>
                     <div>
