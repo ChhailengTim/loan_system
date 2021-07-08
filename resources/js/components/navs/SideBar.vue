@@ -82,7 +82,7 @@ export default {
                     key: 'borrower_guarantor',
                 },
                 {
-                    icon: 'fas fa-people-arrows',
+                    icon: 'fas fa-clipboard-list',
                     label: 'loan_management',
                     to: '/loan_management',
                     key: 'loan_management',
