@@ -14,7 +14,7 @@
                         <span><i :class="item.icon" class="pr-2"></i>{{ $t(item.label) }}</span>
                     </div>
                     <div>
-                        <i class="fas fa-chevron-right"></i>
+                        <i class="fas fa-chevron-right mr-2"></i>
                     </div>
                 </a>
                 <ul v-if="item.subs"
