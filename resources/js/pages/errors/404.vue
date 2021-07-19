@@ -1,7 +1,7 @@
 <template>
     <b-container class="bv-example-row">
        <center>
-           <a href="/dashboard/home">
+           <a href="javascript:;">
   <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-12 mt-5 mb-5">

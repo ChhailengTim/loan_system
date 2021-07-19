@@ -52,72 +52,22 @@ export default {
             menuItems: [],
             items: [
                 {
-                    icon: 'fas fa-tachometer-alt',
-                    label: 'dashboard',
-                    to: '/dashboard',
-                    key: 'dashboard',
-                },
-                {
                     icon: 'fas fa-building',
-                    label: 'company',
-                    to: '/company',
-                    key: 'company',
+                    label: 'request-loan',
+                    to: '/request-loan',
+                    key: 'request-loan',
                 },
                 {
                     icon: 'fas fa-bezier-curve',
-                    label: 'branch',
-                    to: '/branch',
-                    key: 'branch',
+                    label: 'bank',
+                    to: '/bank',
+                    key: 'bank',
                 },
                 {
                     icon: 'fas fa-user-friends',
-                    label: 'borrower',
-                    to: '/borrower',
-                    key: 'borrower',
-                },
-                {
-                    icon: 'fas fa-people-arrows',
-                    label: 'borrower_guarantor',
-                    to: '/borrower_guarantor',
-                    key: 'borrower_guarantor',
-                },
-                {
-                    icon: 'fas fa-clipboard-list',
-                    label: 'loan_management',
-                    to: '/loan_management',
-                    key: 'loan_management',
-                    subs: [
-                        {
-                            label: 'loan_calculate',
-                            to: '/loan_management/loan_calculate',
-                            key: 'loan_calculate',
-                        },
-                        {
-                            label: 'create_loan',
-                            to: '/loan_management/create_loan',
-                            key: 'create_loan',
-                        },
-                        {
-                            label: 'loan_contract',
-                            to: '/loan_management/loan_contract',
-                            key: 'loan_contract',
-                        },
-                        {
-                            label: 'all_loan',
-                            to: '/loan_management/all_loan',
-                            key: 'all_loan',
-                        },
-                        {
-                            label: 'loan_schedule',
-                            to: '/loan_management/loan_schedule',
-                            key: 'loan_schedule',
-                        },
-                        {
-                            label: 'unpaid_loan',
-                            to: '/loan_management/unpaid_loan',
-                            key: 'unpaid_loan',
-                        },
-                    ]
+                    label: 'loan',
+                    to: '/loan',
+                    key: 'loan',
                 },
             ],
             is_active: false,
