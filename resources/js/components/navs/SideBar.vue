@@ -53,9 +53,9 @@ export default {
             items: [
                 {
                     icon: 'fas fa-building',
-                    label: 'request-loan',
-                    to: '/request-loan',
-                    key: 'request-loan',
+                    label: 'request_loan',
+                    to: '/request_loan',
+                    key: 'request_loan',
                 },
                 {
                     icon: 'fas fa-bezier-curve',

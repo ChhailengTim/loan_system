@@ -7,10 +7,28 @@ Vue.use(VueRouter)
 
 //For blade
 /*  Global Component Are Register Here */
-Vue.component('app', require('../layouts/app').default);
+Vue.component('app', require('../layouts/admin').default);
 
 
 //For Vue
+/**
+ * Front
+ */
+
+//home
+ Vue.component('home-front', require('../pages/front/home/').default);
+
+ //Request Loan
+ Vue.component('request-loan', require('../pages/front/request_loan/').default);
+
+ //Borrower Review
+ Vue.component('borrower-review', require('../pages/front/borrower_review/').default);
+
+
+
+/**
+ * Admin
+ */
 import dashboard from '../pages/dashboard/'
 
 
@@ -22,7 +40,8 @@ import pageNotPermission from '../pages/errors/403.vue'
 
 const router = new VueRouter({
     mode: 'history',
-    routes: [{
+    routes: [
+        {
             path: '/',
             name: 'dashboards',
             component: dashboard,
@@ -51,7 +70,7 @@ const router = new VueRouter({
             name: '404',
             component: pageNotFound,
             meta: {
-                title: '404 | Not Found',
+                // title: '404 | Not Found',
             },
         },
     ],
@@ -60,7 +79,7 @@ const router = new VueRouter({
 
 //header title
 router.beforeEach((toRoute, fromRoute, next) => {
-    window.document.title = toRoute.meta && toRoute.meta.title ? i18n.t(toRoute.meta.title) : 'Loan System';
+    window.document.title = toRoute.meta && toRoute.meta.title ? i18n.t(toRoute.meta.title) : 'Online Loan System';
 
     next()
 
