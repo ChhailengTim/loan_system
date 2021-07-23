@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-navbar toggleable="lg" type="dark" variant="dark">
+        <!-- <b-navbar toggleable="lg" type="dark" variant="dark">
             <b-navbar-brand href="/front/home">Online Loan</b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -36,7 +36,56 @@
                 </b-nav-item-dropdown>
             </b-navbar-nav>
             </b-collapse>
-        </b-navbar>
+        </b-navbar> -->
+
+        <header id="header">
+            <nav id="mainNavbar" class="navbar navbar-expand-lg bg-nav fixed-top">
+            <a class="navbar-brand" href="/front/home">
+            <img src="/logo.png" alt="" width="346" height="39">
+            </a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                <a class="nav-link" href="/front/home">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="javascript:;">Service</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="javascript:;">Team</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="javascript:;">About Us</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="javascript:;">Contact US</a>
+                </li>
+                <li class="nav-item">
+                    <b-nav-item-dropdown  text="Lang" right>
+                        <b-dropdown-item href="#">EN</b-dropdown-item>
+                        <b-dropdown-item href="#">KH</b-dropdown-item>
+                    </b-nav-item-dropdown>
+                </li>
+                <li class="nav-item">
+
+                    <b-nav-item-dropdown right>
+                        <template #button-content>
+                            <em>Login</em>
+                        </template>
+                        <b-dropdown-item @click="openModalBorrwerLogin">Borrower</b-dropdown-item>
+                        <b-dropdown-item href="#">Bank</b-dropdown-item>
+                    </b-nav-item-dropdown>
+                </li>
+            </ul>
+
+            </div>
+        </nav> <!-- /.navbar -->
+        </header>
+
         <div v-if="modalBorrowerShow">
             <b-modal
                 v-model="modalBorrowerShow"
@@ -130,3 +179,47 @@ export default {
     }
 }
 </script>
+<style scoped>
+body{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+#header {
+	position: relative;
+}
+
+#header .navbar-brand {
+	padding-top: 1.313rem;
+	padding-bottom: 1.313rem;
+    margin-left: 30px;
+}
+
+#header .navbar-nav {
+	text-transform: uppercase;
+    margin-right: 50px !important;
+}
+
+#header .bg-nav {
+	background-color: #34495e;
+    color: white !important;
+
+}
+
+#header .navbar-nav .nav-link.active {
+	color:rgba(255,255,255,.5);
+
+}
+/deep/ .dropdown span{
+    color: white;
+}
+.dropdown em{
+    color: white;
+}
+
+ul li a{
+    color: white !important;
+}
+/deep/ .custom-modal{
+    border-radius: 15px;
+}
+</style>

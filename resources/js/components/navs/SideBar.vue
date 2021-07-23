@@ -53,15 +53,27 @@ export default {
             items: [
                 {
                     icon: 'fas fa-building',
-                    label: 'request_loan',
-                    to: '/request_loan',
-                    key: 'request_loan',
+                    label: 'dashboard',
+                    to: '/dashboard',
+                    key: 'dashboard',
                 },
                 {
                     icon: 'fas fa-bezier-curve',
-                    label: 'bank',
-                    to: '/bank',
-                    key: 'bank',
+                    label: 'company',
+                    to: '/company',
+                    key: 'company',
+                },
+                {
+                    icon: 'fas fa-bezier-curve',
+                    label: 'borrower',
+                    to: '/borrower',
+                    key: 'borrower',
+                },
+                {
+                    icon: 'fas fa-bezier-curve',
+                    label: 'garuantor',
+                    to: '/garuantor',
+                    key: 'garuantor',
                 },
                 {
                     icon: 'fas fa-user-friends',

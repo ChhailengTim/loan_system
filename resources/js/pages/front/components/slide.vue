@@ -1,51 +1,126 @@
 <template>
-     <div>
-            <b-carousel
-                id="carousel-1"
-                :interval="4000"
-                controls
-                indicators
-                background="#ababab"
-                img-width="1024"
-                img-height="480"
-                style="text-shadow: 1px 1px 2px #333;"
-                >
-                <!-- Text slides with image -->
-                <b-carousel-slide
-                    caption="First slide"
-                    text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-                    img-src="https://picsum.photos/1024/480/?image=52"
-                ></b-carousel-slide>
+    <div>
+        <div class="top-carousel">
 
-                <!-- Slides with custom text -->
-                <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
-                    <h1>Hello world!</h1>
-                </b-carousel-slide>
-
-                <!-- Slides with image only -->
-                <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
-
-                <!-- Slides with img slot -->
-                <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-                <b-carousel-slide>
-                    <template #img>
-                    <img
-                        class="d-block img-fluid w-100"
-                        width="1024"
-                        height="480"
-                        src="https://picsum.photos/1024/480/?image=55"
-                        alt="image slot"
-                    >
-                    </template>
-                </b-carousel-slide>
-
-                <!-- Slide with blank fluid image to maintain slide aspect ratio -->
-                <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros felis, tincidunt
-                    a tincidunt eget, convallis vel est. Ut pellentesque ut lacus vel interdum.
+            <div id="work" class="carousel slide" data-ride="carousel">
+                <div class="banner-content text-left">
+                <h1>DESIGN WEBSITE<span> WHICH<br> MAKES</span> YOU PROUD</h1>
+                <p class="col-md-5 adjust">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat veritatis iste, nulla architecto quam saepe? Totam quisquam nam officia dignissimos nesciunt quis molestias, sit hic nulla suscipit unde odit voluptates.
+                </p>
+                <br>
+                    <p class="pt-4">
+                        <a class="btn btn-success btn-lg" href="#">Review</a>
+                        <a class="btn btn-success btn-lg" href="/front/request_loan">Loan</a>
                     </p>
-                </b-carousel-slide>
-            </b-carousel>
+                </div>
+                <ol class="carousel-indicators">
+                <li data-target="#work" data-slide-to="0" class="active"></li>
+                <li data-target="#work" data-slide-to="1"></li>
+                <li data-target="#work" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/bg1.png" class="d-block w-100" alt="">
+
+                </div>
+                <div class="carousel-item">
+                    <img src="/bg2.png" class="d-block w-100" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="/bg3.png" class="d-block w-100" alt="">
+                </div>
+                </div>
+            </div>
         </div>
+        <!-- <div class="skew-header"></div> -->
+    </div>
 </template>
+<style scoped>
+
+.skew-header {
+	width: 100%;
+	height: 290px;
+	background-color: #fff;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 999;
+	transform: skew(0deg, -5deg) translateY(100px);
+}
+
+.carousel-indicators {
+	bottom: 350px;
+
+}
+.carousel-indicators li {
+	width: 12px;
+    height: 12px;
+    margin-left: 5px;
+
+}
+
+.top-carousel .banner-content {
+	position: absolute;
+	width: 100%;
+	z-index: 1000;
+	text-align: center;
+	top: 250px;
+	color: #fff;
+    padding: 10px 40px;
+}
+
+.top-carousel .banner-content h1 {
+	font-size: 64px;
+    font-weight: bold;
+
+
+}
+.btn-success{
+    background: transparent !important;
+    color: white !important;
+    border: 2px solid white !important;
+}
+
+.btn-success:hover{
+    border-color: transparent !important;
+}
+
+
+
+.btn{
+    padding: 10px 30px;
+    background: #f7cc4b;
+    color: #333;
+    border-radius: 50px;
+    border: 2px solid #34495e;
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px;
+}
+
+
+@keyframes shadow-pulse
+{
+  0% {
+    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+  }
+}
+
+.learn-today {
+	animation: shadow-pulse 2s infinite;
+}
+
+.learn-today:hover {
+  animation: none;
+}
+
+
+.adjust{
+    margin-left: -18px;
+}
+</style>
+
