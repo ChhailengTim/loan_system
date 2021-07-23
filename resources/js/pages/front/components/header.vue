@@ -65,7 +65,10 @@
                 <a class="nav-link" href="javascript:;">Contact US</a>
                 </li>
                 <li class="nav-item">
-                    <b-nav-item-dropdown  text="Lang" right>
+                    <b-nav-item-dropdown right>
+                        <template #button-content>
+                            <em>Lang</em>
+                        </template>
                         <b-dropdown-item href="#">EN</b-dropdown-item>
                         <b-dropdown-item href="#">KH</b-dropdown-item>
                     </b-nav-item-dropdown>
