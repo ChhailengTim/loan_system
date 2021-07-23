@@ -16,12 +16,12 @@ class CreateCompanyTable extends Migration
         Schema::create('company', function (Blueprint $table) {
             $table->id();
             $table->string('company_name', 100);
-            $table->string('phone_number', 50);
+            $table->string('phone', 50);
             $table->string('alt_phone', 50);
             $table->string('logo', 100);
             $table->string('email', 100);
             $table->string('address', 200);
-            $table->string('interest', 10);
+            $table->string('interest', 10)->comment('Image');
             $table->timestamps();
             $table->softDeletes();
         });

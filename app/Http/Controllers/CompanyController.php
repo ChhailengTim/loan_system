@@ -99,7 +99,7 @@ class CompanyController extends Controller
     {
         $this->validate($data, [
             'company_name' => 'required|max:100',
-            'phone_number' => 'required|max:50',
+            'phone' => 'required|max:50',
             'alt_phone' => 'required|max:50',
             'logo' => 'required|max:100',
             'email' => 'required|max:100',
