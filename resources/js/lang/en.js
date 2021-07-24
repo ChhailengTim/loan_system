@@ -21,7 +21,8 @@ export default {
     loan_contract: 'Loan Contract',
     unpaid_loan: 'Unpaid loan',
     loan_management: 'Loan Management',
-    all_loan: 'All Loan'
+    all_loan: 'All Loan',
+    request_loan: 'Request Loan'
 
 
 }

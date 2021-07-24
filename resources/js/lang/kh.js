@@ -21,7 +21,8 @@ export default {
     loan_contract: 'កិច្ចសន្យាប្រាក់កម្ចី',
     unpaid_loan: 'ប្រាក់កម្ចីដែលមិនទាន់បង់',
     loan_management: 'ការគ្រប់គ្រងប្រាក់កម្ចី',
-    all_loan: 'ប្រាក់កម្ចីទាំងអស់'
+    all_loan: 'ប្រាក់កម្ចីទាំងអស់',
+    request_loan: 'ស្នើរសុំប្រាក់កម្ចី',
 
 
 }
