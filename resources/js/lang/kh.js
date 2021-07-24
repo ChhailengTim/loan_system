@@ -13,6 +13,7 @@ export default {
     branch: 'សាខា',
     borrower: 'អ្នកខ្ចី',
     borrower_guarantor: 'អ្នកធានា',
+    guarantor: 'អ្នកធានា',
     loan: 'ប្រាក់កម្ចី',
     loan_calculate: 'គណនាប្រាក់កម្ចី',
     create_loan: 'បង្កើតប្រាក់កម្ចី',

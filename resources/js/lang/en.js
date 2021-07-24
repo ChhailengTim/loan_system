@@ -14,6 +14,7 @@ export default {
     borrower: 'Borrower',
     borrower_guarantor: 'Borrower Guarantor',
     loan: 'Loan',
+    guarantor: 'Guarantor',
     loan_calculate: 'Loan Calculate',
     create_loan: 'Create Loan',
     loan_schedule: 'Loan Schedule',
