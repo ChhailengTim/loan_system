@@ -19,8 +19,8 @@ class CreateLoanTable extends Migration
             $table->decimal('request_amount', 6, 2);
             $table->integer('term');
             $table->decimal('outstanding_amount', 6, 2);
-            $table->dateTime('appointment_date');
-            $table->string('status')->comment('Pending, Approved, Rejected');
+            $table->dateTime('appointment_date')->nullable();
+            $table->string('status')->default('Pending')->comment('Pending, Approved, Rejected');
             $table->timestamps();
             $table->softDeletes();
 

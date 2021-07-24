@@ -21,6 +21,7 @@ class CreateBorrowerGuarantorTable extends Migration
             $table->tinyInteger('gender', 1)->comment('1: Male, 2: Female');
             $table->date('dob');
             $table->string('address', 200);
+            $table->string('email', 100);
             $table->string('phone', 50);
             $table->string('alt_phone', 50);
             $table->string('photo', 20);
