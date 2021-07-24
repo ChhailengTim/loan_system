@@ -32,6 +32,11 @@ import MultiSelect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 Vue.component('multi-select', MultiSelect);
 
+//Form Wizard
+import VueFormWizard from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+Vue.use(VueFormWizard)
+
 
 //remember language
 import { Validator } from 'vee-validate';
