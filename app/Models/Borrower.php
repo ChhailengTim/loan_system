@@ -33,7 +33,7 @@ class Borrower extends Model
 
     //Image path for photo
     const photoPath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR . 'photo';
-    const thumbnailLogoPath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR  . 'photo' . DIRECTORY_SEPARATOR . 'thumbnail';
+    const thumbnailPhotoPath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR  . 'photo' . DIRECTORY_SEPARATOR . 'thumbnail';
 
     //Image path for national_id_photo
     const nationalPath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR . 'national_id_photo';
@@ -73,11 +73,6 @@ class Borrower extends Model
         $this->{self::EMAIL} = $data[self::EMAIL];
         $this->{self::PHONE} = $data[self::PHONE];
         $this->{self::ALT_PHONE} = $data[self::ALT_PHONE];
-        $this->{self::PHOTO} = $data[self::PHOTO];
-        $this->{self::NATIONAL_ID_PHOTO} = $data[self::NATIONAL_ID_PHOTO];
         $this->{self::BUSINESS_NAME} = $data[self::BUSINESS_NAME];
-        $this->{self::SALARY_INVOICE} = $data[self::SALARY_INVOICE];
-        $this->{self::MORTGAGE} = $data[self::MORTGAGE];
-        $this->{self::FAMILY_BOOK} = $data[self::FAMILY_BOOK];
     }
 }
