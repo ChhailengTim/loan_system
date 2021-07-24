@@ -1,7 +1,8 @@
 <template>
     <div>
+        <headerPage></headerPage>
 
-        <b-card-body class="px-0">
+        <b-card-body class="px-0" style="margin-top: 8rem;">
             <b-col sm="12" md="12" xl="12">
                 <b-card>
                     <b-card-header>
