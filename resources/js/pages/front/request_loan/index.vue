@@ -20,6 +20,7 @@
                                 color="#20a0ff"
                                 error-color="#ff4949"
                                 :reset="setIndex"
+                                startIndex="2"
                                 shape="circle"
                                 ref="loan_form"
 
@@ -439,7 +440,134 @@
                                 </tab-content>
 
                                 <tab-content :title="$t('loan')">
+                                    <b-row class="justify-content-md-center">
+                                        <!--company-->
+                                        <b-col sm="12" md="12" xl="6">
 
+                                            <b-form-group
+                                                :invalid-feedback="veeErrors.first('loan_form.company_id')"
+                                                :label="$t('company')"
+                                                label-class="control-label"
+                                                class="text-left"
+                                            >
+                                                <b-select
+                                                    v-model="form.company_id"
+                                                    v-validate="'required'"
+                                                    :state="veeErrors.has('loan_form.company_id') ? false : null"
+                                                    data-vv-name="company_id"
+                                                    :data-vv-as="$t('company')"
+                                                    data-vv-scope="loan_form"
+                                                    @change="onSelectCompany"
+                                                >
+                                                    <template slot="first">
+                                                        <b-form-select-option :value="null" disabled>
+                                                            {{ $t('company') }}
+                                                        </b-form-select-option>
+                                                    </template>
+                                                    <b-form-select-option value="1">ABA</b-form-select-option>
+                                                    <b-form-select-option value="2">Aceleda</b-form-select-option>
+                                                    <b-form-select-option value="3">Amk</b-form-select-option>
+                                                </b-select>
+                                            </b-form-group>
+                                        </b-col>
+                                    </b-row>
+                                    <b-row class="justify-content-md-center" v-if="showFormInterest">
+                                        <b-col cols="12" md="12" lg="12" xl="6">
+                                            <h4 style="cursor: pointer" @click="showTableInterest = !showTableInterest">
+                                                <i :class="showTableInterest ? 'fas fa-minus-square' : 'fas fa-plus-square' "></i>
+                                                <span v-if="!showTableInterest">Show Interest Table</span>
+                                                <span v-if="showTableInterest">Close Interest Table</span>
+                                            </h4>
+                                        </b-col>
+                                    </b-row>
+                                    <b-row v-if="showTableInterest" class="justify-content-md-center">
+                                        <b-col cols="12" sm="12" md="12" lg="12" xl="6">
+                                            <div>
+                                                <b-table
+                                                    striped
+                                                    hover
+                                                    :fields="headerTableInterest"
+                                                    :items="tableInterestItems"
+                                                >
+                                                    <template v-slot:cell(term)="row">
+                                                       {{ row.item.term }} Month
+                                                    </template>
+                                                    <template v-slot:cell(interest)="row">
+                                                       {{ row.item.interest }} %
+                                                    </template>
+                                                </b-table>
+                                            </div>
+                                        </b-col>
+                                    </b-row>
+                                    <b-row class="justify-content-md-center mt-2">
+                                        <!-- request_loan -->
+                                        <b-col sm="12" md="12" xl="2">
+                                            <b-form-group
+                                                :invalid-feedback="veeErrors.first('loan_form.request_loan')"
+                                                :label="$t('request_loan') + ' *'"
+                                                label-class="control-label"
+                                                class="text-left"
+                                            >
+                                                <b-form-input
+                                                    autocomplete="off"
+                                                    v-model="form.request_loan"
+                                                    v-validate="'required'"
+                                                    :state="veeErrors.has('loan_form.request_loan') ? false : null"
+                                                    data-vv-name="request_loan"
+                                                    :data-vv-as="$t('request_loan')"
+                                                    data-vv-scope="loan_form"
+                                                    type="number"
+                                                    min="1"
+                                                    :placeholder="$t('request_loan')"
+                                                ></b-form-input>
+                                            </b-form-group>
+                                        </b-col>
+                                        <!-- term -->
+                                        <b-col sm="12" md="12" xl="2">
+                                            <b-form-group
+                                                :invalid-feedback="veeErrors.first('loan_form.term')"
+                                                :label="$t('term') + ' *'"
+                                                label-class="control-label"
+                                                class="text-left"
+                                            >
+                                                <b-form-input
+                                                    autocomplete="off"
+                                                    v-model="form.term"
+                                                    v-validate="'required'"
+                                                    :state="veeErrors.has('loan_form.term') ? false : null"
+                                                    data-vv-name="term"
+                                                    :data-vv-as="$t('term')"
+                                                    data-vv-scope="loan_form"
+                                                    type="number"
+                                                    min="1"
+                                                    :placeholder="$t('term')"
+                                                ></b-form-input>
+                                            </b-form-group>
+                                        </b-col>
+                                        <!-- outstanding_amount -->
+                                        <b-col sm="12" md="12" xl="2">
+                                            <b-form-group
+                                                :invalid-feedback="veeErrors.first('loan_form.outstanding_amount')"
+                                                :label="$t('outstanding_amount') + ' *'"
+                                                label-class="control-label"
+                                                class="text-left"
+                                            >
+                                                <b-form-input
+                                                    autocomplete="off"
+                                                    v-model="form.outstanding_amount"
+                                                    v-validate="'required'"
+                                                    :state="veeErrors.has('loan_form.outstanding_amount') ? false : null"
+                                                    data-vv-name="outstanding_amount"
+                                                    :data-vv-as="$t('outstanding_amount')"
+                                                    data-vv-scope="loan_form"
+                                                    type="number"
+                                                    min="1"
+                                                    disabled
+                                                    :placeholder="$t('outstanding_amount')"
+                                                ></b-form-input>
+                                            </b-form-group>
+                                        </b-col>
+                                    </b-row>
                                 </tab-content>
 
                             </form-wizard>
@@ -502,13 +630,79 @@ export default {
                 guarantor_national_photo: null,
                 guarantor_salary_invoice: null,
                 guarantor_mortgage: null,
+
+                company_id: null,
+                request_loan: null,
+                term: null,
+                outstanding_amount: 1000
+            },
+            defaultForm: {
+                borrower_first_name: null,
+                borrower_last_name: null,
+                borrower_gender: 1,
+                borrower_dob: null,
+                borrower_email: null,
+                borrower_business_name: null,
+                borrower_phone: null,
+                borrower_alt_phone: null,
+                borrower_address: null,
+                borrower_photo: null,
+                borrower_national_photo: null,
+                borrower_salary_invoice: null,
+                borrower_mortgage: null,
+                borrower_family_book: null,
+
+                guarantor_first_name: null,
+                guarantor_last_name: null,
+                guarantor_gender: 1,
+                guarantor_dob: null,
+                guarantor_email: null,
+                guarantor_business_name: null,
+                guarantor_phone: null,
+                guarantor_alt_phone: null,
+                guarantor_address: null,
+                guarantor_photo: null,
+                guarantor_national_photo: null,
+                guarantor_salary_invoice: null,
+                guarantor_mortgage: null,
+
+                company_id: null,
+                request_loan: null,
+                term: null,
+                outstanding_amount: null
             },
             setIndex: false,
             modalBorrowerUploadShow: false,
             modalBorrowerUploadShowType: 0,
             modalGuarantorUploadShow: false,
             modalGuarantorUploadShowType: 0,
+            tableInterestItems: [
+                { term: 1, interest: '0.75' },
+                { term: 3, interest: '1.50' },
+                { term: 6, interest: '2.75' },
+                { term: 12, interest: '3.50' },
+                { term: 24, interest: '3.60' },
+                { term: 36, interest: '3.70' },
+            ],
+            showFormInterest: false,
+            showTableInterest: false,
         }
+    },
+    computed: {
+         headerTableInterest(){
+            return [
+                {
+                    key: 'term',
+                    label: this.$t('term'),
+                    sortable: false,
+                },
+                {
+                    key: 'interest',
+                    label: this.$t('interest'),
+                    sortable: true,
+                },
+            ]
+        },
     },
     methods: {
         openModalBorrowerUpload(){
@@ -553,11 +747,11 @@ export default {
                     checkValidation = true
                 } else {
                     checkValidation = false
-                    swal.fire({
-                        icon: 'warning',
-                        title: this.$t('borrower'),
-                        text: this.$t('validation_failed'),
-                    })
+                    // swal.fire({
+                    //     icon: 'warning',
+                    //     title: this.$t('borrower'),
+                    //     text: this.$t('validation_failed'),
+                    // })
                 }
             })
             return true
@@ -572,11 +766,11 @@ export default {
                     checkValidation = true
                 } else {
                     checkValidation = false
-                    swal.fire({
-                        icon: 'warning',
-                        title: this.$t('guarantor'),
-                        text: this.$t('validation_failed'),
-                    })
+                    // swal.fire({
+                    //     icon: 'warning',
+                    //     title: this.$t('guarantor'),
+                    //     text: this.$t('validation_failed'),
+                    // })
                 }
             })
             return true
@@ -624,6 +818,10 @@ export default {
                 this.$refs.loan_form.reset()
             });
 
+        },
+        onSelectCompany(){
+            this.showFormInterest = true
+            this.showTableInterest = true
         }
     }
 }

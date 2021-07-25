@@ -27,7 +27,7 @@ export default {
     back: 'Back',
     finish: 'Finish',
     close: 'Close',
-    Save: 'Save',
+    save: 'Save',
     first_name: 'First Name',
     last_name: 'Last Name',
     gender: 'Gender',
@@ -35,7 +35,7 @@ export default {
     email: 'Email',
     business_name: 'Business Name',
     phone: 'Phone Number',
-    alt_phone: 'Alt Number',
+    alt_phone: 'Alt Phone',
     address: 'Address',
     photo: 'Photo',
     national_id: 'National ID',
@@ -44,7 +44,18 @@ export default {
     salary_invoice: 'Salary Invoice',
     male: 'Male',
     female: 'Female',
-    choose_file: 'Choose File'
-
+    choose_file: 'Choose File',
+    request_amount: 'Request Amount',
+    term: 'Term',
+    outstanding_amount: 'Outstanding Amount',
+    logo: 'Logo',
+    name: 'Name',
+    created_at: 'Created At',
+    add: 'Add',
+    refresh: 'Refresh',
+    edit: 'Edit',
+    delete: 'Delete',
+    month: 'Month',
+    interest: 'Interest',
 
 }

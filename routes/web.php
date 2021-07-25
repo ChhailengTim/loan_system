@@ -26,6 +26,7 @@ Route::get('/logout', 'App\Http\Controllers\LoginController@logout')->name('logo
 Route::middleware('auth')->group(function () {
 
     include 'admin/dashboard.php';
+    include 'admin/company.php';
 });
 
 Route::get('/{vue_capture}', function () {

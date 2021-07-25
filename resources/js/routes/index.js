@@ -29,14 +29,15 @@ Vue.component('app', require('../layouts/admin').default);
 /**
  * Admin
  */
-import dashboard from '../pages/dashboard/'
+import dashboard from '../pages/admin/dashboard/'
+import company from '../pages/admin/company/'
 
 
 /**
  * Not found & No Permission
  */
-import pageNotFound from '../pages/errors/404.vue'
-import pageNotPermission from '../pages/errors/403.vue'
+import pageNotFound from '../pages/admin/errors/404.vue'
+import pageNotPermission from '../pages/admin/errors/403.vue'
 
 const router = new VueRouter({
     mode: 'history',
@@ -50,11 +51,19 @@ const router = new VueRouter({
             },
         },
         {
-            path: '/dashboard',
+            path: '/admin/dashboard',
             name: 'dashboard',
             component: dashboard,
             meta: {
                 title: 'dashboard',
+            },
+        },
+        {
+            path: '/admin/company',
+            name: 'company',
+            component: company,
+            meta: {
+                title: 'company',
             },
         },
         {
