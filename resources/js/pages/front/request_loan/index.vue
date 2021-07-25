@@ -20,10 +20,8 @@
                                 color="#20a0ff"
                                 error-color="#ff4949"
                                 :reset="setIndex"
-                                startIndex="2"
                                 shape="circle"
                                 ref="loan_form"
-
                             >
                                 <tab-content :title="$t('borrower')" :before-change="validateFirstStep">
                                     <b-row class="justify-content-md-center">
@@ -508,18 +506,20 @@
                                                 label-class="control-label"
                                                 class="text-left"
                                             >
-                                                <b-form-input
-                                                    autocomplete="off"
-                                                    v-model="form.request_loan"
-                                                    v-validate="'required'"
-                                                    :state="veeErrors.has('loan_form.request_loan') ? false : null"
-                                                    data-vv-name="request_loan"
-                                                    :data-vv-as="$t('request_loan')"
-                                                    data-vv-scope="loan_form"
-                                                    type="number"
-                                                    min="1"
-                                                    :placeholder="$t('request_loan')"
-                                                ></b-form-input>
+                                                <b-input-group append="$">
+                                                    <b-form-input
+                                                        autocomplete="off"
+                                                        v-model="form.request_loan"
+                                                        v-validate="'required'"
+                                                        :state="veeErrors.has('loan_form.request_loan') ? false : null"
+                                                        data-vv-name="request_loan"
+                                                        :data-vv-as="$t('request_loan')"
+                                                        data-vv-scope="loan_form"
+                                                        type="number"
+                                                        min="1"
+                                                        :placeholder="$t('request_loan')"
+                                                    ></b-form-input>
+                                                </b-input-group>
                                             </b-form-group>
                                         </b-col>
                                         <!-- term -->
@@ -530,18 +530,20 @@
                                                 label-class="control-label"
                                                 class="text-left"
                                             >
-                                                <b-form-input
-                                                    autocomplete="off"
-                                                    v-model="form.term"
-                                                    v-validate="'required'"
-                                                    :state="veeErrors.has('loan_form.term') ? false : null"
-                                                    data-vv-name="term"
-                                                    :data-vv-as="$t('term')"
-                                                    data-vv-scope="loan_form"
-                                                    type="number"
-                                                    min="1"
-                                                    :placeholder="$t('term')"
-                                                ></b-form-input>
+                                                <b-input-group :append="$t('month')">
+                                                    <b-form-input
+                                                        autocomplete="off"
+                                                        v-model="form.term"
+                                                        v-validate="'required'"
+                                                        :state="veeErrors.has('loan_form.term') ? false : null"
+                                                        data-vv-name="term"
+                                                        :data-vv-as="$t('term')"
+                                                        data-vv-scope="loan_form"
+                                                        type="number"
+                                                        min="1"
+                                                        :placeholder="$t('term')"
+                                                    ></b-form-input>
+                                                </b-input-group>
                                             </b-form-group>
                                         </b-col>
                                         <!-- outstanding_amount -->
@@ -552,19 +554,21 @@
                                                 label-class="control-label"
                                                 class="text-left"
                                             >
-                                                <b-form-input
-                                                    autocomplete="off"
-                                                    v-model="form.outstanding_amount"
-                                                    v-validate="'required'"
-                                                    :state="veeErrors.has('loan_form.outstanding_amount') ? false : null"
-                                                    data-vv-name="outstanding_amount"
-                                                    :data-vv-as="$t('outstanding_amount')"
-                                                    data-vv-scope="loan_form"
-                                                    type="number"
-                                                    min="1"
-                                                    disabled
-                                                    :placeholder="$t('outstanding_amount')"
-                                                ></b-form-input>
+                                                <b-input-group append="$">
+                                                    <b-form-input
+                                                        autocomplete="off"
+                                                        v-model="form.outstanding_amount"
+                                                        v-validate="'required'"
+                                                        :state="veeErrors.has('loan_form.outstanding_amount') ? false : null"
+                                                        data-vv-name="outstanding_amount"
+                                                        :data-vv-as="$t('outstanding_amount')"
+                                                        data-vv-scope="loan_form"
+                                                        type="number"
+                                                        min="1"
+                                                        disabled
+                                                        :placeholder="$t('outstanding_amount')"
+                                                    ></b-form-input>
+                                                </b-input-group>
                                             </b-form-group>
                                         </b-col>
                                     </b-row>
@@ -747,14 +751,14 @@ export default {
                     checkValidation = true
                 } else {
                     checkValidation = false
-                    // swal.fire({
-                    //     icon: 'warning',
-                    //     title: this.$t('borrower'),
-                    //     text: this.$t('validation_failed'),
-                    // })
+                    swal.fire({
+                        icon: 'warning',
+                        title: this.$t('borrower'),
+                        text: this.$t('validation_failed'),
+                    })
                 }
             })
-            return true
+            return checkValidation
         },
         async validateSecondStep() {
             /**
@@ -766,14 +770,14 @@ export default {
                     checkValidation = true
                 } else {
                     checkValidation = false
-                    // swal.fire({
-                    //     icon: 'warning',
-                    //     title: this.$t('guarantor'),
-                    //     text: this.$t('validation_failed'),
-                    // })
+                    swal.fire({
+                        icon: 'warning',
+                        title: this.$t('guarantor'),
+                        text: this.$t('validation_failed'),
+                    })
                 }
             })
-            return true
+            return checkValidation
         },
         onComplete: function () {
             /**

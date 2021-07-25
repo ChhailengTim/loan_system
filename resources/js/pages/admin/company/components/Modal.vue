@@ -11,7 +11,7 @@
         content-class="custom-modal"
     >
         <template slot="modal-header">
-            <h3><i class="fas fa-user"></i> {{ $t('company') }}</h3>
+            <h3><i class="fas fa-building"></i> {{ $t('company') }}</h3>
         </template>
             <b-row>
                 <!--select image-->
@@ -64,7 +64,7 @@
                             >
                                 <b-form-input
                                     autocomplete="off"
-                                    v-model="form.name"
+                                    v-model="form.company_name"
                                     v-validate="'required|max:20'"
                                     :state="veeErrors.has('name') ? false : null"
                                     data-vv-name="name"
@@ -168,17 +168,19 @@
                                 label-class="control-label"
                                 class="text-left"
                             >
-                                <b-form-input
-                                    autocomplete="off"
-                                    v-model="obj.month"
-                                    v-validate="'required'"
-                                    :state="veeErrors.has('month_'+index) ? false : null"
-                                    :data-vv-name="'month_'+index"
-                                    :data-vv-as="$t('month')"
-                                    type="number"
-                                    min="1"
-                                    :placeholder="$t('month')"
-                                ></b-form-input>
+                                <b-input-group :append="$t('month')">
+                                    <b-form-input
+                                        autocomplete="off"
+                                        v-model="obj.month"
+                                        v-validate="'required'"
+                                        :state="veeErrors.has('month_'+index) ? false : null"
+                                        :data-vv-name="'month_'+index"
+                                        :data-vv-as="$t('month')"
+                                        type="number"
+                                        min="1"
+                                        :placeholder="$t('month')"
+                                    ></b-form-input>
+                                </b-input-group>
                             </b-form-group>
                         </b-col>
                          <!--interest-->
@@ -190,7 +192,7 @@
                                 label-class="control-label"
                                 class="text-left"
                             >
-                                <b-input-group>
+                                <b-input-group prepend="%">
                                     <b-form-input
                                         autocomplete="off"
                                         v-model="obj.interest"
@@ -248,13 +250,14 @@
             return{
                 modal:true,
                 form: {
-                    name: null,
+                    company_name: null,
                     phone: null,
                     alt_phone: null,
                     address: null,
                     logo: null,
                     old_logo: null,
-                    interest_list: [{ month: null, interest: null}]
+                    interest_list: [{ month: null, interest: null}],
+                    interest: 10
                 },
                 url: null,
                 imgUrl: '/images/company/',
@@ -292,8 +295,7 @@
                     if (result) {
                         axios.post(this.url, this.form).then(function (response) {
                             if (response.status === 200){
-                                console.log(response);
-                                // vm.listItems = response.data.data
+                                vm.listItems = response.data.data
                                 vm.clearForm()
                             }
                         }).catch(function (error) {

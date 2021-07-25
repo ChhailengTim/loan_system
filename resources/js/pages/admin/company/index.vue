@@ -76,21 +76,21 @@
                                     style="width: 50px; height: 50px"
                                     class="img-thumbnail rounded"
                                     v-if="row.item.logo == null"
-                                    src="/assets/img/no-image.png"
+                                    :src="apiUrl+'/assets/img/no-image.png'"
                                 >
                                 <div v-else>
                                     <img
                                         style="width: 40px; height: 40px"
                                         class="img-thumbnail rounded"
                                         :id="row.item.logo"
-                                        :src="'/images/company/thumbnail/' + row.item.logo"
+                                        :src="apiUrl+'/images/company/thumbnail/' + row.item.logo"
                                     >
                                     <b-tooltip
                                         :target="row.item.logo"
                                         placement="right"
                                         variant="primary"
                                     >
-                                        <img class="img-thumbnail" :src="'/images/company/' + row.item.logo">
+                                        <img class="img-thumbnail" :src="apiUrl+'/images/company/' + row.item.logo">
                                     </b-tooltip>
                                 </div>
                             </template>
@@ -148,6 +148,7 @@
                   warehouses: {},
                   txt_src: null,
               },
+              apiUrl: 'http://localhost:8000'
           }
         },
         components: {
@@ -237,7 +238,7 @@
                             vm.$fire({
                                 position: 'top-end',
                                 type: 'success',
-                                title: 'Your work has been saved',
+                                title: 'Your work has been done',
                                 showConfirmButton: false,
                                 backdrop: false,
                                 toast:true,
@@ -262,7 +263,6 @@
            closeModal(obj){
                 this.modalType = 0;
                 this.modalShow = false
-
                 if(!this.$helpers.isEmpty(obj)){
                     this.fetchRecord();
                 }

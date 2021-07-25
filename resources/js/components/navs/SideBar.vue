@@ -52,13 +52,13 @@ export default {
             menuItems: [],
             items: [
                 {
-                    icon: 'fas fa-building',
+                    icon: 'fas fa-tachometer-alt',
                     label: 'dashboard',
                     to: '/admin/dashboard',
                     key: 'dashboard',
                 },
                 {
-                    icon: 'fas fa-bezier-curve',
+                    icon: 'fas fa-building',
                     label: 'company',
                     to: '/admin/company',
                     key: 'company',

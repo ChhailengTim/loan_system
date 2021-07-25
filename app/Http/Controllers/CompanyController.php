@@ -17,7 +17,7 @@ class CompanyController extends Controller
             $table_size = 10;
         }
 
-        $data = Company::paginate($table_size);
+        $data = Company::orderBy('id', 'desc')->paginate($table_size);
 
         return $this->responseWithPagination($data);
     }
@@ -101,7 +101,7 @@ class CompanyController extends Controller
             'company_name' => 'required|max:100',
             'phone' => 'required|max:50',
             'alt_phone' => 'required|max:50',
-            'logo' => 'required|max:100',
+            'logo' => 'required',
             'email' => 'required|max:100',
             'address' => 'required|max:200',
             'interest' => 'required|max:10',
