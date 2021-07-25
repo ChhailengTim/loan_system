@@ -22,7 +22,29 @@ export default {
     unpaid_loan: 'Unpaid loan',
     loan_management: 'Loan Management',
     all_loan: 'All Loan',
-    request_loan: 'Request Loan'
+    request_loan: 'Request Loan',
+    next: 'Next',
+    back: 'Back',
+    finish: 'Finish',
+    close: 'Close',
+    Save: 'Save',
+    first_name: 'First Name',
+    last_name: 'Last Name',
+    gender: 'Gender',
+    dob: 'DateOfBirth',
+    email: 'Email',
+    business_name: 'Business Name',
+    phone: 'Phone Number',
+    alt_phone: 'Alt Number',
+    address: 'Address',
+    photo: 'Photo',
+    national_id: 'National ID',
+    mortgage: 'Mortgage',
+    family_book: 'Family Book',
+    salary_invoice: 'Salary Invoice',
+    male: 'Male',
+    female: 'Female',
+    choose_file: 'Choose File'
 
 
 }

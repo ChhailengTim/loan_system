@@ -6,7 +6,7 @@ import kh from '../lang/kh'
 Vue.use(VueI18n);
 const messages = { en, kh };
 const i18n = new VueI18n({
-    locale: 'kh',
+    locale: 'en',
     messages
 });
 
