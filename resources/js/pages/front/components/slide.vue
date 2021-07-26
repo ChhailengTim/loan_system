@@ -4,8 +4,8 @@
 
             <div id="work" class="carousel slide" data-ride="carousel">
                 <div class="banner-content text-left">
-                <h1>DESIGN WEBSITE<span> WHICH<br> MAKES</span> YOU PROUD</h1>
-                <p class="col-md-5 adjust">
+                <h1 class="text-white">DESIGN WEBSITE<span> WHICH<br> MAKES</span> YOU PROUD</h1>
+                <p class="col-md-5 adjust text-white">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat veritatis iste, nulla architecto quam saepe? Totam quisquam nam officia dignissimos nesciunt quis molestias, sit hic nulla suscipit unde odit voluptates.
                 </p>
                 <br>
@@ -57,7 +57,12 @@
 	width: 12px;
     height: 12px;
     margin-left: 5px;
+    background-color: black;
 
+}
+
+.carousel-indicators .active {
+    background-color: #216377;
 }
 
 .top-carousel .banner-content {
@@ -84,6 +89,7 @@
 
 .btn-success:hover{
     border-color: transparent !important;
+    background-color: #ff3377 !important;
 }
 
 
