@@ -21,7 +21,6 @@ class CreateCompanyTable extends Migration
             $table->string('logo', 100);
             $table->string('email', 100);
             $table->string('address', 200);
-            $table->string('interest', 10)->comment('Image');
             $table->timestamps();
             $table->softDeletes();
         });

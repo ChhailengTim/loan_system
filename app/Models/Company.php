@@ -26,15 +26,15 @@ class Company extends Model
     const logoPath = 'images' . DIRECTORY_SEPARATOR . 'company' . DIRECTORY_SEPARATOR . 'logo';
     const thumbnailLogoPath = 'images' . DIRECTORY_SEPARATOR . 'company' . DIRECTORY_SEPARATOR  . 'logo' . DIRECTORY_SEPARATOR . 'thumbnail';
 
-    //Image path for interest
-    const interestPath = 'images' . DIRECTORY_SEPARATOR . 'company' . DIRECTORY_SEPARATOR . 'interest';
-    const thumbnailInterestPath = 'images' . DIRECTORY_SEPARATOR . 'company' . DIRECTORY_SEPARATOR  . 'interest' . DIRECTORY_SEPARATOR . 'thumbnail';
-
     protected $table = self::TABLE_NAME;
-
 
     public static function comboList(){
         return self::orderBy('id', 'desc')->get();
+    }
+
+    public function companyInterest()
+    {
+        return $this->hasMany('App\Models\CompanyInterest', 'company_id', 'id');
     }
 
 

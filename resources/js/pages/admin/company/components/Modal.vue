@@ -65,7 +65,7 @@
                                 <b-form-input
                                     autocomplete="off"
                                     v-model="form.company_name"
-                                    v-validate="'required|max:20'"
+                                    v-validate="'required|max:100'"
                                     :state="veeErrors.has('name') ? false : null"
                                     data-vv-name="name"
                                     :data-vv-as="$t('name')"
@@ -85,11 +85,11 @@
                                 <b-form-input
                                     autocomplete="off"
                                     v-model="form.email"
-                                    v-validate="'required|max:20'"
+                                    v-validate="'required|email|max:100'"
                                     :state="veeErrors.has('email') ? false : null"
                                     data-vv-name="email"
                                     :data-vv-as="$t('email')"
-                                    type="text"
+                                    type="email"
                                     :placeholder="$t('email')"
                                 ></b-form-input>
                             </b-form-group>
@@ -105,7 +105,7 @@
                                 <b-form-input
                                     autocomplete="off"
                                     v-model="form.phone"
-                                    v-validate="'required|max:20'"
+                                    v-validate="'required|min:9|max:10'"
                                     :state="veeErrors.has('phone') ? false : null"
                                     data-vv-name="phone"
                                     :data-vv-as="$t('phone')"
@@ -125,7 +125,7 @@
                                 <b-form-input
                                     autocomplete="off"
                                     v-model="form.alt_phone"
-                                    v-validate="'required|max:20'"
+                                    v-validate="'required|min:9|max:10'"
                                     :state="veeErrors.has('alt_phone') ? false : null"
                                     data-vv-name="alt_phone"
                                     :data-vv-as="$t('alt_phone')"
@@ -137,7 +137,7 @@
                         <!--address-->
                         <b-col cols="12">
                             <b-form-group
-                                :invalid-feedback="veeErrors.first('phone')"
+                                :invalid-feedback="veeErrors.first('address')"
                                 :label="$t('address')"
                                 label-class="control-label"
                                 class="text-left"
@@ -145,6 +145,10 @@
                                 <b-textarea
                                     autocomplete="off"
                                     v-model="form.address"
+                                    v-validate="'required|max:200'"
+                                    :state="veeErrors.has('address') ? false : null"
+                                    data-vv-name="address"
+                                    :data-vv-as="$t('address')"
                                     rows="5"
                                     :placeholder="$t('address')"
                                 ></b-textarea>
@@ -159,10 +163,11 @@
                             </h5>
                         </b-col>
                     </b-row>
-                    <b-row v-for="(obj, index) in form.interest_list" :key="index">
+                    <b-row v-for="(obj, index) in form.company_interest" :key="index">
                         <!--month-->
                         <b-col cols="12" sm="12" md="6" xl="6">
                             <b-form-group
+                                :state="veeErrors.has('month_'+index) ? false : null"
                                 :invalid-feedback="veeErrors.first('month_'+index)"
                                 :label="$t('month') + ' *'"
                                 label-class="control-label"
@@ -172,7 +177,7 @@
                                     <b-form-input
                                         autocomplete="off"
                                         v-model="obj.month"
-                                        v-validate="'required'"
+                                        v-validate="'required|numeric'"
                                         :state="veeErrors.has('month_'+index) ? false : null"
                                         :data-vv-name="'month_'+index"
                                         :data-vv-as="$t('month')"
@@ -196,7 +201,7 @@
                                     <b-form-input
                                         autocomplete="off"
                                         v-model="obj.interest"
-                                        v-validate="'required'"
+                                        v-validate="'required|numeric'"
                                         :state="veeErrors.has('interest_'+index) ? false : null"
                                         :data-vv-name="'interest_'+index"
                                         :data-vv-as="$t('interest')"
@@ -256,8 +261,16 @@
                     address: null,
                     logo: null,
                     old_logo: null,
-                    interest_list: [{ month: null, interest: null}],
-                    interest: 10
+                    company_interest: [{ month: null, interest: null}]
+                },
+                defaultForm: {
+                    company_name: null,
+                    phone: null,
+                    alt_phone: null,
+                    address: null,
+                    logo: null,
+                    old_logo: null,
+                    company_interest: [{ month: null, interest: null}]
                 },
                 url: null,
                 imgUrl: '/images/company/',
@@ -290,9 +303,18 @@
         },
         methods:{
             onSubmit() {
+                let vm = this;
                 this.$validator.validateAll().then((result) => {
-                    let vm = this;
                     if (result) {
+                        if(this.$helpers.nullToVoid(this.form.logo) == ''){
+                            swal.fire({
+                                icon: 'warning',
+                                title: vm.$t('company'),
+                                text: this.$i18n.locale == 'en' ? 'Please choose logo !' : (this.$i18n.locale == 'kh' ? 'សូមជ្រើសរើសឡូហ្គូ !' : ''),
+                            })
+                            return;
+                        }
+
                         axios.post(this.url, this.form).then(function (response) {
                             if (response.status === 200){
                                 vm.listItems = response.data.data
@@ -301,11 +323,21 @@
                         }).catch(function (error) {
                             console.log(error)
                         });
+                    }else{
+                        vm.$fire({
+                            position: 'top-end',
+                            type: 'warning',
+                            title: vm.$t('validation_failed'),
+                            showConfirmButton: false,
+                            backdrop: false,
+                            toast:true,
+                            timer: 2000
+                        });
                     }
                 });
             },
             clearForm() {
-                this.form = {}
+                this.form = Object.assign({}, this.defaultForm)
 
                 this.$nextTick(() => {
                     this.$validator.reset();
@@ -342,15 +374,15 @@
                 }
             },
             addInterest(){
-                this.form.interest_list.push({
+                this.form.company_interest.push({
                     id: null,
                     month: null,
                     interest: null,
                 })
             },
             removeInterest(index){
-                if(this.form.interest_list.length > 1){
-                    this.$delete(this.form.interest_list, index)
+                if(this.form.company_interest.length > 1){
+                    this.$delete(this.form.company_interest, index)
                 }
             },
         }

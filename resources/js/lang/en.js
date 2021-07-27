@@ -22,6 +22,7 @@ export default {
     unpaid_loan: 'Unpaid loan',
     loan_management: 'Loan Management',
     all_loan: 'All Loan',
+    validation_failed: 'Please check input data again',
     request_loan: 'Request Loan',
     next: 'Next',
     back: 'Back',

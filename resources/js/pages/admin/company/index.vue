@@ -250,11 +250,9 @@
                 });
             },
             rowItem(event){
-                console.log(event)
                 if(event.length>0){
                     this.selectedItem = event[0];
                     this.showDelete = false
-                    console.log(this.selectedItem.id)
                 }else{
                     this.showDelete = true
                     this.selectedItem = {};

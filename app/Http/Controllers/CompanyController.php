@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\StringHelper;
 use App\Models\Company;
+use App\Models\CompanyInterest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,9 @@ class CompanyController extends Controller
             $table_size = 10;
         }
 
-        $data = Company::orderBy('id', 'desc')->paginate($table_size);
+        $data = Company::with(['companyInterest'])
+            ->orderBy('id', 'desc')
+            ->paginate($table_size);
 
         return $this->responseWithPagination($data);
     }
@@ -26,7 +29,6 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $this->checkValidation($request);
-        DB::beginTransaction();
 
         $company  = new Company();
         $company->setData($request);
@@ -37,16 +39,20 @@ class CompanyController extends Controller
                 $company->logo = $logo;
                 $company->save();
             }
-
-            // Upload interest
-            if ($request['interest'] != null){
-                $interest = StringHelper::uploadImage($request['interest'], Company::interestPath, Company::thumbnailInterestPath);
-                $company->interest = $interest;
-                $company->save();
-            }
         }
 
-        DB::commit();
+        foreach($request['company_interest'] as $item){
+            $company_interest_data = [
+                CompanyInterest::COMPANY_ID => $company->id,
+                CompanyInterest::MONTH => $item['month'],
+                CompanyInterest::INTEREST => $item['interest']
+            ];
+
+            $company_interest  = new CompanyInterest();
+            $company_interest->setData($company_interest_data);
+            $company_interest->save();
+        }
+
         return $this->responseWithData($company);
 
     }
@@ -54,7 +60,6 @@ class CompanyController extends Controller
     //edit
     public function edit(Request $request)
     {
-        DB::beginTransaction();
         $this->checkValidation($request);
 
         $company  = Company::find($request->id);
@@ -65,14 +70,23 @@ class CompanyController extends Controller
             $logo = StringHelper::editImage($request['logo'], $request['old_logo'], Company::logoPath, Company::thumbnailLogoPath);
             $company->logo = $logo;
             $company->save();
-
-            //Update Interest
-            $interest = StringHelper::editImage($request['interest'], $request['old_interest'], Company::interestPath, Company::thumbnailInterestPath);
-            $company->interest = $interest;
-            $company->save();
         }
 
-        DB::commit();
+        $company_interest = CompanyInterest::where(CompanyInterest::COMPANY_ID, $request->id);
+        if($company_interest->delete()){
+            foreach($request['company_interest'] as $item){
+                $company_interest_data = [
+                    CompanyInterest::COMPANY_ID => $company->id,
+                    CompanyInterest::MONTH => $item['month'],
+                    CompanyInterest::INTEREST => $item['interest']
+                ];
+
+                $company_interest  = new CompanyInterest();
+                $company_interest->setData($company_interest_data);
+                $company_interest->save();
+            }
+        }
+
         return $this->responseWithData($company);
     }
 
@@ -86,8 +100,8 @@ class CompanyController extends Controller
             //Delete Logo
             StringHelper::deleteImage($company->logo, Company::logoPath, Company::thumbnailLogoPath);
 
-            //Delete interest
-            StringHelper::deleteImage($company->interest, Company::interestPath, Company::interestPath, Company::thumbnailInterestPath);
+            //Delete Company Interest
+            CompanyInterest::where(CompanyInterest::COMPANY_ID, $request->id)->delete();
         }
 
         DB::commit();
@@ -104,7 +118,6 @@ class CompanyController extends Controller
             'logo' => 'required',
             'email' => 'required|max:100',
             'address' => 'required|max:200',
-            'interest' => 'required|max:10',
         ]);
     }
 }
