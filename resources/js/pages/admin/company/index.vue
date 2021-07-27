@@ -80,7 +80,6 @@
                                 >
                                 <div v-else>
                                     <img
-                                        style="width: 40px; height: 40px"
                                         class="img-thumbnail rounded"
                                         :id="row.item.logo"
                                         :src="'/images/company/thumbnail/' + row.item.logo"
