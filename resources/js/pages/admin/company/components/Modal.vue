@@ -201,7 +201,7 @@
                                     <b-form-input
                                         autocomplete="off"
                                         v-model="obj.interest"
-                                        v-validate="'required|numeric'"
+                                        v-validate="'required'"
                                         :state="veeErrors.has('interest_'+index) ? false : null"
                                         :data-vv-name="'interest_'+index"
                                         :data-vv-as="$t('interest')"

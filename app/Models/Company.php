@@ -23,8 +23,8 @@ class Company extends Model
     const UPDATED_AT = 'updated_at';
 
     //Image path for logo
-    const logoPath = 'images' . DIRECTORY_SEPARATOR . 'company' . DIRECTORY_SEPARATOR . 'logo';
-    const thumbnailLogoPath = 'images' . DIRECTORY_SEPARATOR . 'company' . DIRECTORY_SEPARATOR  . 'logo' . DIRECTORY_SEPARATOR . 'thumbnail';
+    const logoPath = 'images' . DIRECTORY_SEPARATOR . 'company';
+    const thumbnailLogoPath = 'images' . DIRECTORY_SEPARATOR . 'company' . DIRECTORY_SEPARATOR . 'thumbnail';
 
     protected $table = self::TABLE_NAME;
 
