@@ -792,11 +792,21 @@ export default {
             let checkValidation = false
             this.$validator.validateAll('loan_form').then((result) => {
                 if (result) {
-                    this.checkValidationTerm()
 
                     let input = this.form
 
                     checkValidation = true
+
+                    let interest = this.tableInterestItems.find(obj => obj.month == input.term)
+
+                    if(interest == undefined){
+                        swal.fire({
+                            icon: 'warning',
+                            title: this.$t('interest'),
+                            text: this.$t('validation_failed'),
+                        })
+                        return;
+                    }
 
                     let url='/loan/request_loan'
 
