@@ -14,11 +14,11 @@ class CreateBorrowerTable extends Migration
     public function up()
     {
         Schema::create('borrower', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id();
             $table->unsignedBigInteger('company_id');
             $table->string('first_name', 50);
             $table->string('last_name', 50);
-            $table->tinyInteger('gender', 1)->comment('1: Male, 2: Female');
+            $table->tinyInteger('gender')->comment('1: Male, 2: Female');
             $table->date('dob');
             $table->string('address', 200);
             $table->string('email', 100);
