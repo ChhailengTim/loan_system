@@ -680,16 +680,10 @@ export default {
             modalBorrowerUploadShowType: 0,
             modalGuarantorUploadShow: false,
             modalGuarantorUploadShowType: 0,
-            tableInterestItems: [
-                { term: 1, interest: '0.75' },
-                { term: 3, interest: '1.50' },
-                { term: 6, interest: '2.75' },
-                { term: 12, interest: '3.50' },
-                { term: 24, interest: '3.60' },
-                { term: 36, interest: '3.70' },
-            ],
+            tableInterestItems: [],
             showFormInterest: false,
             showTableInterest: false,
+            companySelectData: []
         }
     },
     computed: {
@@ -708,7 +702,15 @@ export default {
             ]
         },
     },
+    created(){
+        this.getCompanyList()
+    },
     methods: {
+        getCompanyList(){
+            axios.post('/company/get_all').then(response => {
+                console.log(response);
+            });
+        },
         openModalBorrowerUpload(){
             this.modalBorrowerUploadShow = true
             this.modalBorrowerUploadShowType = 1

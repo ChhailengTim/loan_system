@@ -27,12 +27,21 @@ window.axios.baseURL = "http://127.0.0.1:8000";
 
 // bootstrap.js
 axios.interceptors.request.use(function (config) {
-    $.LoadingOverlay("show", {
-        background  : "rgba(0,0,0,0.1)",
-        image       : "",
-        fontawesome : "fa fa-fan fa-spin",
-        fontawesomeColor: 'rgba(0,0,0,0.2)',
-    });
+    let loading = true
+
+    if (config.data != undefined) {
+        if (config.data.loading != undefined)
+            loading = config.data.loading
+    }
+
+    if(loading){
+        $.LoadingOverlay("show", {
+            background  : "rgba(0,0,0,0.1)",
+            image       : "",
+            fontawesome : "fa fa-fan fa-spin",
+            fontawesomeColor: 'rgba(0,0,0,0.2)',
+        });
+    }
     return config;
 
 }, function (error) {
