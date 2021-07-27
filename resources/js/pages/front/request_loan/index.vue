@@ -22,6 +22,7 @@
                                 :reset="setIndex"
                                 shape="circle"
                                 ref="loan_form"
+                                :startIndex="2"
                             >
                                 <tab-content :title="$t('borrower')" :before-change="validateFirstStep">
                                     <b-row class="justify-content-md-center">
@@ -462,9 +463,7 @@
                                                             {{ $t('company') }}
                                                         </b-form-select-option>
                                                     </template>
-                                                    <b-form-select-option value="1">ABA</b-form-select-option>
-                                                    <b-form-select-option value="2">Aceleda</b-form-select-option>
-                                                    <b-form-select-option value="3">Amk</b-form-select-option>
+                                                    <b-form-select-option v-for=" (obj, index) in companySelectData" :value="obj.id" :key="index">{{ obj.company_name }}</b-form-select-option>
                                                 </b-select>
                                             </b-form-group>
                                         </b-col>
@@ -488,7 +487,7 @@
                                                     :items="tableInterestItems"
                                                 >
                                                     <template v-slot:cell(term)="row">
-                                                       {{ row.item.term }} Month
+                                                       {{ row.item.term }} {{$t('month')}}
                                                     </template>
                                                     <template v-slot:cell(interest)="row">
                                                        {{ row.item.interest }} %
@@ -542,6 +541,8 @@
                                                         type="number"
                                                         min="1"
                                                         :placeholder="$t('term')"
+                                                        :disabled="disabledTerm"
+                                                        @keyup="checkValidationTerm"
                                                     ></b-form-input>
                                                 </b-input-group>
                                             </b-form-group>
@@ -683,14 +684,15 @@ export default {
             tableInterestItems: [],
             showFormInterest: false,
             showTableInterest: false,
-            companySelectData: []
+            companySelectData: [],
+            disabledTerm: true
         }
     },
     computed: {
          headerTableInterest(){
             return [
                 {
-                    key: 'term',
+                    key: 'month',
                     label: this.$t('term'),
                     sortable: false,
                 },
@@ -707,8 +709,10 @@ export default {
     },
     methods: {
         getCompanyList(){
-            axios.post('/company/get_all').then(response => {
-                console.log(response);
+            axios.post('/company/get_all', { loading: false }).then(response => {
+                if(response.status == 200){
+                    this.companySelectData = response.data.data
+                }
             });
         },
         openModalBorrowerUpload(){
@@ -788,6 +792,8 @@ export default {
             let checkValidation = false
             this.$validator.validateAll('loan_form').then((result) => {
                 if (result) {
+                    this.checkValidationTerm()
+
                     let input = this.form
 
                     checkValidation = true
@@ -826,8 +832,26 @@ export default {
 
         },
         onSelectCompany(){
+            let data = this.companySelectData.find(item => item.id === this.form.company_id)
+            this.tableInterestItems = data.company_interest
+
             this.showFormInterest = true
             this.showTableInterest = true
+            this.disabledTerm = false
+        },
+        checkValidationTerm(){
+            if(this.$helpers.nullToVoid(this.form.term) != ''){
+                let interest = this.tableInterestItems.find(obj => obj.month == this.form.term)
+
+                if(interest == undefined){
+                    swal.fire({
+                        icon: 'warning',
+                        title: this.$t('interest'),
+                        text: this.$t('validation_failed'),
+                    })
+                    return;
+                }
+            }
         }
     }
 }

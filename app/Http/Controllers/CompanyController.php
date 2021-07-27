@@ -120,4 +120,18 @@ class CompanyController extends Controller
             'address' => 'required|max:200',
         ]);
     }
+
+    //get all
+    public function getAll(Request $request)
+    {
+        $data = Company::with([
+            'companyInterest' => function($query){
+                $query->orderBy('id', 'asc');
+            }
+            ])
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return $this->responseWithData($data);
+    }
 }
