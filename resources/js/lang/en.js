@@ -58,5 +58,9 @@ export default {
     delete: 'Delete',
     month: 'Month',
     interest: 'Interest',
+    borrower_login: 'Borrower Login',
+    login: 'Login',
+    password: 'Password',
+    done_action: 'Your action has been completed successfully'
 
 }

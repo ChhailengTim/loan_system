@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
 //Admin block No Auth
 Route::post('/company/get_all','App\Http\Controllers\CompanyController@getAll');
 Route::post('/loan/request_loan','App\Http\Controllers\LoanController@requestLoan');
+Route::post('/loan/borrower_login','App\Http\Controllers\LoanController@borrowerReviewLogin');
+Route::post('/loan/borrower_review_list','App\Http\Controllers\LoanController@borrowerReviewList');
 
 
 

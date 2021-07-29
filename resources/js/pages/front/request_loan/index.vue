@@ -853,9 +853,6 @@ export default {
 
                     this.calulateOutStandingAmount(interest);
 
-                    // console.log(input);
-                    // return;
-
                     axios.post(url, input).then(response => {
                         console.log(response);
                         if(this.$helpers.nullToVoid(response) != '' && response.status == 200){

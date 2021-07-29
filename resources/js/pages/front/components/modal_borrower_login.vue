@@ -25,13 +25,13 @@
                         <b-form-input
                             autocomplete="off"
                             v-model="form.email"
-                            v-validate="'required|max:191'"
+                            v-validate="'required|email|max:200'"
                             :state="veeErrors.has('email') ? false : null"
                             data-vv-name="email"
                             :data-vv-as="$t('email')"
-                            type="text"
+                            type="email"
                             :placeholder="$t('email')"
-                            @keydown.enter.prevent="onSubmit"
+                            @keydown.enter.prevent="onSubmitBorrowerLogin"
                         ></b-form-input>
                     </b-form-group>
                 </b-col>
@@ -50,45 +50,124 @@
                             :state="veeErrors.has('password') ? false : null"
                             data-vv-name="password"
                             :data-vv-as="$t('password')"
-                            type="text"
+                            type="password"
                             :placeholder="$t('password')"
-                            @keydown.enter.prevent="onSubmit"
+                            @keydown.enter.prevent="onSubmitBorrowerLogin"
                         ></b-form-input>
                     </b-form-group>
                 </b-col>
             </b-row>
         </div>
         <template slot="modal-footer">
-            <b-button variant="outline-danger" @click="closeModalBorrwerLogin" class="float-right">
+            <b-button variant="outline-danger" @click="clearForm" class="float-right">
                 <i class="fas fa-times-circle mr-1"></i>
                 {{ $t('close') }}</b-button>
             <b-button type="submit" variant="outline-primary" class="float-right ml-2" @click.prevent="onSubmitBorrowerLogin">
                 <i class="fas fa-save mr-1" ></i>
-                Login</b-button>
+                {{ $t('login') }}</b-button>
         </template>
     </b-modal>
 </template>
 <script>
+import store from '../../../store'
 export default {
     props: {
-        modalShow: false
+        modalType: {
+            type: Number,
+            default: () => {
+                return 0
+            }
+        }
     },
     data(){
         return{
-            modalBorrowerShow: false,
-            form: {}
+            modalShow: false,
+            form: {
+                email: 'sotthipornfree@gmail.com',
+                password: 164151
+            },
+            defaultForm: {
+                email: 'sotthipornfree@gmail.com',
+                password: 164151
+            },
+        }
+    },
+    watch: {
+        modalType: {
+            handler(val){
+                if(val == 1){
+                    this.modalShow = true
+                }else{
+                    this.modalShow = false
+                }
+            },
+            immediate: true
         }
     },
     methods: {
-        openModalBorrwerLogin(){
-            this.modalBorrowerShow = true;
-        },
-        closeModalBorrwerLogin(){
-            this.modalBorrowerShow = false;
-        },
         onSubmitBorrowerLogin(){
-            window.location.href = '/front/borrower_review'
-        }
+            let vm = this
+
+            this.$validator.validateAll().then((result) => {
+                if (result) {
+                    let url='/loan/borrower_login'
+
+                    let input = this.form
+
+                    axios.post(url, input).then(response => {
+                        if(response.data.success == 1){
+                            store.dispatch('fetchBorrower', response.data.data)
+
+                            this.clearForm()
+
+                            vm.$fire({
+                                position: 'top-end',
+                                type: 'success',
+                                title: vm.$t('done_action'),
+                                showConfirmButton: false,
+                                backdrop: false,
+                                toast: true,
+                                timer: 2000
+                            });
+
+                              window.location.href = '/front/borrower_review'
+                        }else{
+                            store.dispatch('fetchBorrower', {})
+
+                            swal.fire({
+                                icon: 'error',
+                                title: vm.$t('borrower_login'),
+                                text: response.data.data.message,
+                            })
+
+                            return;
+                        }
+
+                    }).catch(function (error) {
+                        console.log(error)
+                    });
+
+                } else {
+                    swal.fire({
+                        icon: 'warning',
+                        title: this.$t('borrower_login'),
+                        text: this.$t('validation_failed'),
+                    })
+                }
+            })
+        },
+        clearForm(){
+            this.form = Object.assign({}, this.defaultForm)
+
+            this.$nextTick(() => {
+                this.$validator.reset();
+            });
+
+            this.$emit('closeModal')
+
+            this.modalShow = false;
+
+        },
     }
 }
 </script>

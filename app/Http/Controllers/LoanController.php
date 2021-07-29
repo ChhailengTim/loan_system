@@ -144,4 +144,32 @@ class LoanController extends Controller
         return $this->responseWithData();
 
     }
+
+    //Borrower Review Login
+    public function borrowerReviewLogin(Request $request){
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $borrower = Borrower::where(Borrower::EMAIL, $request->input('email'))
+        ->where(Borrower::PASSWORD, $request->input('password'))
+        ->first();
+
+        if(!empty($borrower)){
+            return $this->responseWithData($borrower);
+        }else{
+            return response()->json([
+                'success' => 0,
+                'message' => 'Invalid email and password'
+            ], 200);
+        }
+    }
+
+    //Borrower Review List
+    public function borrowerReviewList(Request $request){
+        $this->validate($request, [
+            'borrower_id' => 'required|exists:borrower,id'
+        ]);
+    }
 }

@@ -2,7 +2,7 @@
     <div>
         <header-page></header-page>
 
-        <div class="justify-content-center mt-3">
+        <div class="justify-content-center" style="margin-top: 6rem;">
             <b-card no-body class="card-table">
                 <b-card-header>
                     <h1>{{ $t('Review') }}</h1>
@@ -130,6 +130,7 @@
             headerPage
         },
         created(){
+            console.log(store.state.borrower);
         },
         computed: {
             ...mapGetters({
