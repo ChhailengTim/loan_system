@@ -88,7 +88,7 @@ const router = new VueRouter({
 
 //header title
 router.beforeEach((toRoute, fromRoute, next) => {
-    window.document.title = toRoute.meta && toRoute.meta.title ? i18n.t(toRoute.meta.title) : 'Online Loan System';
+    window.document.title = toRoute.meta && toRoute.meta.title ? i18n.t(toRoute.meta.title) : 'Digital Loan System';
 
     next()
 

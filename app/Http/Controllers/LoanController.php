@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\StringHelper;
+use App\Mail\CustomerPassword;
+use App\Mail\NewRequestLoan;
 use App\Models\Borrower;
 use App\Models\BorrowerGuarantor;
+use App\Models\Company;
 use App\Models\Loan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class LoanController extends Controller
 {
     //request loan
     public function requestLoan(Request $request){
+
+        DB::beginTransaction();
+
+        $six_digit_random_number = mt_rand(100000, 999999);
 
         //Insert Borrower
         $borrower_data = [
@@ -21,6 +30,7 @@ class LoanController extends Controller
             Borrower::GENDER => $request->input('borrower_gender'),
             Borrower::DOB => $request->input('borrower_dob'),
             Borrower::EMAIL => $request->input('borrower_email'),
+            Borrower::PASSWORD => $six_digit_random_number,
             Borrower::PHONE => $request->input('borrower_phone'),
             Borrower::ALT_PHONE => $request->input('borrower_alt_phone'),
             Borrower::ADDRESS => $request->input('borrower_address'),
@@ -30,6 +40,10 @@ class LoanController extends Controller
         $borrower = new Borrower();
         $borrower->setData($borrower_data);
         if($borrower->save()){
+            //Send Mail
+            Mail::to($request->input('borrower_email'))->send(new CustomerPassword($six_digit_random_number));
+            Mail::to(Company::find($request->input('company_id'))->email)->send(new NewRequestLoan($request));
+
             // Upload Photo
             if ($request['borrower_photo'] != null){
                 $photo = StringHelper::uploadImage($request['borrower_photo'], Borrower::photoPath, Borrower::thumbnailPhotoPath);
@@ -126,6 +140,7 @@ class LoanController extends Controller
         $loan->setData($loan_data);
         $loan->save();
 
+        DB::commit();
         return $this->responseWithData();
 
     }

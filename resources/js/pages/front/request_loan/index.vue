@@ -22,7 +22,6 @@
                                 :reset="setIndex"
                                 shape="circle"
                                 ref="loan_form"
-                                :startIndex="2"
                             >
                                 <tab-content :title="$t('borrower')" :before-change="validateFirstStep">
                                     <b-row class="justify-content-md-center">
@@ -37,7 +36,7 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.borrower_first_name"
-                                                    v-validate="'required|max:20'"
+                                                    v-validate="'required|max:100'"
                                                     :state="veeErrors.has('borrower_form.first_name') ? false : null"
                                                     data-vv-name="first_name"
                                                     :data-vv-as="$t('first_name')"
@@ -58,7 +57,7 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.borrower_last_name"
-                                                    v-validate="'required|max:20'"
+                                                    v-validate="'required|max:100'"
                                                     :state="veeErrors.has('borrower_form.last_name') ? false : null"
                                                     data-vv-name="last_name"
                                                     :data-vv-as="$t('last_name')"
@@ -96,7 +95,7 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.borrower_dob"
-                                                    v-validate="'required|max:20'"
+                                                    v-validate="'required'"
                                                     :state="veeErrors.has('borrower_form.dob') ? false : null"
                                                     data-vv-name="dob"
                                                     :data-vv-as="$t('dob')"
@@ -112,7 +111,8 @@
                                         <!--email-->
                                         <b-col sm="12" md="12" xl="3">
                                             <b-form-group
-                                                :invalid-feedback="veeErrors.first('borrower_from.email')"
+                                                :state="veeErrors.has('borrower_form.email') ? false : null"
+                                                :invalid-feedback="veeErrors.first('borrower_form.email')"
                                                 :label="$t('email')  + ' *'"
                                                 label-class="control-label"
                                                 class="text-left"
@@ -120,7 +120,7 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.borrower_email"
-                                                    v-validate="'required|email'"
+                                                    v-validate="'required|email|max:100'"
                                                     :state="veeErrors.has('borrower_form.email') ? false : null"
                                                     data-vv-name="email"
                                                     :data-vv-as="$t('email')"
@@ -164,12 +164,13 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.borrower_phone"
-                                                    v-validate="'required|max:20'"
+                                                    v-validate="'required|numeric|min:9|max:10'"
                                                     :state="veeErrors.has('borrower_form.phone') ? false : null"
                                                     data-vv-name="phone"
                                                     :data-vv-as="$t('phone')"
                                                     data-vv-scope="borrower_form"
-                                                    type="text"
+                                                    type="number"
+                                                    min="0"
                                                     :placeholder="$t('phone')"
                                                 ></b-form-input>
                                             </b-form-group>
@@ -185,12 +186,13 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.borrower_alt_phone"
-                                                    v-validate="'required|max:20'"
+                                                    v-validate="'required|numeric|min:9|max:10'"
                                                     :state="veeErrors.has('borrower_form.alt_phone') ? false : null"
                                                     data-vv-name="alt_phone"
                                                     :data-vv-as="$t('alt_phone')"
                                                     data-vv-scope="borrower_form"
-                                                    type="text"
+                                                    type="number"
+                                                    min="0"
                                                     :placeholder="$t('alt_phone')"
                                                 ></b-form-input>
                                             </b-form-group>
@@ -208,7 +210,7 @@
                                                 <b-textarea
                                                     autocomplete="off"
                                                     v-model="form.borrower_address"
-                                                    v-validate="'required'"
+                                                    v-validate="'required|max:100'"
                                                     :state="veeErrors.has('borrower_form.address') ? false : null"
                                                     data-vv-name="address"
                                                     :data-vv-as="$t('address')"
@@ -244,7 +246,7 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.guarantor_first_name"
-                                                    v-validate="'required|max:20'"
+                                                    v-validate="'required|max:100'"
                                                     :state="veeErrors.has('guarantor_form.first_name') ? false : null"
                                                     data-vv-name="first_name"
                                                     :data-vv-as="$t('first_name')"
@@ -265,7 +267,7 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.guarantor_last_name"
-                                                    v-validate="'required|max:20'"
+                                                    v-validate="'required|max:100'"
                                                     :state="veeErrors.has('guarantor_form.last_name') ? false : null"
                                                     data-vv-name="last_name"
                                                     :data-vv-as="$t('last_name')"
@@ -303,7 +305,7 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.guarantor_dob"
-                                                    v-validate="'required|max:20'"
+                                                    v-validate="'required'"
                                                     :state="veeErrors.has('guarantor_form.dob') ? false : null"
                                                     data-vv-name="dob"
                                                     :data-vv-as="$t('dob')"
@@ -319,7 +321,8 @@
                                         <!--email-->
                                         <b-col sm="12" md="12" xl="3">
                                             <b-form-group
-                                                :invalid-feedback="veeErrors.first('guarantor_from.email')"
+                                                :state="veeErrors.has('guarantor_form.email') ? false : null"
+                                                :invalid-feedback="veeErrors.first('guarantor_form.email')"
                                                 :label="$t('email')  + ' *'"
                                                 label-class="control-label"
                                                 class="text-left"
@@ -327,7 +330,7 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.guarantor_email"
-                                                    v-validate="'required|email'"
+                                                    v-validate="'required|email|max:100'"
                                                     :state="veeErrors.has('guarantor_form.email') ? false : null"
                                                     data-vv-name="email"
                                                     :data-vv-as="$t('email')"
@@ -371,12 +374,13 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.guarantor_phone"
-                                                    v-validate="'required|max:20'"
+                                                    v-validate="'required|numeric|min:9|max:10'"
                                                     :state="veeErrors.has('guarantor_form.phone') ? false : null"
                                                     data-vv-name="phone"
                                                     :data-vv-as="$t('phone')"
                                                     data-vv-scope="guarantor_form"
-                                                    type="text"
+                                                    type="number"
+                                                    min="0"
                                                     :placeholder="$t('phone')"
                                                 ></b-form-input>
                                             </b-form-group>
@@ -392,12 +396,13 @@
                                                 <b-form-input
                                                     autocomplete="off"
                                                     v-model="form.guarantor_alt_phone"
-                                                    v-validate="'required|max:20'"
+                                                    v-validate="'required|numeric|min:9|max:10'"
                                                     :state="veeErrors.has('guarantor_form.alt_phone') ? false : null"
                                                     data-vv-name="alt_phone"
                                                     :data-vv-as="$t('alt_phone')"
                                                     data-vv-scope="guarantor_form"
-                                                    type="text"
+                                                    type="number"
+                                                    min="0"
                                                     :placeholder="$t('alt_phone')"
                                                 ></b-form-input>
                                             </b-form-group>
@@ -415,7 +420,7 @@
                                                 <b-textarea
                                                     autocomplete="off"
                                                     v-model="form.guarantor_address"
-                                                    v-validate="'required'"
+                                                    v-validate="'required|max:200'"
                                                     :state="veeErrors.has('guarantor_form.address') ? false : null"
                                                     data-vv-name="address"
                                                     :data-vv-as="$t('address')"
@@ -444,6 +449,7 @@
                                         <b-col sm="12" md="12" xl="6">
 
                                             <b-form-group
+                                                :state="veeErrors.has('loan_form.company_id') ? false : null"
                                                 :invalid-feedback="veeErrors.first('loan_form.company_id')"
                                                 :label="$t('company')"
                                                 label-class="control-label"
@@ -497,26 +503,28 @@
                                         </b-col>
                                     </b-row>
                                     <b-row class="justify-content-md-center mt-2">
-                                        <!-- request_loan -->
+                                        <!-- request_amount -->
                                         <b-col sm="12" md="12" xl="2">
                                             <b-form-group
-                                                :invalid-feedback="veeErrors.first('loan_form.request_loan')"
-                                                :label="$t('request_loan') + ' *'"
+                                                :state="veeErrors.has('loan_form.request_amount') ? false : null"
+                                                :invalid-feedback="veeErrors.first('loan_form.request_amount')"
+                                                :label="$t('request_amount') + ' *'"
                                                 label-class="control-label"
                                                 class="text-left"
                                             >
                                                 <b-input-group append="$">
                                                     <b-form-input
                                                         autocomplete="off"
-                                                        v-model="form.request_loan"
+                                                        v-model="form.request_amount"
                                                         v-validate="'required'"
-                                                        :state="veeErrors.has('loan_form.request_loan') ? false : null"
-                                                        data-vv-name="request_loan"
-                                                        :data-vv-as="$t('request_loan')"
+                                                        :state="veeErrors.has('loan_form.request_amount') ? false : null"
+                                                        data-vv-name="request_amount"
+                                                        :data-vv-as="$t('request_amount')"
                                                         data-vv-scope="loan_form"
                                                         type="number"
                                                         min="1"
-                                                        :placeholder="$t('request_loan')"
+                                                        :placeholder="$t('request_amount')"
+                                                        @keyup="onInputRequestAmount"
                                                     ></b-form-input>
                                                 </b-input-group>
                                             </b-form-group>
@@ -524,6 +532,7 @@
                                         <!-- term -->
                                         <b-col sm="12" md="12" xl="2">
                                             <b-form-group
+                                            :state="veeErrors.has('loan_form.term') ? false : null"
                                                 :invalid-feedback="veeErrors.first('loan_form.term')"
                                                 :label="$t('term') + ' *'"
                                                 label-class="control-label"
@@ -550,6 +559,7 @@
                                         <!-- outstanding_amount -->
                                         <b-col sm="12" md="12" xl="2">
                                             <b-form-group
+                                                :state="veeErrors.has('loan_form.outstanding_amount') ? false : null"
                                                 :invalid-feedback="veeErrors.first('loan_form.outstanding_amount')"
                                                 :label="$t('outstanding_amount') + ' *'"
                                                 label-class="control-label"
@@ -637,9 +647,9 @@ export default {
                 guarantor_mortgage: null,
 
                 company_id: null,
-                request_loan: null,
+                request_amount: null,
                 term: null,
-                outstanding_amount: 1000
+                outstanding_amount: null
             },
             defaultForm: {
                 borrower_first_name: null,
@@ -672,7 +682,7 @@ export default {
                 guarantor_mortgage: null,
 
                 company_id: null,
-                request_loan: null,
+                request_amount: null,
                 term: null,
                 outstanding_amount: null
             },
@@ -741,7 +751,6 @@ export default {
 
             if(this.$helpers.nullToVoid(data) != ''){
                 this.form.guarantor_photo = data.photo
-                this.form.guarantor_family_book = data.family_book
                 this.form.guarantor_national_photo = data.national
                 this.form.guarantor_mortgage = data.mortgage
                 this.form.guarantor_salary_invoice = data.salary_invoice
@@ -754,6 +763,22 @@ export default {
             let checkValidation = false
             await this.$validator.validateAll('borrower_form').then((result) => {
                 if (result) {
+
+                    if(this.form.borrower_photo == null
+                        || this.form.borrower_national_photo == null
+                        || this.form.borrower_family_book  == null
+                        || this.form.borrower_mortgage  == null
+                        || this.form.borrower_salary_invoice  == null
+                    ){
+                        swal.fire({
+                            icon: 'warning',
+                            title: this.$t('borrower'),
+                            text: this.$i18n.locale == 'en' ? 'Please check required document again' :
+                            (this.$i18n.locale == 'kh' ? 'សូមពិនិត្យឯកសារដែលត្រូវការម្តងទៀត' : '')
+                        })
+                        return;
+                    }
+
                     checkValidation = true
                 } else {
                     checkValidation = false
@@ -773,7 +798,23 @@ export default {
             let checkValidation = false
             await this.$validator.validateAll('guarantor_form').then((result) => {
                 if (result) {
+
+                    if(this.form.guarantor_photo == null
+                        || this.form.guarantor_national_photo == null
+                        || this.form.guarantor_mortgage  == null
+                        || this.form.guarantor_salary_invoice  == null
+                    ){
+                        swal.fire({
+                            icon: 'warning',
+                            title: this.$t('guarantor'),
+                            text: this.$i18n.locale == 'en' ? 'Please check required document again' :
+                            (this.$i18n.locale == 'kh' ? 'សូមពិនិត្យឯកសារដែលត្រូវការម្តងទៀត' : '')
+                        })
+                        return;
+                    }
+
                     checkValidation = true
+
                 } else {
                     checkValidation = false
                     swal.fire({
@@ -792,6 +833,7 @@ export default {
             let checkValidation = false
             this.$validator.validateAll('loan_form').then((result) => {
                 if (result) {
+                    let url='/loan/request_loan'
 
                     let input = this.form
 
@@ -803,22 +845,33 @@ export default {
                         swal.fire({
                             icon: 'warning',
                             title: this.$t('interest'),
-                            text: this.$t('validation_failed'),
+                            text: this.$i18n.locale == 'en' ? 'There is no term in interest table please input again' :
+                            (this.$i18n.locale == 'kh' ? 'មិនមានខែនៅក្នុងតារាងការប្រាក់ទេសូមបញ្ចូលម្តងទៀត' : '')
                         })
                         return;
                     }
 
-                    let url='/loan/request_loan'
+                    this.calulateOutStandingAmount(interest);
+
+                    // console.log(input);
+                    // return;
 
                     axios.post(url, input).then(response => {
-                        swal.fire({
-                            type: 'success',
-                            title: this.$t('request_loan'),
-                            text: this.$t('done'),
-                            showConfirmButton: false,
-                            timer: 2000,
-                        })
-                        this.clearForm()
+                        console.log(response);
+                        if(this.$helpers.nullToVoid(response) != '' && response.status == 200){
+                            this.clearForm()
+
+                            swal.fire({
+                                icon: 'success',
+                                title: this.$t('request_loan'),
+                                text: this.$i18n.locale == 'en' ? 'Thank you please check your email to see more information.' :
+                                (this.$i18n.locale == 'kh' ? 'សូមអរគុណសូមពិនិត្យមើលអ៊ីមែលរបស់អ្នកដើម្បីមើលព័ត៌មានបន្ថែម' : '')
+                            })
+
+                        }
+
+                    }).catch(function (error) {
+                        console.log(error)
                     });
 
                 } else {
@@ -845,9 +898,17 @@ export default {
             let data = this.companySelectData.find(item => item.id === this.form.company_id)
             this.tableInterestItems = data.company_interest
 
+            this.form.request_amount = null
+            this.form.term = null
+            this.form.outstanding_amount = null
+
             this.showFormInterest = true
             this.showTableInterest = true
             this.disabledTerm = false
+
+            this.$nextTick(() => {
+                this.$validator.reset();
+            });
         },
         checkValidationTerm(){
             if(this.$helpers.nullToVoid(this.form.term) != ''){
@@ -857,11 +918,21 @@ export default {
                     swal.fire({
                         icon: 'warning',
                         title: this.$t('interest'),
-                        text: this.$t('validation_failed'),
+                        text: this.$i18n.locale == 'en' ? 'There is no term in interest table please input again' :
+                        (this.$i18n.locale == 'kh' ? 'មិនមានខែនៅក្នុងតារាងការប្រាក់ទេសូមបញ្ចូលម្តងទៀត' : '')
                     })
                     return;
                 }
+
+                this.calulateOutStandingAmount(interest);
             }
+        },
+        onInputRequestAmount(){
+            this.checkValidationTerm()
+        },
+        calulateOutStandingAmount(interest){
+            let total = (parseInt(this.form.request_amount) * interest.interest / 100) * parseInt(this.form.term) + parseFloat(this.form.request_amount)
+            this.form.outstanding_amount = parseFloat(total).toFixed(2)
         }
     }
 }

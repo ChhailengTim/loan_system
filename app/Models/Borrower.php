@@ -20,6 +20,7 @@ class Borrower extends Model
     const ADDRESS = 'address';
     const PHONE = 'phone';
     const EMAIL = 'email';
+    const PASSWORD = 'password';
     const ALT_PHONE = 'alt_phone';
     const PHOTO = 'photo';
     const NATIONAL_ID_PHOTO = 'national_id_photo';
@@ -71,6 +72,7 @@ class Borrower extends Model
         $this->{self::DOB} = $data[self::DOB];
         $this->{self::ADDRESS} = $data[self::ADDRESS];
         $this->{self::EMAIL} = $data[self::EMAIL];
+        $this->{self::PASSWORD} = $data[self::PASSWORD];
         $this->{self::PHONE} = $data[self::PHONE];
         $this->{self::ALT_PHONE} = $data[self::ALT_PHONE];
         $this->{self::BUSINESS_NAME} = $data[self::BUSINESS_NAME];

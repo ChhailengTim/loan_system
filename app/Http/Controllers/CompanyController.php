@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
+
     //get
     public function get(Request $request)
     {
