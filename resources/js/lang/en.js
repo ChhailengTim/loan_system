@@ -5,7 +5,7 @@ export default {
     version: 'Version',
     sign_out: 'Sign Out',
     group_3: 'Group 3',
-    loan_management_system: 'Loan Management System',
+    digital_loan_system: 'Digital Loan System',
     my_profile: 'My Profile',
     profile: 'Profile',
     dashboard: 'Dashboard',

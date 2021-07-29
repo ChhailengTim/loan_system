@@ -5,7 +5,7 @@ export default {
     version: 'ជំនាន់',
     group_3: 'ក្រុមទី៣',
     sign_out: 'ចាកចេញ',
-    loan_management_system: 'ប្រព័ន្ធគ្រប់គ្រងប្រាក់កម្ចី',
+    digital_loan_system: 'ប្រព័ន្ធប្រាក់កម្ចីឌីជីថល',
     my_profile: 'ពត៌មានផ្ទាល់ខ្លួនរបស់ខ្ញុំ',
     profile: 'ពត៌មានផ្ទាល់ខ្លួន',
     dashboard: 'ផ្ទាំងគ្រប់គ្រង',
