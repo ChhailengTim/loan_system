@@ -130,7 +130,7 @@
         <tr>
             <td bgcolor="#ffffff" align="left"
                 style="padding: 20px 0px 0px 30px;  color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
-                <p style="margin: 0;">Request Amount: {{ $data->request_amount}}</b></p>
+                <p style="margin: 0;">Request Amount: {{ $data->request_amount}}$</b></p>
             </td>
         </tr>
     </table>
