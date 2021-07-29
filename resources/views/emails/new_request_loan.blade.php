@@ -111,26 +111,35 @@
 
         <tr>
             <td bgcolor="#ffffff" align="left"
-                style="padding: 20px 0px 0px 30px;  color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
-                <p style="margin: 0;">Borrower Name: {{ $data->borrower_first_name }} {{ $data->borrower_last_name }}</b></p>
+                style="padding-left: 30px;   color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
+                <p style="margin: 0;">Borrower Name: <b>{{ $data->borrower_first_name }} {{ $data->borrower_last_name }}</b></p>
             </td>
         </tr>
         <tr>
             <td bgcolor="#ffffff" align="left"
-                style="padding: 20px 0px 0px 30px;  color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
-                <p style="margin: 0;">Borrower Email: {{ $data->borrower_email}}</b></p>
+                style="padding-left: 30px;   color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
+                <p style="margin: 0;">Borrower Email: <b>{{ $data->borrower_email}}</b></p>
             </td>
         </tr>
+
         <tr>
             <td bgcolor="#ffffff" align="left"
-                style="padding: 20px 0px 0px 30px;  color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
-                <p style="margin: 0;">Borrower Phone: {{ $data->borrower_phone}}</b></p>
+                style="padding-left: 30px;   color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
+                <p style="margin: 0;">Borrower Phone: <b>{{ $data->borrower_phone}}</b></p>
             </td>
         </tr>
+
         <tr>
             <td bgcolor="#ffffff" align="left"
-                style="padding: 20px 0px 0px 30px;  color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
-                <p style="margin: 0;">Request Amount: {{ $data->request_amount}}$</b></p>
+                style="padding-left: 30px;   color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
+                <p style="margin: 0;">Request Amount: <b>{{ $data->request_amount}}$</b></p>
+            </td>
+        </tr>
+
+        <tr>
+            <td bgcolor="#ffffff" align="left"
+                style="padding-left: 30px;   color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
+                <p style="margin: 0;">Request Amount: <b>{{ $data->request_amount}}$</b></p>
             </td>
         </tr>
     </table>
