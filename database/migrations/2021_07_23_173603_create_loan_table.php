@@ -18,6 +18,7 @@ class CreateLoanTable extends Migration
             $table->unsignedBigInteger('borrower_id');
             $table->decimal('request_amount', 6, 2);
             $table->integer('term');
+            $table->decimal('interest');
             $table->decimal('outstanding_amount', 6, 2);
             $table->dateTime('appointment_date')->nullable();
             $table->string('status')->default('Pending')->comment('Pending, Approved, Rejected');

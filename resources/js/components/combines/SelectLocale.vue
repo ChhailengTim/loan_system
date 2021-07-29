@@ -17,16 +17,6 @@
             </a>
         </div>
     </li>
-
-<!--    <div>-->
-<!--        <b-select-->
-<!--            v-model="$i18n.locale"-->
-<!--            size="md"-->
-<!--            :options="langs"-->
-<!--            class="form-control form-control-sm"-->
-<!--        >-->
-<!--        </b-select>-->
-<!--    </div>-->
 </template>
 
 <script>

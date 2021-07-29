@@ -133,6 +133,7 @@ class LoanController extends Controller
             Loan::BORROWER_ID => $borrower->id,
             Loan::REQUEST_AMOUNT => $request->input('request_amount'),
             Loan::TERM => $request->input('term'),
+            Loan::INTEREST => $request->input('interest'),
             Loan::OUTSTANDING_AMOUNT => $request->input('outstanding_amount'),
         ];
 
@@ -171,5 +172,32 @@ class LoanController extends Controller
         $this->validate($request, [
             'borrower_id' => 'required|exists:borrower,id'
         ]);
+
+        $tableSize = empty($request->input('table_size')) ? 10 : $request->input('table_size');
+
+        $data = Loan::join('borrower', 'borrower.id', 'loan.borrower_id')
+            ->join('borrower_guarantor', 'borrower_guarantor.borrower_id', 'borrower.id')
+            ->join('company', 'company.id', 'borrower.company_id')
+            ->select(
+                'loan.id as id',
+                'company.id as company_id',
+                'company.company_name',
+                'loan.created_at as request_date',
+                'loan.request_amount',
+                'loan.term',
+                'loan.interest',
+                'loan.outstanding_amount',
+                'borrower.id as borrower_id',
+                'borrower.first_name as borrower_first_name',
+                'borrower.last_name as borrower_last_name',
+                'borrower_guarantor.id as guarantor_id',
+                'borrower_guarantor.first_name as guarantor_first_name',
+                'borrower_guarantor.last_name as guarantor_last_name',
+                'loan.appointment_date',
+                'loan.status',
+            )
+            ->paginate($tableSize);
+
+        return $this->responseWithPagination($data);
     }
 }

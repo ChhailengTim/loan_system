@@ -15,6 +15,7 @@ class Loan extends Model
     const BORROWER_ID = 'borrower_id';
     const REQUEST_AMOUNT = 'request_amount';
     const TERM = 'term';
+    const INTEREST = 'interest';
     const OUTSTANDING_AMOUNT = 'outstanding_amount';
     const appointment_date = 'appointment_date';
     const STATUS = 'status';
@@ -34,6 +35,7 @@ class Loan extends Model
         $this->{self::BORROWER_ID} = $data[self::BORROWER_ID];
         $this->{self::REQUEST_AMOUNT} = $data[self::REQUEST_AMOUNT];
         $this->{self::TERM} = $data[self::TERM];
+        $this->{self::INTEREST} = $data[self::INTEREST];
         $this->{self::OUTSTANDING_AMOUNT} = $data[self::OUTSTANDING_AMOUNT];
     }
 }

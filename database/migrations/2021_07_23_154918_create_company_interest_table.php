@@ -17,7 +17,7 @@ class CreateCompanyInterestTable extends Migration
             $table->id();
             $table->unsignedBigInteger('company_id');
             $table->integer('month');
-            $table->integer('interest');
+            $table->decimal('interest');
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('company');

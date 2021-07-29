@@ -132,13 +132,13 @@ export default {
 
                               window.location.href = '/front/borrower_review'
                         }else{
-                            store.dispatch('fetchBorrower', {})
-
                             swal.fire({
                                 icon: 'error',
                                 title: vm.$t('borrower_login'),
-                                text: response.data.data.message,
+                                text: response.data.message,
                             })
+
+                            store.dispatch('fetchBorrower', {})
 
                             return;
                         }

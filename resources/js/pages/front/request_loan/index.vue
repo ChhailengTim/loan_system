@@ -649,6 +649,7 @@ export default {
                 company_id: null,
                 request_amount: null,
                 term: null,
+                interest: null,
                 outstanding_amount: null
             },
             defaultForm: {
@@ -684,6 +685,7 @@ export default {
                 company_id: null,
                 request_amount: null,
                 term: null,
+                interest: null,
                 outstanding_amount: null
             },
             setIndex: false,
@@ -929,6 +931,7 @@ export default {
         },
         calulateOutStandingAmount(interest){
             let total = (parseInt(this.form.request_amount) * interest.interest / 100) * parseInt(this.form.term) + parseFloat(this.form.request_amount)
+            this.form.interest = interest.interest
             this.form.outstanding_amount = parseFloat(total).toFixed(2)
         }
     }

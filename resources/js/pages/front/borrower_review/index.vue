@@ -55,30 +55,39 @@
                                 :items="items"
                                 @row-selected="rowItem"
                             >
-                                <template v-slot:cell(name)="row">
-                                    {{ getNameByLang(row.item.name) }}
+                                <template v-slot:cell(request_date)="row">
+                                    {{ row.item.request_date | dateFormat }}
                                 </template>
 
-                                <template v-slot:cell(gender)="row">
-                                    <div v-if="row.item.gender === 1 ">{{ $t('male') }}</div>
-                                    <div v-if="row.item.gender === 2 ">{{ $t('female') }}</div>
+                                <template v-slot:cell(request_amount)="row">
+                                    $ {{ row.item.request_amount }}
                                 </template>
 
-                                <template v-slot:cell(dob)="row">
-                                    {{ row.item.dob | dateFormat }}
+                                <template v-slot:cell(tem)="row">
+                                    {{ row.item.tem }} {{ $t('month') }}
                                 </template>
 
-                                <template v-slot:cell(base_salary)="row">
-                                    {{ row.item.base_salary | currency }}
+                                <template v-slot:cell(interest)="row">
+                                    {{ row.item.interest }} %
                                 </template>
 
-                                <template v-slot:cell(work_from)="row">
-                                    {{ row.item.work_from | dateFormat }}
+                                <template v-slot:cell(outstanding_amount)="row">
+                                    $ {{ row.item.outstanding_amount }}
                                 </template>
 
-                                <template v-slot:cell(work_to)="row">
-                                    {{ row.item.work_to | dateFormat }}
+                                <template v-slot:cell(guarantor_name)="row">
+                                    {{ row.item.guarantor_first_name }} {{ row.item.guarantor_last_name }}
                                 </template>
+
+                                <template v-slot:cell(appointment_date)="row">
+                                    {{ row.item.appointment_date | dateFormat }}
+                                </template>
+
+                                <template v-slot:cell(status)="row">
+                                <b-badge pill v-if="row.item.status == 'Pending'" variant="primary">{{ $t('pending') }}</b-badge>
+                                <b-badge pill v-if="row.item.status == 'Approved'" variant="success">{{ $t('approved') }}</b-badge>
+                                <b-badge pill v-if="row.item.status == 'Rejected'" variant="danger">{{ $t('rejected') }}</b-badge>
+                            </template>
 
                             </b-table>
                         </b-col>
@@ -130,7 +139,11 @@
             headerPage
         },
         created(){
-            console.log(store.state.borrower);
+            if(this.$helpers.nullToVoid(localStorage.borrower_id) == ''){
+                window.location.href = '/front/home'
+            }else{
+                this.fetchRecord()
+            }
         },
         computed: {
             ...mapGetters({
@@ -138,7 +151,7 @@
             header(){
                 return [
                     {
-                        key: 'compnay_name',
+                        key: 'company_name',
                         label: this.$t('compnay_name'),
                         sortable: true,
                     },
@@ -173,8 +186,8 @@
                         sortable: true,
                     },
                     {
-                        key: 'appoinment_date ',
-                        label: this.$t('appoinment_date '),
+                        key: 'appointment_date ',
+                        label: this.$t('appointment_date '),
                         sortable: true,
                     },
                     {
@@ -198,11 +211,9 @@
             },
             fetchRecord(){
                 let vm = this;
-                this.showOverlay = !this.showOverlay;
                 const input = this.getInput();
 
-                axios.post('/worker/get', input).then(function (response) {
-                    vm.showOverlay = !vm.showOverlay;
+                axios.post('/loan/borrower_review_list', input).then(function (response) {
                     vm.setInput(response.data.data);
 
                     }).catch(function (error) {
@@ -261,7 +272,8 @@
                 return {
                     page: this.pagination.current_page,
                     table_size: this.pagination.table_size,
-                    filter: this.filter
+                    filter: this.filter,
+                    borrower_id: localStorage.borrower_id
                 }
             },
             setInput(data) {
