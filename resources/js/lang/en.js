@@ -61,6 +61,17 @@ export default {
     borrower_login: 'Borrower Login',
     login: 'Login',
     password: 'Password',
-    done_action: 'Your action has been completed successfully'
+    done_action: 'Your action has been completed successfully',
+    pending: 'Pending',
+    approved: 'Approved',
+    approve: 'Approve',
+    rejected: 'Rejected',
+    rejected: 'Reject',
+    status: 'Status',
+    view: 'View',
+    company_name: 'Company Name',
+    guarantor_name: 'Guarantor Name',
+    request_date: 'Request Date',
+    appointment_date: 'Appointment Date',
 
 }

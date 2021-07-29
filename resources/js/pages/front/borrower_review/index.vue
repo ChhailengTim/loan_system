@@ -56,15 +56,15 @@
                                 @row-selected="rowItem"
                             >
                                 <template v-slot:cell(request_date)="row">
-                                    {{ row.item.request_date | dateFormat }}
+                                    {{ row.item.request_date | dateTimeFormat }}
                                 </template>
 
                                 <template v-slot:cell(request_amount)="row">
                                     $ {{ row.item.request_amount }}
                                 </template>
 
-                                <template v-slot:cell(tem)="row">
-                                    {{ row.item.tem }} {{ $t('month') }}
+                                <template v-slot:cell(term)="row">
+                                    {{ row.item.term }} {{ $t('month') }}
                                 </template>
 
                                 <template v-slot:cell(interest)="row">
@@ -80,7 +80,7 @@
                                 </template>
 
                                 <template v-slot:cell(appointment_date)="row">
-                                    {{ row.item.appointment_date | dateFormat }}
+                                    {{ row.item.appointment_date | dateTimeFormat }}
                                 </template>
 
                                 <template v-slot:cell(status)="row">
@@ -152,7 +152,7 @@
                 return [
                     {
                         key: 'company_name',
-                        label: this.$t('compnay_name'),
+                        label: this.$t('company_name'),
                         sortable: true,
                     },
                     {
@@ -186,8 +186,8 @@
                         sortable: true,
                     },
                     {
-                        key: 'appointment_date ',
-                        label: this.$t('appointment_date '),
+                        key: 'appointment_date',
+                        label: this.$t('appointment_date'),
                         sortable: true,
                     },
                     {
@@ -286,4 +286,21 @@
     }
 </script>
 <style scoped>
+.badge {
+    display: inline-block;
+    padding: 0.6em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.badge-pill {
+    padding-right: 1.6em;
+    padding-left: 1.6em;
+    border-radius: 10rem;
+}
 </style>

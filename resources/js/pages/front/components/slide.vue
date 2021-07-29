@@ -10,8 +10,8 @@
                 </p>
                 <br>
                     <p class="pt-4">
-                        <a class="btn btn-success btn-lg" href="#">Review</a>
-                        <a class="btn btn-success btn-lg" href="/front/request_loan">Loan</a>
+                        <button class="btn btn-success btn-lg" @click="openModalBorrwerLogin">{{ $t('review') }}</button>
+                        <a class="btn btn-success btn-lg" href="/front/request_loan">{{ $t('loan') }}</a>
                     </p>
                 </div>
                 <ol class="carousel-indicators">
@@ -33,9 +33,34 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="skew-header"></div> -->
+        <div v-if="modalBorrowerShow">
+            <modal-borrower-login :modalType="modalBorrowerType" @closeModal="closeModalBorrwerLogin"></modal-borrower-login>
+        </div>
     </div>
 </template>
+<script>
+export default {
+    data(){
+        return{
+            modalBorrowerShow: false,
+            modalBorrowerType: 0,
+        }
+    },
+    components: {
+        ModalBorrowerLogin: () => import('./modal_borrower_login.vue')
+    },
+    methods: {
+        openModalBorrwerLogin(){
+            this.modalBorrowerShow = true;
+            this.modalBorrowerType = 1;
+        },
+        closeModalBorrwerLogin(){
+            this.modalBorrowerShow = false;
+            this.modalBorrowerType = 0;
+        },
+    }
+}
+</script>
 <style scoped>
 
 .skew-header {
