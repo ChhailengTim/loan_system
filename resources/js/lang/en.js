@@ -79,6 +79,11 @@ export default {
     your_info: 'Your Info',
     ok: 'Ok',
     date: 'Date',
-    time: 'Time'
+    time: 'Time',
+    service: 'Service',
+    team: 'Team',
+    about_us: 'About Us',
+    contact_us: 'Contact Us',
+    bank: 'Bank',
 
 }

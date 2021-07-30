@@ -67,7 +67,7 @@ export default {
     rejected: 'បានបដិសេធ',
     reject: 'បដិសេធ',
     status: 'ស្ថានភាព',
-    review: 'ពិនិត្យឡើងវិញ',
+    review: 'ពិនិត្យមើលការស្នើសុំ',
     view: 'មើល',
     company_name: 'ឈ្មោះ​ក្រុម​ហ៊ុន',
     borrower_name: 'ឈ្មោះអ្នកខ្ចី',
@@ -78,7 +78,12 @@ export default {
     your_info: 'ព័ត៌មានរបស់អ្នក',
     ok: 'យល់ព្រម',
     date: 'ថ្ងៃ',
-    time: 'ម៉ោង'
+    time: 'ម៉ោង',
+    service: 'សេវាកម្ម',
+    team: 'ក្រុម',
+    about_us: 'អំពីយើង',
+    contact_us: 'ទាកទងយើង',
+    bank: 'ធនាគារ',
 
 
 }

@@ -24,7 +24,6 @@
         name: 'SelectLocale',
         data() {
             return {
-                // langs: ['en', 'kh'],
                 langs: [
                     {value: 'en', text: 'English', logo: 'en.png'},
                     {value: 'kh', text: 'ខ្មែរ', logo: 'kh.png'},
