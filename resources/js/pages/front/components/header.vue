@@ -102,8 +102,6 @@ export default {
                 this.$i18n.locale = evt.value
                 this.$validator.localize(evt.value)
 
-                window.document.title = this.$t(this.$route.meta.title)
-
                 localStorage.lang = evt.value
             }
     }

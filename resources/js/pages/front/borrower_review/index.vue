@@ -5,7 +5,7 @@
         <div class="justify-content-center" style="margin-top: 6rem;">
             <b-card no-body class="card-table">
                 <b-card-header>
-                    <h1>{{ $t('review') }}</h1>
+                    <h2>{{ $t('review') }}</h2>
                     <b-row>
                         <b-col cols="6">
                             <b-button variant="outline-secondary" @click="fetchRecord">

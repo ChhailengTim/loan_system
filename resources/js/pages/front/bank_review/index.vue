@@ -5,8 +5,8 @@
         <div class="justify-content-center" style="margin-top: 6rem;">
             <b-card no-body class="card-table">
                 <b-card-header>
-                    <h1 v-if="$i18n.locale == 'en'">Loan Requested</h1>
-                    <h1 v-if="$i18n.locale == 'kh'">ប្រាក់កម្ចីដែលបានស្នើសុំ</h1>
+                    <h2 v-if="$i18n.locale == 'en'">Loan Requested</h2>
+                    <h2 v-if="$i18n.locale == 'kh'">ប្រាក់កម្ចីដែលបានស្នើសុំ</h2>
                     <b-row>
                         <b-col cols="6">
                             <b-button variant="outline-secondary" @click="fetchRecord">
