@@ -80,7 +80,7 @@
                             <em>Login</em>
                         </template>
                         <b-dropdown-item @click="openModalBorrwerLogin">Borrower</b-dropdown-item>
-                        <b-dropdown-item href="#">Bank</b-dropdown-item>
+                        <b-dropdown-item href="/front/bank_review">Bank</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </li>
             </ul>

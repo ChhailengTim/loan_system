@@ -24,6 +24,9 @@ Vue.component('app', require('../layouts/admin').default);
  //Borrower Review
  Vue.component('borrower-review', require('../pages/front/borrower_review/').default);
 
+  //Bank Review
+  Vue.component('bank-review', require('../pages/front/bank_review/').default);
+
 
 
 /**
@@ -43,7 +46,7 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/',
+            path: '/admin',
             name: 'dashboards',
             component: dashboard,
             meta: {

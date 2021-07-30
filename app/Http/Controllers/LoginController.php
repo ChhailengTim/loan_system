@@ -26,15 +26,15 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect('/dashboard');
+            return redirect('/admin/dashboard');
         }else{
-            return redirect('/Login')->with('status','Incorrect Username or password !');
+            return redirect('/admin/Login')->with('status','Incorrect Username or password !');
         }
     }
 
     public function logout(){
         Auth::logout();
-        return redirect('/Login');
+        return redirect('/admin/Login');
     }
 
     //check validation function

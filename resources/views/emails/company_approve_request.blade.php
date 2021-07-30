@@ -105,14 +105,28 @@
         <tr>
             <td bgcolor="#ffffff" align="left"
                 style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                <p style="margin: 0;">Thank you for choosing our service. You can go to our website and click on Review button or click on Login and choose Borrower and use your email that request to us and the password above to review your request.</p>
+                <p style="margin: 0;"><b>Hello {{ $data['last_name'] }}.</b> </p>
+            </td>
+        </tr>
+
+        <tr>
+            <td bgcolor="#ffffff" align="left"
+                style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                <p style="margin: 0;"><b>We have checked and approved your request already. You need to come to our company on the appointment date above.</b> </p>
+            </td>
+        </tr>
+
+        <tr>
+            <td bgcolor="#ffffff" align="left"
+                style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                <p style="margin: 0;"><b>Appointment Date: {{ $data['appointment_date'] }}</b> </p>
             </td>
         </tr>
 
         <tr>
             <td bgcolor="#ffffff" align="left"
                 style="padding: 20px 0px 0px 30px;  color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
-                <p style="margin: 0;">This is code to login for review about your loan request: <b>{{ $password }}</b></p>
+                <p style="margin: 0;">Thank you!!!</b></p>
             </td>
         </tr>
     </table>

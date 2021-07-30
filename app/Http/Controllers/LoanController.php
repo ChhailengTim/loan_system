@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\StringHelper;
+use App\Mail\CompanyApproveRequest;
+use App\Mail\CompanyRejectRequest;
 use App\Mail\CustomerPassword;
 use App\Mail\NewRequestLoan;
 use App\Models\Borrower;
 use App\Models\BorrowerGuarantor;
 use App\Models\Company;
 use App\Models\Loan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -178,6 +181,7 @@ class LoanController extends Controller
         $data = Loan::join('borrower', 'borrower.id', 'loan.borrower_id')
             ->join('borrower_guarantor', 'borrower_guarantor.borrower_id', 'borrower.id')
             ->join('company', 'company.id', 'borrower.company_id')
+            ->where('loan.borrower_id', $request->input('borrower_id'))
             ->select(
                 'loan.id as id',
                 'company.id as company_id',
@@ -190,14 +194,143 @@ class LoanController extends Controller
                 'borrower.id as borrower_id',
                 'borrower.first_name as borrower_first_name',
                 'borrower.last_name as borrower_last_name',
+                'borrower.gender as borrower_gender',
+                'borrower.dob as borrower_dob',
+                'borrower.business_name as borrower_business_name',
+                'borrower.email as borrower_email',
+                'borrower.phone as borrower_phone',
+                'borrower.alt_phone as borrower_alt_phone',
+                'borrower.address as borrower_address',
+                'borrower.photo as borrower_photo',
+                'borrower.national_id_photo as borrower_national_photo',
+                'borrower.salary_invoice as borrower_salary_invoice',
+                'borrower.mortgage as borrower_mortgage',
+                'borrower.family_book as borrower_family_book',
                 'borrower_guarantor.id as guarantor_id',
                 'borrower_guarantor.first_name as guarantor_first_name',
                 'borrower_guarantor.last_name as guarantor_last_name',
+                'borrower_guarantor.gender as guarantor_gender',
+                'borrower_guarantor.dob as guarantor_dob',
+                'borrower_guarantor.business_name as guarantor_business_name',
+                'borrower_guarantor.email as guarantor_email',
+                'borrower_guarantor.phone as guarantor_phone',
+                'borrower_guarantor.alt_phone as guarantor_alt_phone',
+                'borrower_guarantor.address as guarantor_address',
+                'borrower_guarantor.photo as guarantor_photo',
+                'borrower_guarantor.national_id_photo as guarantor_national_photo',
+                'borrower_guarantor.salary_invoice as guarantor_salary_invoice',
+                'borrower_guarantor.mortgage as guarantor_mortgage',
                 'loan.appointment_date',
                 'loan.status',
             )
             ->paginate($tableSize);
 
         return $this->responseWithPagination($data);
+    }
+
+    //Get Request List By Company
+    public function getByCompany(Request $request){
+        $this->validate($request, [
+            'company_id' => 'required|exists:company,id'
+        ]);
+
+        $tableSize = empty($request->input('table_size')) ? 10 : $request->input('table_size');
+
+        $data = Loan::join('borrower', 'borrower.id', 'loan.borrower_id')
+            ->join('borrower_guarantor', 'borrower_guarantor.borrower_id', 'borrower.id')
+            ->join('company', 'company.id', 'borrower.company_id')
+            ->where('borrower.company_id', $request->input('company_id'))
+            ->select(
+                'loan.id as id',
+                'company.id as company_id',
+                'company.company_name',
+                'loan.created_at as request_date',
+                'loan.request_amount',
+                'loan.term',
+                'loan.interest',
+                'loan.outstanding_amount',
+                'borrower.id as borrower_id',
+                'borrower.first_name as borrower_first_name',
+                'borrower.last_name as borrower_last_name',
+                'borrower.gender as borrower_gender',
+                'borrower.dob as borrower_dob',
+                'borrower.business_name as borrower_business_name',
+                'borrower.email as borrower_email',
+                'borrower.phone as borrower_phone',
+                'borrower.alt_phone as borrower_alt_phone',
+                'borrower.address as borrower_address',
+                'borrower.photo as borrower_photo',
+                'borrower.national_id_photo as borrower_national_photo',
+                'borrower.salary_invoice as borrower_salary_invoice',
+                'borrower.mortgage as borrower_mortgage',
+                'borrower.family_book as borrower_family_book',
+                'borrower_guarantor.id as guarantor_id',
+                'borrower_guarantor.first_name as guarantor_first_name',
+                'borrower_guarantor.last_name as guarantor_last_name',
+                'borrower_guarantor.gender as guarantor_gender',
+                'borrower_guarantor.dob as guarantor_dob',
+                'borrower_guarantor.business_name as guarantor_business_name',
+                'borrower_guarantor.email as guarantor_email',
+                'borrower_guarantor.phone as guarantor_phone',
+                'borrower_guarantor.alt_phone as guarantor_alt_phone',
+                'borrower_guarantor.address as guarantor_address',
+                'borrower_guarantor.photo as guarantor_photo',
+                'borrower_guarantor.national_id_photo as guarantor_national_photo',
+                'borrower_guarantor.salary_invoice as guarantor_salary_invoice',
+                'borrower_guarantor.mortgage as guarantor_mortgage',
+                'loan.appointment_date',
+                'loan.status',
+            )
+            ->paginate($tableSize);
+
+        return $this->responseWithPagination($data);
+    }
+
+    //Approve Request
+    public function approve(Request $request){
+        $this->validate($request, [
+            'loan_id' => 'required|exists:loan,id',
+            'appointment_date' => 'required',
+            'borrower_id' => 'required|exists:borrower,id',
+        ]);
+
+        DB::table('loan')
+            ->where('id', $request->input('loan_id'))
+            ->update([
+                'appointment_date' => $request->input('appointment_date'),
+                'status' => 'Approved',
+                'updated_at' => Carbon::now()
+            ]);
+
+        $borrower = Borrower::find($request->input('borrower_id'));
+
+        $data= [
+            'last_name' => $borrower->last_name,
+            'appointment_date' => $request->input('appointment_date')
+        ];
+
+        Mail::to($borrower->email)->send(new CompanyApproveRequest($data));
+
+        return $this->responseWithData();
+    }
+
+    //Reject Request
+    public function reject(Request $request){
+        $this->validate($request, [
+            'loan_id' => 'required|exists:loan,id',
+            'borrower_id' => 'required|exists:borrower,id',
+        ]);
+
+        DB::table('loan')
+            ->where('id', $request->input('loan_id'))
+            ->update([
+                'status' => 'Rejected',
+                'updated_at' => Carbon::now()
+            ]);
+
+        $borrower = Borrower::find($request->input('borrower_id'));
+        Mail::to($borrower->email)->send(new CompanyRejectRequest($borrower));
+
+        return $this->responseWithData();
     }
 }

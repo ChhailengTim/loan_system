@@ -66,12 +66,19 @@ export default {
     approved: 'Approved',
     approve: 'Approve',
     rejected: 'Rejected',
-    rejected: 'Reject',
+    reject: 'Reject',
     status: 'Status',
+    review: 'Review',
     view: 'View',
     company_name: 'Company Name',
+    borrower_name: 'Borrower Name',
     guarantor_name: 'Guarantor Name',
     request_date: 'Request Date',
     appointment_date: 'Appointment Date',
+    detail: 'Detail',
+    your_info: 'Your Info',
+    ok: 'Ok',
+    date: 'Date',
+    time: 'Time'
 
 }

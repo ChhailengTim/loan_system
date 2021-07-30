@@ -105,14 +105,14 @@
         <tr>
             <td bgcolor="#ffffff" align="left"
                 style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                <p style="margin: 0;"><b>Hello {{ $data->borrower_name }}.</b> </p>
+                <p style="margin: 0;"><b>Hello {{ $data->last_name }}.</b> </p>
             </td>
         </tr>
 
         <tr>
             <td bgcolor="#ffffff" align="left"
                 style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                <p style="margin: 0;"><b>We have checked your request already. You can review your request on Digital Loan Sytem again.</b> </p>
+                <p style="margin: 0;"><b>We have checked your request already and sorry for the bad news your loan has been declined by our company because your request amount is bigger than your salary.</b> </p>
             </td>
         </tr>
 

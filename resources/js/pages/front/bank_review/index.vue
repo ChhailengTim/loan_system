@@ -5,19 +5,37 @@
         <div class="justify-content-center" style="margin-top: 6rem;">
             <b-card no-body class="card-table">
                 <b-card-header>
-                    <h1>{{ $t('review') }}</h1>
+                    <h1 v-if="$i18n.locale == 'en'">Loan Requested</h1>
+                    <h1 v-if="$i18n.locale == 'kh'">ប្រាក់កម្ចីដែលបានស្នើសុំ</h1>
                     <b-row>
                         <b-col cols="6">
                             <b-button variant="outline-secondary" @click="fetchRecord">
                                 <i class="fa fa-sync"></i>
                                 {{ $t('refresh') }}
                             </b-button>
-                            <b-button :disabled="showButtonView" @click="openViewModal" variant="outline-info">
+                            <b-button :disabled="showButtonDetail" @click="openDetailModal" variant="outline-info">
                                 <i class="fa fa-eye"></i>
-                                {{ $t('view') }}
+                                {{ $t('detail') }}
                             </b-button>
                         </b-col>
-                        <b-col cols="5">
+                        <b-col >
+                            <b-form-group
+                                class="text-left"
+                            >
+                                <b-select
+                                    v-model="company_id"
+                                    @change="onSelectCompany"
+                                >
+                                    <template slot="first">
+                                        <b-form-select-option :value="null" disabled>
+                                            {{ $t('company') }}
+                                        </b-form-select-option>
+                                    </template>
+                                    <b-form-select-option v-for=" (obj, index) in companySelectData" :value="obj.id" :key="index">{{ obj.company_name }}</b-form-select-option>
+                                </b-select>
+                            </b-form-group>
+                        </b-col>
+                        <b-col >
                             <b-input-group>
                                 <b-form-input
                                     id="filter-input"
@@ -55,6 +73,14 @@
                                 :items="items"
                                 @row-selected="rowItem"
                             >
+                                <template v-slot:cell(borrower_name)="row">
+                                    {{ row.item.borrower_first_name }} {{ row.item.borrower_last_name }}
+                                </template>
+
+                                <template v-slot:cell(guarantor_name)="row">
+                                    {{ row.item.guarantor_first_name }} {{ row.item.guarantor_last_name }}
+                                </template>
+
                                 <template v-slot:cell(request_date)="row">
                                     {{ row.item.request_date | dateTimeFormat }}
                                 </template>
@@ -73,12 +99,6 @@
 
                                 <template v-slot:cell(outstanding_amount)="row">
                                     $ {{ row.item.outstanding_amount }}
-                                </template>
-
-                                <template v-slot:cell(appointment_date)="row">
-                                    <b-badge pill v-if="row.item.status == 'Pending'" variant="primary">{{ $t('pending') }}</b-badge>
-                                    <b-badge pill v-if="row.item.status == 'Rejected'" variant="danger">{{ $t('rejected') }}</b-badge>
-                                    <span v-if="row.item.status == 'Approved'">{{ row.item.appointment_date | dateTimeFormat }}</span>
                                 </template>
 
                                 <template v-slot:cell(status)="row">
@@ -103,12 +123,12 @@
                 </b-card-footer>
             </b-card>
         </div>
-        <div v-if="modalViewShow">
-            <modal-view
-                :modalType="modalViewType"
+        <div v-if="modalDetailShow">
+            <modal-detail
+                :modalType="modalDetailType"
                 :formItem="formItem"
-                @closeModal="clsoeViewModal"
-            ></modal-view>
+                @closeModal="clsoeDetailModal"
+            ></modal-detail>
         </div>
     </div>
 </template>
@@ -121,9 +141,9 @@
           return{
               items: [],
               selectedItem: {},
-              showButtonView: true,
-              modalViewShow: false,
-              modalViewType: 0,
+              showButtonDetail: true,
+              modalDetailShow: false,
+              modalDetailType: 0,
               formItem: {},
               pagination: {
                   current_page: 1,
@@ -134,6 +154,8 @@
                   last_page: 0,
                   table_size: 10,
               },
+              company_id: null,
+              companySelectData: null,
               filter: {
                   search: null
               },
@@ -141,13 +163,14 @@
         },
         components: {
             headerPage,
-            ModalView: () => import('./ModalView')
+            ModalDetail: () => import('./components/ModalDetail')
         },
         created(){
             if(this.$helpers.nullToVoid(localStorage.borrower_id) == ''){
                 window.location.href = '/front/home'
             }else{
-                this.fetchRecord()
+                this.getCompanyList()
+                // this.fetchRecord()
             }
         },
         computed: {
@@ -156,8 +179,13 @@
             header(){
                 return [
                     {
-                        key: 'company_name',
-                        label: this.$t('company_name'),
+                        key: 'borrower_name',
+                        label: this.$t('borrower_name'),
+                        sortable: true,
+                    },
+                    {
+                        key: 'guarantor_name',
+                        label: this.$t('guarantor_name'),
                         sortable: true,
                     },
                     {
@@ -186,11 +214,6 @@
                         sortable: true,
                     },
                     {
-                        key: 'appointment_date',
-                        label: this.$t('appointment_date'),
-                        sortable: true,
-                    },
-                    {
                         key: 'status',
                         label: this.$t('status'),
                         sortable: true,
@@ -200,11 +223,21 @@
             }
         },
         methods: {
+            getCompanyList(){
+            axios.post('/company/get_all', { loading: false }).then(response => {
+                if(response.status == 200){
+                    this.companySelectData = response.data.data
+                }
+            });
+        },
+            onSelectCompany(){
+                this.fetchRecord()
+            },
             fetchRecord(){
                 let vm = this;
                 const input = this.getInput();
 
-                axios.post('/loan/borrower_review_list', input).then(function (response) {
+                axios.post('/loan/get_by_company', input).then(function (response) {
                     vm.setInput(response.data.data);
 
                     }).catch(function (error) {
@@ -216,7 +249,7 @@
                     page: this.pagination.current_page,
                     table_size: this.pagination.table_size,
                     filter: this.filter,
-                    borrower_id: localStorage.borrower_id
+                    company_id: this.company_id
                 }
             },
             setInput(data) {
@@ -228,24 +261,27 @@
             rowItem(event){
                 if(event.length>0){
                     this.selectedItem = event[0];
-                    this.showButtonView = false
+                    this.showButtonDetail = false
                 }else{
-                    this.showButtonView = true
+                    this.showButtonDetail = true
                     this.selectedItem = {};
                 }
             },
-            openViewModal(){
+            openDetailModal(){
                 this.formItem = Object.assign({}, this.selectedItem)
 
-                this.modalViewShow = true
-                this.modalViewType = 1 //set modal type 1 = save
+                this.modalDetailShow = true
+                this.modalDetailType = 1 //set modal type 1 = save
             },
-            clsoeViewModal(){
+            clsoeDetailModal(type){
                 this.formItem = {}
-                this.selectedItem = {}
 
-                this.modalViewType = 0;
-                this.modalViewShow = false
+                this.modalDetailType = 0;
+                this.modalDetailShow = false
+
+                if(type !== 'close'){
+                    this.fetchRecord()
+                }
             },
         }
     }
