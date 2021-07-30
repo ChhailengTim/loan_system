@@ -87,11 +87,12 @@ export default {
             handler(val){
                 let route = val.path.split('/')
 
-                if(route.length > 2){
-                    this.getRouteName = { main: route[1], sub: route[route.length - 1] }
-                }else{
-                    this.getRouteName = {main: route[1], sub: null}
-                }
+                // if(route.length > 2){
+                //     this.getRouteName = { main: route[1], sub: route[route.length - 1] }
+                // }else{
+                //     this.getRouteName = {main: route[1], sub: null}
+                // }
+                this.getRouteName = {main: route[2], sub: null}
             },
             immediate: true
         }
