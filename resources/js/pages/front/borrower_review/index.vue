@@ -12,10 +12,10 @@
                                 <i class="fa fa-sync"></i>
                                 {{ $t('refresh') }}
                             </b-button>
-                            <b-button :disabled="showButtonView" @click="openViewModal" variant="outline-info">
+                            <!-- <b-button :disabled="showButtonView" @click="openViewModal" variant="outline-info">
                                 <i class="fa fa-eye"></i>
                                 {{ $t('view') }}
-                            </b-button>
+                            </b-button> -->
                         </b-col>
                         <b-col cols="5">
                             <b-input-group>

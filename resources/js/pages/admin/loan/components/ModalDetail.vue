@@ -128,27 +128,31 @@
                             <b-tab :title="$t('loan')">
                                 <b-row>
                                     <b-col cols="6">
+                                        {{ $t('company_name') }}:
+                                        <b>{{ formItem.company_name }}</b>
+                                    </b-col>
+                                     <b-col cols="6">
                                         {{ $t('request_date') }}:
                                         <b>{{ formItem.request_date | dateTimeFormat }}</b>
                                     </b-col>
+                                </b-row>
+                                <hr>
+                                <b-row>
                                      <b-col cols="6">
                                         {{ $t('request_amount') }}:
                                         <b>$ {{ formItem.request_amount }}</b>
                                     </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
                                     <b-col cols="6">
                                         {{ $t('term') }}:
                                         <b>{{ formItem.term }} {{ $t('month') }}</b>
                                     </b-col>
+                                </b-row>
+                                <hr>
+                                <b-row>
                                      <b-col cols="6">
                                         {{ $t('interest') }}:
                                         <b>{{ formItem.interest }} %</b>
                                     </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
                                     <b-col cols="6">
                                         {{ $t('outstanding_amount') }}:
                                         <b>$ {{ formItem.outstanding_amount }}</b>
@@ -161,93 +165,11 @@
             </b-row>
         </div>
         <template slot="modal-footer">
-            <span>{{ $t('appointment_date') }}: {{ formItem.appointment_date | dateTimeFormat }}</span>
-            <div v-if="formItem.status == 'Pending'">
-                <b-button variant="outline-primary" @click="clearForm" class="float-right">
-                        <i class="fas fa-door-closed mr-1"></i>
-                        {{ $t('close') }}
-                    </b-button>
-                <b-button variant="outline-success" @click="opendAppoinmentModal" class="float-right">
-                    <i class="fas fa-check-circle mr-1"></i>
-                    {{ $t('approve') }}
-                </b-button>
-
-                <b-button variant="outline-danger" @click="reject" class="float-right mr-2">
-                    <i class="fas fa-times-circle mr-1"></i>
-                    {{ $t('reject') }}
-                </b-button>
-            </div>
-            <div v-else>
-                <b-button variant="outline-danger" @click="clearForm" class="float-right">
-                    <i class="fas fa-times-circle mr-1"></i>
-                    {{ $t('close') }}
-                </b-button>
-            </div>
+            <b-button variant="outline-danger" @click="clearForm" class="float-right">
+                <i class="fas fa-times-circle mr-1"></i>
+                {{ $t('close') }}
+            </b-button>
         </template>
-
-        <div v-if="modalAppoinmentShow">
-            <b-modal
-                v-model="modalAppoinmentShow"
-                centered
-                no-close-on-backdrop
-                no-close-on-esc
-                hide-header-close
-                hide-header
-                size="md"
-                content-class="custom-modal"
-            >
-                <b-row>
-                    <b-col cols="6">
-                        <b-form-group
-                            :invalid-feedback="veeErrors.first('date')"
-                            :label="$t('appointment_date') + ' *'"
-                            label-class="control-label"
-                            class="text-left"
-                        >
-                            <b-form-input
-                                autocomplete="off"
-                                v-model="appoint_date"
-                                v-validate="'required'"
-                                :state="veeErrors.has('date') ? false : null"
-                                data-vv-name="date"
-                                :data-vv-as="$t('date')"
-                                type="date"
-                            ></b-form-input>
-                        </b-form-group>
-                    </b-col>
-                    <b-col cols="6">
-                        <b-form-group
-                            :invalid-feedback="veeErrors.first('time')"
-                            :label="$t('time') + ' *'"
-                            label-class="control-label"
-                            class="text-left"
-                        >
-                            <b-form-input
-                                autocomplete="off"
-                                v-model="appoint_time"
-                                v-validate="'required'"
-                                :state="veeErrors.has('time') ? false : null"
-                                data-vv-name="time"
-                                :data-vv-as="$t('time')"
-                                type="time"
-                            ></b-form-input>
-                        </b-form-group>
-                    </b-col>
-                </b-row>
-                <template slot="modal-footer">
-
-                        <b-button variant="outline-danger" @click="closeAppoinmentModal" class="float-right">
-                            <i class="fas fa-door-closed mr-1"></i>
-                            {{ $t('close') }}
-                        </b-button>
-
-                        <b-button variant="outline-primary" @click="approve" class="float-right">
-                            <i class="fas fa-bookmark mr-1"></i>
-                            {{ $t('ok') }}
-                        </b-button>
-                </template>
-            </b-modal>
-        </div>
     </b-modal>
 </template>
 <script>
@@ -269,10 +191,6 @@ export default {
     data(){
         return{
             modalShow: false,
-            modalAppoinmentShow: false,
-            appoint_date: null,
-            appoint_time: null,
-            closeType: 'close'
         }
     },
     watch: {
@@ -288,93 +206,11 @@ export default {
         }
     },
     methods: {
-        opendAppoinmentModal(){
-            this.modalAppoinmentShow = true;
-        },
-        closeAppoinmentModal(){
-            this.modalAppoinmentShow = false;
-        },
-        approve() {
-            let vm = this
-
-            this.$validator.validateAll().then((result) => {
-                if(result){
-                    swal.fire({
-                        title: vm.$t('are_you_sure'),
-                        text: vm.$t('cannot_revert_this'),
-                        icon: 'question',
-                        showCancelButton: true,
-                        confirmButtonText: vm.$t('ok'),
-                        cancelButtonText: vm.$t('cancel'),
-                        reverseButtons: true,
-                        allowOutsideClick: () => !swal.isLoading(),
-                    }).then((result) => {
-                        let input = {
-                            loan_id: vm.formItem.id,
-                            appointment_date: `${this.appoint_date} ${this.appoint_time}`,
-                            borrower_id: vm.formItem.borrower_id
-                        }
-
-                        if (result.isDismissed == false) {
-                            axios
-                                .post('/loan/approve_request', input)
-                                .then(function (response) {
-                                    if(response.status == 200){
-                                        vm.closeType = 'approve'
-                                        vm.clearForm()
-                                    }
-                                })
-                        }
-                    })
-                }else{
-                    swal.fire({
-                        icon: 'warning',
-                        title: this.$t('appointment_date'),
-                        text: this.$t('validation_failed'),
-                    })
-                }
-            })
-        },
-        reject(){
-            let vm = this
-
-            swal.fire({
-                title: vm.$t('are_you_sure'),
-                text: vm.$t('cannot_revert_this'),
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: vm.$t('ok'),
-                cancelButtonText: vm.$t('cancel'),
-                reverseButtons: true,
-                allowOutsideClick: () => !swal.isLoading(),
-            }).then((result) => {
-                let input = {
-                    loan_id: vm.formItem.id,
-                    borrower_id: vm.formItem.borrower_id
-                }
-
-                if (result.isDismissed == false) {
-                    axios
-                        .post('/loan/reject_request', input)
-                        .then(function (response) {
-                            if(response.status == 200){
-                                vm.closeType = 'reject'
-                                vm.clearForm()
-                            }
-                        })
-                }
-                    })
-        },
         clearForm(){
 
-            this.$emit('closeModal', this.closeType)
-
-            this.appoint_date = null;
-            this.appoint_time = null;
+            this.$emit('closeModal')
 
             this.modalShow = false;
-            this.modalAppoinmentShow = false;
-            this.closeType = 'close'
 
         },
     }

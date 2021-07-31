@@ -34,6 +34,7 @@ Vue.component('app', require('../layouts/admin').default);
  */
 import dashboard from '../pages/admin/dashboard/'
 import company from '../pages/admin/company/'
+import loan from '../pages/admin/loan/'
 
 
 /**
@@ -67,6 +68,14 @@ const router = new VueRouter({
             component: company,
             meta: {
                 title: 'company',
+            },
+        },
+        {
+            path: '/admin/loan',
+            name: 'loan',
+            component: loan,
+            meta: {
+                title: 'loan',
             },
         },
         {

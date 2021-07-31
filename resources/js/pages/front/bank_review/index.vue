@@ -166,12 +166,7 @@
             ModalDetail: () => import('./components/ModalDetail')
         },
         created(){
-            if(this.$helpers.nullToVoid(localStorage.borrower_id) == ''){
-                window.location.href = '/front/home'
-            }else{
-                this.getCompanyList()
-                // this.fetchRecord()
-            }
+            this.getCompanyList()
         },
         computed: {
             ...mapGetters({
@@ -224,12 +219,12 @@
         },
         methods: {
             getCompanyList(){
-            axios.post('/company/get_all', { loading: false }).then(response => {
-                if(response.status == 200){
-                    this.companySelectData = response.data.data
-                }
-            });
-        },
+                axios.post('/company/get_all', { loading: false }).then(response => {
+                    if(response.status == 200){
+                        this.companySelectData = response.data.data
+                    }
+                });
+            },
             onSelectCompany(){
                 this.fetchRecord()
             },
