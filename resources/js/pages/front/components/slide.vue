@@ -47,7 +47,7 @@ export default {
         }
     },
     components: {
-        ModalBorrowerLogin: () => import('./modal_borrower_login.vue')
+        ModalBorrowerLogin: () => import('./ModalBorrowerLogin.vue')
     },
     methods: {
         openModalBorrwerLogin(){

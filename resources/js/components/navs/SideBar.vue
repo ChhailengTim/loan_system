@@ -64,13 +64,13 @@ export default {
                     key: 'company',
                 },
                 {
-                    icon: 'fas fa-bezier-curve',
+                    icon: 'far fa-id-card',
                     label: 'borrower',
                     to: '/admin/borrower',
                     key: 'borrower',
                 },
                 {
-                    icon: 'fas fa-bezier-curve',
+                    icon: 'fas fa-people-arrows',
                     label: 'guarantor',
                     to: '/admin/guarantor',
                     key: 'guarantor',

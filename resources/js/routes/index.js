@@ -35,6 +35,7 @@ Vue.component('app', require('../layouts/admin').default);
 import dashboard from '../pages/admin/dashboard/'
 import company from '../pages/admin/company/'
 import borrower from '../pages/admin/borrower/'
+import guarantor from '../pages/admin/guarantor/'
 import loan from '../pages/admin/loan/'
 
 
@@ -77,6 +78,14 @@ const router = new VueRouter({
             component: borrower,
             meta: {
                 title: 'borrower',
+            },
+        },
+        {
+            path: '/admin/guarantor',
+            name: 'guarantor',
+            component: guarantor,
+            meta: {
+                title: 'guarantor',
             },
         },
         {

@@ -2,7 +2,7 @@
     <div>
         <headerPage></headerPage>
 
-        <b-card-body class="px-0" style="margin-top: 6rem;">
+        <b-card-body class="px-0" style="margin-top: 10rem;">
             <b-col sm="12" md="12" xl="12">
                 <b-card>
                     <b-card-header>
@@ -221,12 +221,22 @@
                                             </b-form-group>
                                         </b-col>
                                     </b-row>
+
+                                    <b-row class="justify-content-md-center mb-3">
+                                        <b-col sm="12" md="12" xl="6" v-if="$i18n.locale == 'en'">
+                                            <b>Note: </b> please provide Photo, National ID, Family Book, Morgate and Salary Invoice
+                                        </b-col>
+                                        <b-col sm="12" md="12" xl="6" v-if="$i18n.locale == 'kh'">
+                                            <b>ចំណាំ: </b> សូមភ្ជាប់មកនូវ រូបថត, អត្ថ​សញ្ញាណ​ប​ណ្ណ​, សៀវភៅគ្រួសារ, បញ្ចាំ និង វិក្កយបត្រប្រាក់ខែ
+                                        </b-col>
+                                    </b-row>
                                     <b-row class="justify-content-md-center">
                                         <b-col sm="12" md="12" xl="6">
                                             <b-button @click="openModalBorrowerUpload">
                                                 <span>
                                                     <i class="fas fa-file-upload"></i>
-                                                    Upload Required Document *
+                                                    <span v-if="$i18n.locale == 'en'">Upload Required Document *</span>
+                                                    <span v-if="$i18n.locale == 'kh'">បង្ហោះឯកសារដែលត្រូវការ *</span>
                                                 </span>
                                             </b-button>
                                         </b-col>
@@ -431,12 +441,22 @@
                                             </b-form-group>
                                         </b-col>
                                     </b-row>
+
+                                    <b-row class="justify-content-md-center​ mb-3">
+                                        <b-col sm="12" md="12" xl="6" v-if="$i18n.locale == 'en'">
+                                            <b>Note: </b> please provide Photo, National ID, Morgate and Salary Invoice
+                                        </b-col>
+                                        <b-col sm="12" md="12" xl="6" v-if="$i18n.locale == 'kh'">
+                                            <b>ចំណាំ: </b> សូមភ្ជាប់មកនូវ រូបថត, អត្ថ​សញ្ញាណ​ប​ណ្ណ​, បញ្ចាំ និង វិក្កយបត្រប្រាក់ខែ
+                                        </b-col>
+                                    </b-row>
                                     <b-row class="justify-content-md-center">
                                         <b-col sm="12" md="12" xl="6">
                                             <b-button variant="success" @click="openModalGuarantorUpload">
                                                 <span>
                                                     <i class="fas fa-file-upload"></i>
-                                                    Upload Required Document *
+                                                    <span v-if="$i18n.locale == 'en'">Upload Required Document *</span>
+                                                    <span v-if="$i18n.locale == 'kh'">បង្ហោះឯកសារដែលត្រូវការ *</span>
                                                 </span>
                                             </b-button>
                                         </b-col>

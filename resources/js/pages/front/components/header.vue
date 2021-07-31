@@ -82,7 +82,7 @@ export default {
         }
     },
     components: {
-        ModalBorrowerLogin: () => import('./modal_borrower_login.vue')
+        ModalBorrowerLogin: () => import('./ModalBorrowerLogin.vue')
     },
     computed: {
         languageLogo(){

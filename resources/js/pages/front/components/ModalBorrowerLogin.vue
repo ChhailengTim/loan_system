@@ -10,7 +10,7 @@
         content-class="custom-modal"
     >
         <template slot="modal-header">
-            <h3><i class="fas fa-people-carry"></i> {{ $t('borrower_login') }}</h3>
+            <h3><i class="fas fa-user-lock"></i> {{ $t('borrower_login') }}</h3>
         </template>
         <div class="d-block" >
             <b-row>
