@@ -7,7 +7,7 @@
 
           <div class="profile-container">
             <div class="img-container">
-              <!-- <img :src="`/teams/${obj.photo}`" alt="profile image"> -->
+              <img :src="`/teams/${obj.photo}`" alt="profile image">
             </div>
             <p class="info full-name">{{ obj.name }}</p>
             <p class="info role">
@@ -60,7 +60,7 @@ export default {
     return {
       teamList: [
         {
-          photo: null,
+          photo: "phearoth.jpg",
           name: "THOEURN PEAROTH",
           dutie: "System Analyst",
           university: "Royal Of Phnom Penh",
@@ -69,7 +69,7 @@ export default {
           class: "E7",
         },
         {
-          photo: null,
+          photo: "chaileng.jpg",
           name: "TIM CHAILENG",
           dutie: "Application Developer",
           university: "Royal Of Phnom Penh",
@@ -78,7 +78,7 @@ export default {
           class: "E7",
         },
         {
-          photo: null,
+          photo: "phorn.jpg",
           name: "SEUM SOTTTHIPORN",
           dutie: "Application Developer",
           university: "Royal Of Phnom Penh",
@@ -87,7 +87,7 @@ export default {
           class: "E7",
         },
         {
-          photo: null,
+          photo: "nga.jpg",
           name: "SOR NGA",
           dutie: "System Analyst",
           university: "Royal Of Phnom Penh",
@@ -96,7 +96,7 @@ export default {
           class: "E7",
         },
         {
-          photo: null,
+          photo: "mosa.jpg",
           name: "EL MOSA",
           dutie: "FOUNDER DOCUMENT",
           university: "Royal Of Phnom Penh",
@@ -105,7 +105,7 @@ export default {
           class: "E7",
         },
         {
-          photo: null,
+          photo: "david.jpg",
           name: "MOEURN SODAVID",
           dutie: "DOCUMENT WRITER",
           university: "Royal Of Phnom Penh",

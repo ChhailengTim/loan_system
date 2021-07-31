@@ -21,8 +21,8 @@ export default {
 </script>
 <style scoped>
 .team-block {
-  /* min-height: 100%;
-  background: linear-gradient(20deg, #ff2844, #6741ff); */
+  /* min-height: 100%; */
+  /* background: linear-gradient(20deg, #ff2844, #6741ff); */
   margin-top: 174px;
   margin-bottom: 185px;
 }
