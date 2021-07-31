@@ -319,19 +319,23 @@
                             if (response.status === 200){
                                 vm.listItems = response.data.data
                                 vm.clearForm()
+
+                                vm.$notify({
+                                    group: 'message',
+                                    type: 'success',
+                                    title: vm.$t('company'),
+                                    text: vm.$t('done_action')
+                                });
                             }
                         }).catch(function (error) {
                             console.log(error)
                         });
                     }else{
-                        vm.$fire({
-                            position: 'top-end',
+                        vm.$notify({
+                            group: 'message',
                             type: 'warning',
-                            title: vm.$t('validation_failed'),
-                            showConfirmButton: false,
-                            backdrop: false,
-                            toast:true,
-                            timer: 2000
+                            title: vm.$t('company'),
+                            text: vm.$t('validation_failed')
                         });
                     }
                 });

@@ -120,23 +120,22 @@ export default {
 
                             this.clearForm()
 
-                            vm.$fire({
-                                position: 'top-end',
+                            vm.$notify({
+                                group: 'message',
                                 type: 'success',
-                                title: vm.$t('done_action'),
-                                showConfirmButton: false,
-                                backdrop: false,
-                                toast: true,
-                                timer: 2000
+                                title: vm.$t('borrower_login'),
+                                text: vm.$t('done_action')
                             });
 
                               window.location.href = '/front/borrower_review'
                         }else{
-                            swal.fire({
-                                icon: 'error',
-                                title: vm.$t('borrower_login'),
-                                text: response.data.message,
-                            })
+
+                            vm.$notify({
+                                group: 'message',
+                                type: 'warning',
+                                title: vm.$t('borrower'),
+                                text: vm.$t('invalid_login')
+                            });
 
                             store.dispatch('fetchBorrower', {})
 
@@ -148,11 +147,12 @@ export default {
                     });
 
                 } else {
-                    swal.fire({
-                        icon: 'warning',
-                        title: this.$t('borrower_login'),
-                        text: this.$t('validation_failed'),
-                    })
+                   vm.$notify({
+                        group: 'message',
+                        type: 'warning',
+                        title: vm.$t('borrower_login'),
+                        text: vm.$t('validation_failed')
+                    });
                 }
             })
         },

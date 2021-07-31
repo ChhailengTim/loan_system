@@ -1,7 +1,7 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
-//router
+//Router
 import router from './routes'
 
 
@@ -9,7 +9,7 @@ import router from './routes'
 import store from './store';
 
 
-//plugins
+//Plugins
 import './plugins'
 
 
@@ -17,17 +17,17 @@ import './plugins'
 import i18n from './plugins/i18n'
 
 
-//bootstrap vue
+//Bootstrap Vue
 import BootstrapVue from 'bootstrap-vue' //Importing
 Vue.use(BootstrapVue); // Telling Vue to use this in whole application
 
 
-//apex chart
+//Apex Chart
 import VueApexCharts from 'vue-apexcharts'
 Vue.use(VueApexCharts);
 Vue.component('apexchart', VueApexCharts);
 
-//multi_select
+//Multi Select
 import MultiSelect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 Vue.component('multi-select', MultiSelect);
@@ -37,8 +37,12 @@ import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 Vue.use(VueFormWizard)
 
+//Notify
+import Notifications from 'vue-notification'
+Vue.use(Notifications)
 
-//remember language
+
+//Remember Language
 import { Validator } from 'vee-validate';
 if (localStorage.lang != null) {
     i18n.locale = localStorage.lang;
@@ -47,6 +51,7 @@ if (localStorage.lang != null) {
     localStorage.lang = i18n.locale
     Validator.localize(i18n.locale);
 }
+
 
 const app = new Vue({
     el: '#app',

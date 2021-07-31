@@ -85,5 +85,6 @@ export default {
     about_us: 'About Us',
     contact_us: 'Contact Us',
     bank: 'Bank',
+    invalid_login: 'Invalid email and password'
 
 }

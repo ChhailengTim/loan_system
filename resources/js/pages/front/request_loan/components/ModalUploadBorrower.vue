@@ -252,18 +252,21 @@ export default {
     },
     methods: {
         save(){
+            let vm = this
+
             if(this.form.photo == null
                 || this.form.national == null
                 || this.form.family_book  == null
                 || this.form.mortgage  == null
                 || this.form.salary_invoice  == null
             ){
-                swal.fire({
-                    icon: 'warning',
-                    title: this.$t('borrower'),
-                    text: this.$i18n.locale == 'en' ? 'Please upload all required document' :
+                vm.$notify({
+                    group: 'message',
+                    type: 'warning',
+                    title: vm.$t('borrower'),
+                    text: vm.$i18n.locale == 'en' ? 'Please upload all required document' :
                     (this.$i18n.locale == 'kh' ? 'សូមបង្ហោះឯកសារដែលត្រូវការទាំងអស់' : '')
-                })
+                });
                 return;
             }else{
                 this.listItem = JSON.parse(JSON.stringify(this.form))

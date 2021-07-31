@@ -41,11 +41,14 @@
         <!--  END CONTENT PART  -->
     </div>
     <!-- END MAIN CONTAINER -->
+
+    <notify class="notify-area-message"></notify>
 </div>
 </template>
 <script>
 import Topnav from '../components/navs/Topnav'
 import Sidebar from '../components/navs/Sidebar'
+import Notify from '../components/Notifications/Notify'
 export default {
     name: 'app',
     head() {
@@ -53,7 +56,8 @@ export default {
     },
     components: {
         Topnav,
-        Sidebar
+        Sidebar,
+        Notify
     },
     created(){
     },

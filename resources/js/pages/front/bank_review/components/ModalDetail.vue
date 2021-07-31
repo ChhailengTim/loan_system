@@ -323,6 +323,13 @@ export default {
                                     if(response.status == 200){
                                         vm.closeType = 'approve'
                                         vm.clearForm()
+
+                                        vm.$notify({
+                                            group: 'message',
+                                            type: 'success',
+                                            title: vm.$t('approve'),
+                                            text: vm.$t('done_action')
+                                        });
                                     }
                                 })
                         }
@@ -361,6 +368,13 @@ export default {
                             if(response.status == 200){
                                 vm.closeType = 'reject'
                                 vm.clearForm()
+
+                                vm.$notify({
+                                    group: 'message',
+                                    type: 'success',
+                                    title: vm.$t('reject'),
+                                    text: vm.$t('done_action')
+                                });
                             }
                         })
                 }

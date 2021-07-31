@@ -22,6 +22,7 @@
                                 :reset="setIndex"
                                 shape="circle"
                                 ref="loan_form"
+                                :startIndex="1"
                             >
                                 <tab-content :title="$t('borrower')" :before-change="validateFirstStep">
                                     <b-row class="justify-content-md-center">
@@ -442,7 +443,7 @@
                                         </b-col>
                                     </b-row>
 
-                                    <b-row class="justify-content-md-center​ mb-3">
+                                    <b-row class="justify-content-md-center mb-3">
                                         <b-col sm="12" md="12" xl="6" v-if="$i18n.locale == 'en'">
                                             <b>Note: </b> please provide Photo, National ID, Morgate and Salary Invoice
                                         </b-col>
@@ -604,6 +605,10 @@
                                         </b-col>
                                     </b-row>
                                 </tab-content>
+
+                                <b-button variant="danger" slot="prev">{{$t('back')}}</b-button>
+                                <b-button  variant="success" slot="next">{{$t('next')}}</b-button>
+                                <b-button  variant="success" slot="finish">{{$t('finish')}}</b-button>
 
                             </form-wizard>
                         </b-col>
@@ -782,7 +787,9 @@ export default {
             /**
              *  Check form 1 validation
              */
+            let vm = this
             let checkValidation = false
+
             await this.$validator.validateAll('borrower_form').then((result) => {
                 if (result) {
 
@@ -794,9 +801,9 @@ export default {
                     ){
                         swal.fire({
                             icon: 'warning',
-                            title: this.$t('borrower'),
-                            text: this.$i18n.locale == 'en' ? 'Please check required document again' :
-                            (this.$i18n.locale == 'kh' ? 'សូមពិនិត្យឯកសារដែលត្រូវការម្តងទៀត' : '')
+                            title: vm.$t('borrower'),
+                            text: vm.$i18n.locale == 'en' ? 'Please check required document again' :
+                            (vm.$i18n.locale == 'kh' ? 'សូមពិនិត្យឯកសារដែលត្រូវការម្តងទៀត' : '')
                         })
                         return;
                     }
@@ -804,11 +811,12 @@ export default {
                     checkValidation = true
                 } else {
                     checkValidation = false
-                    swal.fire({
-                        icon: 'warning',
-                        title: this.$t('borrower'),
-                        text: this.$t('validation_failed'),
-                    })
+                    vm.$notify({
+                        group: 'message',
+                        type: 'warning',
+                        title: vm.$t('borrower'),
+                        text: vm.$t('validation_failed')
+                    });
                 }
             })
             return checkValidation
@@ -817,7 +825,9 @@ export default {
             /**
              *  Check form 2 validation
              */
+            let vm = this
             let checkValidation = false
+
             await this.$validator.validateAll('guarantor_form').then((result) => {
                 if (result) {
 
@@ -828,9 +838,9 @@ export default {
                     ){
                         swal.fire({
                             icon: 'warning',
-                            title: this.$t('guarantor'),
-                            text: this.$i18n.locale == 'en' ? 'Please check required document again' :
-                            (this.$i18n.locale == 'kh' ? 'សូមពិនិត្យឯកសារដែលត្រូវការម្តងទៀត' : '')
+                            title: vm.$t('guarantor'),
+                            text: vm.$i18n.locale == 'en' ? 'Please check required document again' :
+                            (vm.$i18n.locale == 'kh' ? 'សូមពិនិត្យឯកសារដែលត្រូវការម្តងទៀត' : '')
                         })
                         return;
                     }
@@ -839,11 +849,12 @@ export default {
 
                 } else {
                     checkValidation = false
-                    swal.fire({
-                        icon: 'warning',
-                        title: this.$t('guarantor'),
-                        text: this.$t('validation_failed'),
-                    })
+                    vm.$notify({
+                        group: 'message',
+                        type: 'warning',
+                        title: vm.$t('guarantor'),
+                        text: vm.$t('validation_failed')
+                    });
                 }
             })
             return checkValidation
@@ -852,7 +863,9 @@ export default {
             /**
              *  Check form 3 validation
              */
+            let vm = this
             let checkValidation = false
+
             this.$validator.validateAll('loan_form').then((result) => {
                 if (result) {
                     let url='/loan/request_loan'
@@ -895,11 +908,12 @@ export default {
 
                 } else {
                     checkValidation = false
-                    swal.fire({
-                        icon: 'warning',
-                        title: this.$t('loan'),
-                        text: this.$t('validation_failed'),
-                    })
+                    vm.$notify({
+                        group: 'message',
+                        type: 'warning',
+                        title: vm.$t('loan'),
+                        text: vm.$t('validation_failed')
+                    });
                 }
             })
             return checkValidation

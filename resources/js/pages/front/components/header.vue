@@ -66,9 +66,12 @@
         <div v-if="modalBorrowerShow">
             <modal-borrower-login :modalType="modalBorrowerType" @closeModal="closeModalBorrwerLogin"></modal-borrower-login>
         </div>
+
+        <notify class="notify-area-message"></notify>
     </div>
 </template>
 <script>
+import Notify from '../../../components/Notifications/Notify'
 export default {
     data(){
         return{
@@ -82,6 +85,7 @@ export default {
         }
     },
     components: {
+        Notify,
         ModalBorrowerLogin: () => import('./ModalBorrowerLogin.vue')
     },
     computed: {

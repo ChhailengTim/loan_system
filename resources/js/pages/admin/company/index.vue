@@ -233,14 +233,11 @@
                         axios.post('/company/delete', {id: this.selectedItem.id,}).then(function (response) {
                             vm.fetchRecord();
 
-                            vm.$fire({
-                                position: 'top-end',
+                            vm.$notify({
+                                group: 'message',
                                 type: 'success',
-                                title: 'Your work has been done',
-                                showConfirmButton: false,
-                                backdrop: false,
-                                toast:true,
-                                timer: 2000
+                                title: vm.$t('company'),
+                                text: vm.$t('done_action')
                             });
 
                         });
