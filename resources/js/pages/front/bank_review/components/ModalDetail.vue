@@ -39,7 +39,7 @@
                                     </b-col>
                                     <b-col cols="6">
                                         {{ $t('dob') }}:
-                                        <b>{{ formItem.borrower_dob }}</b>
+                                        <b>{{ formItem.borrower_dob | dateFormat }}</b>
                                     </b-col>
                                 </b-row>
                                 <hr>
@@ -57,11 +57,11 @@
                                 <b-row>
                                     <b-col cols="6">
                                         {{ $t('phone') }}:
-                                        <b>{{ formItem.borrower_phone }}</b>
+                                        <b>{{ formItem.borrower_phone | phoneFormat }}</b>
                                     </b-col>
                                     <b-col cols="6">
                                         {{ $t('alt_phone') }}:
-                                        <b>{{ formItem.borrower_alt_phone }}</b>
+                                        <b>{{ formItem.borrower_alt_phone| phoneFormat }}</b>
                                     </b-col>
                                 </b-row>
                                 <hr>
@@ -92,7 +92,7 @@
                                     </b-col>
                                     <b-col cols="6">
                                         {{ $t('dob') }}:
-                                        <b>{{ formItem.guarantor_dob }}</b>
+                                        <b>{{ formItem.guarantor_dob | dateFormat }}</b>
                                     </b-col>
                                 </b-row>
                                 <hr>
@@ -110,11 +110,11 @@
                                 <b-row>
                                     <b-col cols="6">
                                         {{ $t('phone') }}:
-                                        <b>{{ formItem.guarantor_phone }}</b>
+                                        <b>{{ formItem.guarantor_phone | phoneFormat }}</b>
                                     </b-col>
                                     <b-col cols="6">
                                         {{ $t('alt_phone') }}:
-                                        <b>{{ formItem.guarantor_alt_phone }}</b>
+                                        <b>{{ formItem.guarantor_alt_phone | phoneFormat }}</b>
                                     </b-col>
                                 </b-row>
                                 <hr>
@@ -161,12 +161,8 @@
             </b-row>
         </div>
         <template slot="modal-footer">
-            <span>{{ $t('appointment_date') }}: {{ formItem.appointment_date | dateTimeFormat }}</span>
+            <span v-if="formItem.status == 'Approved'">{{ $t('appointment_date') }}: {{ formItem.appointment_date | dateTimeFormat }}</span>
             <div v-if="formItem.status == 'Pending'">
-                <b-button variant="outline-primary" @click="clearForm" class="float-right">
-                        <i class="fas fa-door-closed mr-1"></i>
-                        {{ $t('close') }}
-                    </b-button>
                 <b-button variant="outline-success" @click="opendAppoinmentModal" class="float-right">
                     <i class="fas fa-check-circle mr-1"></i>
                     {{ $t('approve') }}
@@ -176,6 +172,11 @@
                     <i class="fas fa-times-circle mr-1"></i>
                     {{ $t('reject') }}
                 </b-button>
+
+                <b-button variant="outline-primary" @click="clearForm" class="float-right mr-2">
+                        <i class="fas fa-door-closed mr-1"></i>
+                        {{ $t('close') }}
+                    </b-button>
             </div>
             <div v-else>
                 <b-button variant="outline-danger" @click="clearForm" class="float-right">

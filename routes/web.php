@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
 
     include 'admin/dashboard.php';
     include 'admin/company.php';
+    include 'admin/borrower.php';
+    include 'admin/guarantor.php';
     include 'admin/loan.php';
 });
 

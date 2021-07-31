@@ -2,7 +2,7 @@
     <div>
         <header-page></header-page>
 
-        <div class="justify-content-center" style="margin-top: 6rem;">
+        <div class="justify-content-center" style="margin-top: 9rem;">
             <b-card no-body class="card-table">
                 <b-card-header>
                     <h2>{{ $t('review') }}</h2>
