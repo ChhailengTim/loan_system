@@ -22,7 +22,6 @@
                                 :reset="setIndex"
                                 shape="circle"
                                 ref="loan_form"
-                                :startIndex="1"
                             >
                                 <tab-content :title="$t('borrower')" :before-change="validateFirstStep">
                                     <b-row class="justify-content-md-center">
@@ -88,6 +87,7 @@
                                         <!--dob-->
                                         <b-col sm="12" md="12" xl="3">
                                             <b-form-group
+                                            :state="veeErrors.has('borrower_form.dob') ? false : null"
                                                 :invalid-feedback="veeErrors.first('borrower_form.dob')"
                                                 :label="$t('dob')+ ' *'"
                                                 label-class="control-label"
