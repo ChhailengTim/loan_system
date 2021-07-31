@@ -85,6 +85,9 @@ export default {
     about_us: 'អំពីយើង',
     contact_us: 'ទាកទងយើង',
     bank: 'ធនាគារ',
-    invalid_login: 'មិនមានអ៊ីមែល និង លេខសំងាត់នេះទេ'
+    invalid_login: 'មិនមានអ៊ីមែល និង លេខសំងាត់នេះទេ',
+    year: 'ឆ្នាំ',
+    semester: 'ឆមាស',
+    class: 'ថ្នាក់',
 
 }

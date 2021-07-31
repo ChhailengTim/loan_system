@@ -41,6 +41,12 @@ Vue.use(VueFormWizard)
 import Notifications from 'vue-notification'
 Vue.use(Notifications)
 
+//Glide Slider
+import VueGlide from 'vue-glide-js'
+import 'vue-glide-js/dist/vue-glide.css'
+
+Vue.use(VueGlide)
+
 
 //Remember Language
 import { Validator } from 'vee-validate';

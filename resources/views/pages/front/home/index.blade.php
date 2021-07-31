@@ -1,5 +1,5 @@
 @include('Layout.header')
-<body style="overflow: hidden ">
+<body>
 <div id="app">
     <home-front></home-front>
 </div>

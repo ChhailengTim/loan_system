@@ -4,7 +4,7 @@
         <header id="header">
             <nav id="mainNavbar" class="navbar navbar-expand-lg bg-nav fixed-top">
             <a class="navbar-brand" href="/front/home">
-                <img src="/logo-en.png" alt="logo" height="65">
+                <!-- <img src="/logo-en.png" alt="logo" height="65"> -->
                 <!-- <img src="/logo-kh.png" alt="ឡូហ្គោ" height="86" width="405" v-if="$i18n.locale == 'kh'"> -->
             </a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNav">
@@ -20,7 +20,7 @@
                 <a class="nav-link" href="javascript:;">{{ $t('service') }}</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="javascript:;">{{ $t('team') }}</a>
+                <a class="nav-link" href="#team">{{ $t('team') }}</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="javascript:;">{{ $t('about_us') }}</a>
