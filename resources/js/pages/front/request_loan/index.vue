@@ -964,7 +964,7 @@ export default {
             this.checkValidationTerm()
         },
         calulateOutStandingAmount(interest){
-            let total = (parseInt(this.form.request_amount) * interest.interest / 100) * parseInt(this.form.term) + parseFloat(this.form.request_amount)
+            let total = (parseInt(this.form.request_amount) * interest.interest) * parseInt(this.form.term) + parseFloat(this.form.request_amount)
             this.form.interest = interest.interest
             this.form.outstanding_amount = parseFloat(total).toFixed(2)
         }
