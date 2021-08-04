@@ -223,6 +223,7 @@ class LoanController extends Controller
                 'loan.appointment_date',
                 'loan.status',
             )
+            ->orderBy('loan.id', 'desc')
             ->paginate($tableSize);
 
         return $this->responseWithPagination($data);
@@ -281,6 +282,7 @@ class LoanController extends Controller
                 'loan.appointment_date',
                 'loan.status',
             )
+            ->orderBy('loan.id', 'desc')
             ->paginate($tableSize);
 
         return $this->responseWithPagination($data);
@@ -384,6 +386,7 @@ class LoanController extends Controller
                 'loan.appointment_date',
                 'loan.status',
             )
+            ->orderBy('loan.id', 'desc')
             ->paginate($tableSize);
 
         return $this->responseWithPagination($data);

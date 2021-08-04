@@ -105,7 +105,7 @@
         <tr>
             <td bgcolor="#ffffff" align="left"
                 style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                <p style="margin: 0;">Thank you for choosing our service. You can go to our website and click on Review button or click on Login and choose Borrower and use your email that request to us and the password above to review your request.</p>
+                <p style="margin: 0;">Thank you for choosing our service. You can go to our website and click on Review button or click on Login and choose Borrower and use your email that request to us and the password below to review your request.</p>
             </td>
         </tr>
 

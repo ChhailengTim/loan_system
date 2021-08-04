@@ -25,12 +25,12 @@ class CreateBorrowerTable extends Migration
             $table->string('password');
             $table->string('phone', 50);
             $table->string('alt_phone', 50);
-            $table->string('photo', 20);
-            $table->string('national_id_photo', 20);
+            $table->string('photo', 50);
+            $table->string('national_id_photo', 50);
             $table->string('business_name', 20);
-            $table->string('salary_invoice', 20)->comment('Image');
-            $table->string('mortgage', 20)->comment('Image');
-            $table->string('family_book', 20)->comment('Image');
+            $table->string('salary_invoice', 50)->comment('Image');
+            $table->string('mortgage', 50)->comment('Image');
+            $table->string('family_book', 50)->comment('Image');
             $table->timestamps();
             $table->softDeletes();
 

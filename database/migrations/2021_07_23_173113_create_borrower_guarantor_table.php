@@ -24,11 +24,11 @@ class CreateBorrowerGuarantorTable extends Migration
             $table->string('email', 100);
             $table->string('phone', 50);
             $table->string('alt_phone', 50);
-            $table->string('photo', 20);
-            $table->string('national_id_photo', 20);
+            $table->string('photo', 50);
+            $table->string('national_id_photo', 50);
             $table->string('business_name', 20);
-            $table->string('salary_invoice', 20)->comment('Image');
-            $table->string('mortgage', 20)->comment('Image');
+            $table->string('salary_invoice', 50)->comment('Image');
+            $table->string('mortgage', 50)->comment('Image');
             $table->timestamps();
             $table->softDeletes();
 

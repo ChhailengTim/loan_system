@@ -94,7 +94,7 @@
                                 </template>
 
                                 <template v-slot:cell(interest)="row">
-                                    {{ row.item.interest }} %
+                                    {{ row.item.interest }}
                                 </template>
 
                                 <template v-slot:cell(outstanding_amount)="row">

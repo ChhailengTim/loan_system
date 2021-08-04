@@ -47,6 +47,7 @@ class BorrowerGuarantorController extends Controller
                 'borrower.mortgage as borrower_mortgage',
                 'borrower.family_book as borrower_family_book',
             )
+            ->orderBy('borrower_guarantor.id', 'desc')
             ->paginate($tableSize);
 
         return $this->responseWithPagination($data);

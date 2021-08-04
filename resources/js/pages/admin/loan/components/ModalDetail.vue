@@ -1,223 +1,556 @@
 <template>
-    <b-modal
-        v-model="modalShow"
-        scrollable
-        centered
-        no-close-on-backdrop
-        no-close-on-esc
-        hide-header-close
-        hide-header
-        size="lg"
-        content-class="custom-modal"
-    >
+  <b-modal
+    v-model="modalShow"
+    centered
+    no-close-on-backdrop
+    no-close-on-esc
+    hide-header-close
+    hide-header
+    size="lg"
+    content-class="custom-modal"
+  >
+    <template slot="modal-header">
+      <h3><i class="fas fa-people-carry"></i> {{ $t("detail") }}</h3>
+    </template>
+    <div class="d-block">
+      <b-row>
+        <b-col cols="12">
+          <b-card>
+            <b-tabs card>
+              <b-tab :title="$t('borrower')" active>
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("first_name") }}:
+                    <b>{{ formItem.borrower_first_name }}</b>
+                  </b-col>
+                  <b-col cols="6">
+                    {{ $t("gender") }}:
+                    <b v-if="formItem.borrower_gender == 1">{{ $t("male") }}</b>
+                    <b v-if="formItem.borrower_gender == 2">{{
+                      $t("female")
+                    }}</b>
+                  </b-col>
+                </b-row>
+                <hr />
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("last_name") }}:
+                    <b>{{ formItem.borrower_last_name }}</b>
+                  </b-col>
+                  <b-col cols="6">
+                    {{ $t("dob") }}:
+                    <b>{{ formItem.borrower_dob | dateFormat }}</b>
+                  </b-col>
+                </b-row>
+                <hr />
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("business_name") }}:
+                    <b>{{ formItem.borrower_business_name }}</b>
+                  </b-col>
+                  <b-col cols="6">
+                    {{ $t("email") }}:
+                    <b>{{ formItem.borrower_email }}</b>
+                  </b-col>
+                </b-row>
+                <hr />
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("phone") }}:
+                    <b>{{ formItem.borrower_phone | phoneFormat }}</b>
+                  </b-col>
+                  <b-col cols="6">
+                    {{ $t("alt_phone") }}:
+                    <b>{{ formItem.borrower_alt_phone | phoneFormat }}</b>
+                  </b-col>
+                </b-row>
+                <hr />
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("address") }}:
+                    <span>{{ formItem.borrower_address }}</span>
+                  </b-col>
+                </b-row>
 
-        <template slot="modal-header">
-            <h3><i class="fas fa-people-carry"></i> {{ $t('detail') }}</h3>
-        </template>
-        <div class="d-block">
-            <b-row>
-                <b-col cols="12">
-                    <b-card>
-                        <b-tabs card>
-                            <b-tab :title="$t('borrower')" active>
-                                <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('first_name') }}:
-                                        <b>{{ formItem.borrower_first_name }}</b>
-                                    </b-col>
-                                    <b-col cols="6">
-                                        {{ $t('gender') }}:
-                                        <b v-if="formItem.borrower_gender == 1">{{ $t('male') }}</b>
-                                        <b v-if="formItem.borrower_gender == 2">{{ $t('female') }}</b>
-                                    </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('last_name') }}:
-                                        <b>{{ formItem.borrower_last_name }}</b>
-                                    </b-col>
-                                    <b-col cols="6">
-                                        {{ $t('dob') }}:
-                                        <b>{{ formItem.borrower_dob | dateFormat }}</b>
-                                    </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('business_name') }}:
-                                        <b>{{ formItem.borrower_business_name }}</b>
-                                    </b-col>
-                                    <b-col cols="6">
-                                        {{ $t('email') }}:
-                                        <b>{{ formItem.borrower_email }}</b>
-                                    </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('phone') }}:
-                                        <b>{{ formItem.borrower_phone | phoneFormat }}</b>
-                                    </b-col>
-                                    <b-col cols="6">
-                                        {{ $t('alt_phone') }}:
-                                        <b>{{ formItem.borrower_alt_phone| phoneFormat }}</b>
-                                    </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('address') }}:
-                                        <span>{{ formItem.borrower_address }}</span>
-                                    </b-col>
-                                </b-row>
-                            </b-tab>
-                            <b-tab :title="$t('guarantor')">
-                                <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('first_name') }}:
-                                        <b>{{ formItem.guarantor_first_name }}</b>
-                                    </b-col>
-                                    <b-col cols="6">
-                                        {{ $t('gender') }}:
-                                        <b v-if="formItem.guarantor_gender == 1">{{ $t('male') }}</b>
-                                        <b v-if="formItem.guarantor_gender == 2">{{ $t('female') }}</b>
-                                    </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('last_name') }}:
-                                        <b>{{ formItem.guarantor_last_name }}</b>
-                                    </b-col>
-                                    <b-col cols="6">
-                                        {{ $t('dob') }}:
-                                        <b>{{ formItem.guarantor_dob | dateFormat }}</b>
-                                    </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('business_name') }}:
-                                        <b>{{ formItem.guarantor_business_name }}</b>
-                                    </b-col>
-                                    <b-col cols="6">
-                                        {{ $t('email') }}:
-                                        <b>{{ formItem.guarantor_email }}</b>
-                                    </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('phone') }}:
-                                        <b>{{ formItem.guarantor_phone | phoneFormat }}</b>
-                                    </b-col>
-                                    <b-col cols="6">
-                                        {{ $t('alt_phone') }}:
-                                        <b>{{ formItem.guarantor_alt_phone | phoneFormat }}</b>
-                                    </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('address') }}:
-                                        <span>{{ formItem.guarantor_address }}</span>
-                                    </b-col>
-                                </b-row>
-                            </b-tab>
-                            <b-tab :title="$t('loan')">
-                                <b-row>
-                                    <b-col cols="6">
-                                        {{ $t('company_name') }}:
-                                        <b>{{ formItem.company_name }}</b>
-                                    </b-col>
-                                     <b-col cols="6">
-                                        {{ $t('request_date') }}:
-                                        <b>{{ formItem.request_date | dateTimeFormat }}</b>
-                                    </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
-                                     <b-col cols="6">
-                                        {{ $t('request_amount') }}:
-                                        <b>$ {{ formItem.request_amount }}</b>
-                                    </b-col>
-                                    <b-col cols="6">
-                                        {{ $t('term') }}:
-                                        <b>{{ formItem.term }} {{ $t('month') }}</b>
-                                    </b-col>
-                                </b-row>
-                                <hr>
-                                <b-row>
-                                     <b-col cols="6">
-                                        {{ $t('interest') }}:
-                                        <b>{{ formItem.interest }} %</b>
-                                    </b-col>
-                                    <b-col cols="6">
-                                        {{ $t('outstanding_amount') }}:
-                                        <b>$ {{ formItem.outstanding_amount }}</b>
-                                    </b-col>
-                                </b-row>
-                            </b-tab>
-                        </b-tabs>
-                    </b-card>
-                </b-col>
-            </b-row>
-        </div>
-        <template slot="modal-footer">
-            <b-button variant="outline-danger" @click="clearForm" class="float-right">
-                <i class="fas fa-times-circle mr-1"></i>
-                {{ $t('close') }}
-            </b-button>
-        </template>
-    </b-modal>
+                <b-row class="mt-4">
+                  <b-col cols="6" md="3" xl="3">
+                    <!--photo-->
+                    <label for="">{{ $t("photo") }}</label>
+                    <div
+                      v-if="$helpers.nullToVoid(formItem.borrower_photo) == ''"
+                    >
+                      <i
+                        class="fas fa-image"
+                        style="font-size: 150px; color: #a0aec0"
+                      ></i>
+                    </div>
+                    <div v-else>
+                      <b-img
+                        :src="`/images/borrower/photo/${formItem.borrower_photo}`"
+                        alt="photo"
+                        width="150"
+                        height="150"
+                        rounded
+                        :id="formItem.borrower_photo"
+                      />
+
+                      <b-tooltip
+                        :target="formItem.borrower_photo"
+                        placement="right"
+                        variant="light"
+                      >
+                        <img
+                          width="420"
+                          height="420"
+                          :src="`/images/borrower/photo/${formItem.borrower_photo}`"
+                        />
+                      </b-tooltip>
+                    </div>
+                  </b-col>
+
+                  <b-col cols="6" md="3" xl="3">
+                    <!--national_id-->
+                    <label for="">{{ $t("national_id") }}</label>
+                    <div
+                      v-if="
+                        $helpers.nullToVoid(formItem.borrower_national_photo) ==
+                        ''
+                      "
+                    >
+                      <i
+                        class="fas fa-image"
+                        style="font-size: 150px; color: #a0aec0"
+                      ></i>
+                    </div>
+                    <div v-else>
+                      <b-img
+                        :src="`/images/borrower/national_id_photo/${formItem.borrower_national_photo}`"
+                        alt="national"
+                        width="150"
+                        height="150"
+                        rounded
+                        :id="formItem.borrower_national_photo"
+                      />
+
+                      <b-tooltip
+                        :target="formItem.borrower_national_photo"
+                        placement="right"
+                        variant="light"
+                      >
+                        <img
+                          width="420"
+                          height="420"
+                          :src="`/images/borrower/national_id_photo/${formItem.borrower_national_photo}`"
+                        />
+                      </b-tooltip>
+                    </div>
+                  </b-col>
+
+                  <b-col cols="6" md="3" xl="3">
+                    <!--family_book-->
+                    <label for="">{{ $t("family_book") }}</label>
+                    <div
+                      v-if="
+                        $helpers.nullToVoid(formItem.borrower_family_book) == ''
+                      "
+                    >
+                      <i
+                        class="fas fa-image"
+                        style="font-size: 150px; color: #a0aec0"
+                      ></i>
+                    </div>
+                    <div v-else>
+                      <b-img
+                        :src="`/images/borrower/family_book/${formItem.borrower_family_book}`"
+                        alt="family_book"
+                        width="150"
+                        height="150"
+                        rounded
+                        :id="formItem.borrower_family_book"
+                      />
+
+                      <b-tooltip
+                        :target="formItem.borrower_family_book"
+                        placement="right"
+                        variant="light"
+                      >
+                        <img
+                          width="420"
+                          height="420"
+                          :src="`/images/borrower/family_book/${formItem.borrower_family_book}`"
+                        />
+                      </b-tooltip>
+                    </div>
+                  </b-col>
+
+                  <b-col cols="6" md="3" xl="3">
+                    <!--mortgage-->
+                    <label for="">{{ $t("mortgage") }}</label>
+                    <div
+                      v-if="
+                        $helpers.nullToVoid(formItem.borrower_mortgage) == ''
+                      "
+                    >
+                      <i
+                        class="fas fa-image"
+                        style="font-size: 150px; color: #a0aec0"
+                      ></i>
+                    </div>
+                    <div v-else>
+                      <b-img
+                        :src="`/images/borrower/mortgage/${formItem.borrower_mortgage}`"
+                        alt="mortgage"
+                        width="150"
+                        height="150"
+                        rounded
+                        :id="formItem.borrower_mortgage"
+                      />
+
+                      <b-tooltip
+                        :target="formItem.borrower_mortgage"
+                        placement="right"
+                        variant="light"
+                      >
+                        <img
+                          width="420"
+                          height="420"
+                          :src="`/images/borrower/mortgage/${formItem.borrower_mortgage}`"
+                        />
+                      </b-tooltip>
+                    </div>
+                  </b-col>
+
+                  <b-col cols="6" md="3" xl="3" class="mt-3">
+                    <!--salary_invoice-->
+                    <label for="">{{ $t("salary_invoice") }}</label>
+                    <div
+                      v-if="$helpers.nullToVoid(formItem.borrower_salary_invoice) == ''"
+                    >
+                      <i
+                        class="fas fa-image"
+                        style="font-size: 150px; color: #a0aec0"
+                      ></i>
+                    </div>
+                    <div v-else>
+                      <b-img
+                        :src="`/images/borrower/salary_invoice/${formItem.borrower_salary_invoice}`"
+                        alt="salary_invoice"
+                        width="150"
+                        height="150"
+                        rounded
+                        :id="formItem.borrower_salary_invoice"
+                      />
+
+                      <b-tooltip
+                        :target="formItem.borrower_salary_invoice"
+                        placement="right"
+                        variant="light"
+                      >
+                        <img
+                          width="420"
+                          height="420"
+                          :src="`/images/borrower/salary_invoice/${formItem.borrower_salary_invoice}`"
+                        />
+                      </b-tooltip>
+                    </div>
+                  </b-col>
+                </b-row>
+              </b-tab>
+              <b-tab :title="$t('guarantor')">
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("first_name") }}:
+                    <b>{{ formItem.guarantor_first_name }}</b>
+                  </b-col>
+                  <b-col cols="6">
+                    {{ $t("gender") }}:
+                    <b v-if="formItem.guarantor_gender == 1">{{
+                      $t("male")
+                    }}</b>
+                    <b v-if="formItem.guarantor_gender == 2">{{
+                      $t("female")
+                    }}</b>
+                  </b-col>
+                </b-row>
+                <hr />
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("last_name") }}:
+                    <b>{{ formItem.guarantor_last_name }}</b>
+                  </b-col>
+                  <b-col cols="6">
+                    {{ $t("dob") }}:
+                    <b>{{ formItem.guarantor_dob | dateFormat }}</b>
+                  </b-col>
+                </b-row>
+                <hr />
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("business_name") }}:
+                    <b>{{ formItem.guarantor_business_name }}</b>
+                  </b-col>
+                  <b-col cols="6">
+                    {{ $t("email") }}:
+                    <b>{{ formItem.guarantor_email }}</b>
+                  </b-col>
+                </b-row>
+                <hr />
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("phone") }}:
+                    <b>{{ formItem.guarantor_phone | phoneFormat }}</b>
+                  </b-col>
+                  <b-col cols="6">
+                    {{ $t("alt_phone") }}:
+                    <b>{{ formItem.guarantor_alt_phone | phoneFormat }}</b>
+                  </b-col>
+                </b-row>
+                <hr />
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("address") }}:
+                    <span>{{ formItem.guarantor_address }}</span>
+                  </b-col>
+                </b-row>
+
+                <b-row class="mt-4">
+                  <b-col cols="6" md="3" xl="3">
+                    <!--photo-->
+                    <label for="">{{ $t("photo") }}</label>
+                    <div
+                      v-if="$helpers.nullToVoid(formItem.guarantor_photo) == ''"
+                    >
+                      <i
+                        class="fas fa-image"
+                        style="font-size: 150px; color: #a0aec0"
+                      ></i>
+                    </div>
+                    <div v-else>
+                      <b-img
+                        :src="`/images/guarantor/photo/${formItem.guarantor_photo}`"
+                        alt="photo"
+                        width="150"
+                        height="150"
+                        rounded
+                        :id="formItem.guarantor_photo"
+                      />
+
+                      <b-tooltip
+                        :target="formItem.guarantor_photo"
+                        placement="right"
+                        variant="light"
+                      >
+                        <img
+                          width="420"
+                          height="420"
+                          :src="`/images/guarantor/photo/${formItem.guarantor_photo}`"
+                        />
+                      </b-tooltip>
+                    </div>
+                  </b-col>
+
+                  <b-col cols="6" md="3" xl="3">
+                    <!--national_id-->
+                    <label for="">{{ $t("national_id") }}</label>
+                    <div
+                      v-if="
+                        $helpers.nullToVoid(formItem.guarantor_national_photo) ==
+                        ''
+                      "
+                    >
+                      <i
+                        class="fas fa-image"
+                        style="font-size: 150px; color: #a0aec0"
+                      ></i>
+                    </div>
+                    <div v-else>
+                      <b-img
+                        :src="`/images/guarantor/national_id_photo/${formItem.guarantor_national_photo}`"
+                        alt="national"
+                        width="150"
+                        height="150"
+                        rounded
+                        :id="formItem.guarantor_national_photo"
+                      />
+
+                      <b-tooltip
+                        :target="formItem.guarantor_national_photo"
+                        placement="right"
+                        variant="light"
+                      >
+                        <img
+                          width="420"
+                          height="420"
+                          :src="`/images/guarantor/national_id_photo/${formItem.guarantor_national_photo}`"
+                        />
+                      </b-tooltip>
+                    </div>
+                  </b-col>
+
+                  <b-col cols="6" md="3" xl="3">
+                    <!--mortgage-->
+                    <label for="">{{ $t("mortgage") }}</label>
+                    <div
+                      v-if="
+                        $helpers.nullToVoid(formItem.guarantor_mortgage) == ''
+                      "
+                    >
+                      <i
+                        class="fas fa-image"
+                        style="font-size: 150px; color: #a0aec0"
+                      ></i>
+                    </div>
+                    <div v-else>
+                      <b-img
+                        :src="`/images/guarantor/mortgage/${formItem.guarantor_mortgage}`"
+                        alt="mortgage"
+                        width="150"
+                        height="150"
+                        rounded
+                        :id="formItem.guarantor_mortgage"
+                      />
+
+                      <b-tooltip
+                        :target="formItem.guarantor_mortgage"
+                        placement="right"
+                        variant="light"
+                      >
+                        <img
+                          width="420"
+                          height="420"
+                          :src="`/images/guarantor/mortgage/${formItem.guarantor_mortgage}`"
+                        />
+                      </b-tooltip>
+                    </div>
+                  </b-col>
+
+                  <b-col cols="6" md="3" xl="3">
+                    <!--salary_invoice-->
+                    <label for="">{{ $t("salary_invoice") }}</label>
+                    <div
+                      v-if="$helpers.nullToVoid(formItem.guarantor_salary_invoice) == ''"
+                    >
+                      <i
+                        class="fas fa-image"
+                        style="font-size: 150px; color: #a0aec0"
+                      ></i>
+                    </div>
+                    <div v-else>
+                      <b-img
+                        :src="`/images/guarantor/salary_invoice/${formItem.guarantor_salary_invoice}`"
+                        alt="salary_invoice"
+                        width="150"
+                        height="150"
+                        rounded
+                        :id="formItem.guarantor_salary_invoice"
+                      />
+
+                      <b-tooltip
+                        :target="formItem.guarantor_salary_invoice"
+                        placement="right"
+                        variant="light"
+                      >
+                        <img
+                          width="420"
+                          height="420"
+                          :src="`/images/guarantor/salary_invoice/${formItem.guarantor_salary_invoice}`"
+                        />
+                      </b-tooltip>
+                    </div>
+                  </b-col>
+                </b-row>
+              </b-tab>
+              <b-tab :title="$t('loan')">
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("company_name") }}:
+                    <b>{{ formItem.company_name }}</b>
+                  </b-col>
+                  <b-col cols="6">
+                    {{ $t("request_date") }}:
+                    <b>{{ formItem.request_date | dateTimeFormat }}</b>
+                  </b-col>
+                </b-row>
+                <hr />
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("request_amount") }}:
+                    <b>$ {{ formItem.request_amount }}</b>
+                  </b-col>
+                  <b-col cols="6">
+                    {{ $t("term") }}:
+                    <b>{{ formItem.term }} {{ $t("month") }}</b>
+                  </b-col>
+                </b-row>
+                <hr />
+                <b-row>
+                  <b-col cols="6">
+                    {{ $t("interest") }}:
+                    <b>{{ formItem.interest }}</b>
+                  </b-col>
+                  <b-col cols="6">
+                    {{ $t("outstanding_amount") }}:
+                    <b>$ {{ formItem.outstanding_amount }}</b>
+                  </b-col>
+                </b-row>
+              </b-tab>
+            </b-tabs>
+          </b-card>
+        </b-col>
+      </b-row>
+    </div>
+    <template slot="modal-footer">
+      <b-button variant="outline-danger" @click="clearForm" class="float-right">
+        <i class="fas fa-times-circle mr-1"></i>
+        {{ $t("close") }}
+      </b-button>
+    </template>
+  </b-modal>
 </template>
 <script>
 export default {
-    props: {
-        modalType: {
-            type: Number,
-            default: () => {
-                return 0
-            }
-        },
-        formItem: {
-            type: Object,
-            default: () => {
-                return {}
-            }
-        }
+  props: {
+    modalType: {
+      type: Number,
+      default: () => {
+        return 0;
+      },
     },
-    data(){
-        return{
-            modalShow: false,
-        }
+    formItem: {
+      type: Object,
+      default: () => {
+        return {};
+      },
     },
-    watch: {
-        modalType: {
-            handler(val){
-                if(val == 1){
-                    this.modalShow = true
-                }else{
-                    this.modalShow = false
-                }
-            },
-            immediate: true
+  },
+  data() {
+    return {
+      modalShow: false,
+    };
+  },
+  watch: {
+    modalType: {
+      handler(val) {
+        if (val == 1) {
+          this.modalShow = true;
+        } else {
+          this.modalShow = false;
         }
+      },
+      immediate: true,
     },
-    methods: {
-        clearForm(){
+  },
+  methods: {
+    clearForm() {
+      this.$emit("closeModal");
 
-            this.$emit('closeModal')
-
-            this.modalShow = false;
-
-        },
-    }
-}
+      this.modalShow = false;
+    },
+  },
+};
 </script>
 <style scoped>
-/deep/ .custom-modal{
-    border-radius: 15px;
+/deep/ .custom-modal {
+  border-radius: 15px;
 }
 </style>

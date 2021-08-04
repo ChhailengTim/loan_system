@@ -31,22 +31,22 @@ class BorrowerGuarantor extends Model
 
 
     //Image path for photo
-    const photoPath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR . 'photo';
-    const thumbnailPhotoPath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR  . 'photo' . DIRECTORY_SEPARATOR . 'thumbnail';
+    const photoPath = 'images' . DIRECTORY_SEPARATOR . 'guarantor' . DIRECTORY_SEPARATOR . 'photo';
+    const thumbnailPhotoPath = 'images' . DIRECTORY_SEPARATOR . 'guarantor' . DIRECTORY_SEPARATOR  . 'photo' . DIRECTORY_SEPARATOR . 'thumbnail';
 
     //Image path for national_id_photo
-    const nationalPath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR . 'national_id_photo';
-    const thumbnailNationalPath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR  . 'national_id_photo' . DIRECTORY_SEPARATOR . 'thumbnail';
+    const nationalPath = 'images' . DIRECTORY_SEPARATOR . 'guarantor' . DIRECTORY_SEPARATOR . 'national_id_photo';
+    const thumbnailNationalPath = 'images' . DIRECTORY_SEPARATOR . 'guarantor' . DIRECTORY_SEPARATOR  . 'national_id_photo' . DIRECTORY_SEPARATOR . 'thumbnail';
 
 
     //Image path for salary_invoice
-    const salaryInvoicePath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR . 'salary_invoice';
-    const thumbnailSalaryInvoicePath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR  . 'salary_invoice' . DIRECTORY_SEPARATOR . 'thumbnail';
+    const salaryInvoicePath = 'images' . DIRECTORY_SEPARATOR . 'guarantor' . DIRECTORY_SEPARATOR . 'salary_invoice';
+    const thumbnailSalaryInvoicePath = 'images' . DIRECTORY_SEPARATOR . 'guarantor' . DIRECTORY_SEPARATOR  . 'salary_invoice' . DIRECTORY_SEPARATOR . 'thumbnail';
 
 
     //Image path for mortgage
-    const mortgagePath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR . 'mortgage';
-    const thumbnailMortgagePath = 'images' . DIRECTORY_SEPARATOR . 'borrower' . DIRECTORY_SEPARATOR  . 'mortgage' . DIRECTORY_SEPARATOR . 'thumbnail';
+    const mortgagePath = 'images' . DIRECTORY_SEPARATOR . 'guarantor' . DIRECTORY_SEPARATOR . 'mortgage';
+    const thumbnailMortgagePath = 'images' . DIRECTORY_SEPARATOR . 'guarantor' . DIRECTORY_SEPARATOR  . 'mortgage' . DIRECTORY_SEPARATOR . 'thumbnail';
 
     protected $table = self::TABLE_NAME;
 

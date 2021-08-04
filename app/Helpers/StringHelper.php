@@ -11,24 +11,6 @@ use Illuminate\Support\Facades\File;
 
 class StringHelper
 {
-    public static function currency($data, $decimals = 0)
-    {
-
-        $decimal_part = explode('.', $data);
-        if (count($decimal_part) > 1) {
-            if (intval($decimal_part[1]) > 0) {
-                $decimals = strlen(intval($decimal_part[1])) > 3 ? 3 : strlen(intval($decimal_part[1]));
-            } else {
-                $decimals = 0;
-            }
-
-            if (!empty($data)) {
-                return number_format($data, $decimals);
-            }
-        } else {
-            return number_format($data, 0);
-        }
-    }
     public static function public_path($path = null)
     {
         return rtrim(app()->basePath('public' . DIRECTORY_SEPARATOR . $path), DIRECTORY_SEPARATOR);
