@@ -3,7 +3,6 @@
     <center>
       <vue-glide>
         <vue-glide-slide v-for="(obj, index) in teamList" :key="index">
-          <!-- Slide {{ i }} -->
 
           <div class="profile-container">
             <div class="img-container">
@@ -123,7 +122,7 @@ export default {
   /* margin-right: 36px; */
   position: relative;
   background-color: #fff;
-  width: 350px;
+  width: 370px;
   padding: 100px 50px 40px;
   border-radius: 12px;
   box-shadow: 0 0 60px 5px rgba(0, 0, 0, 0.2);
