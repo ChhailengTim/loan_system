@@ -1,6 +1,8 @@
 <template>
   <div>
+
     <center>
+        <h2 class="team-title">Our Team</h2>
       <vue-glide>
         <vue-glide-slide v-for="(obj, index) in teamList" :key="index">
 
@@ -118,6 +120,25 @@ export default {
 };
 </script>
 <style scoped>
+.team-title {
+    font-size: 30px;
+    letter-spacing: 0;
+    line-height: 32px;
+    margin: 0 0 135px;
+    padding: 0 0 11px;
+    position: relative;
+    text-transform: uppercase;
+    color: #000;
+}
+.team-title::after {
+    background: #fdb801 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 2px;
+    position: absolute;
+    width: 54px;
+    left: 985px;
+}
 .profile-container {
   /* margin-right: 36px; */
   position: relative;

@@ -23,10 +23,10 @@
                 <a class="nav-link" href="#team">{{ $t('team') }}</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="javascript:;">{{ $t('about_us') }}</a>
+                <a class="nav-link" href="#about">{{ $t('about_us') }}</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="javascript:;">{{ $t('contact_us') }}</a>
+                <a class="nav-link" href="#contact">{{ $t('contact_us') }}</a>
                 </li>
                 <li class="nav-item">
 
