@@ -40,7 +40,6 @@ export default {
   margin-bottom: 150px;
 }
 .about-block {
-  /* margin-top: 174px; */
-  margin-bottom: 150px;
+  margin-bottom: 170px;
 }
 </style>
