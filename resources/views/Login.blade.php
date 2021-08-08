@@ -24,6 +24,15 @@ session_destroy();
     .card{
         border-radius: 15px;
     }
+    .card-body {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 3.25rem;
+    }
+    .btn-login{
+        margin-left: 32px;
+    }
 </style>
 
 <body class="form">
@@ -81,7 +90,7 @@ session_destroy();
                                             </label>
                                         </div>
                                         <div class="field-wrapper">
-                                            <button type="submit" class="btn btn-primary" value="">Log In</button>
+                                            <button type="submit" class="btn btn-primary btn-login" value="">Log In</button>
                                         </div>
                                     </div>
                                 </div>
