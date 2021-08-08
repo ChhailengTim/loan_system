@@ -2,56 +2,57 @@
   <div>
 
     <center>
-        <h2 class="team-title">Our Team</h2>
-      <vue-glide>
-        <vue-glide-slide v-for="(obj, index) in teamList" :key="index">
+        <h2 class="team-title" v-if="$i18n.locale == 'en'">Our Team</h2>
+        <h2 class="team-title" v-if="$i18n.locale == 'kh'">ក្រុមយើង</h2>
+        <vue-glide :autoplay="3000" :hoverpause="true">
+            <vue-glide-slide v-for="(obj, index) in teamList" :key="index">
 
-          <div class="profile-container">
-            <div class="img-container">
-              <img :src="`/teams/${obj.photo}`" alt="profile image">
+            <div class="profile-container">
+                <div class="img-container">
+                <img :src="`/teams/${obj.photo}`" alt="profile image">
+                </div>
+                <p class="info full-name">{{ obj.name }}</p>
+                <p class="info role">
+                <i class="fas fa-star"></i>
+                {{ obj.dutie }}
+                </p>
+                <p class="info place">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ obj.university }}
+                </p>
+
+                <div class="posts-info">
+                <p>
+                    <span>{{ $t("year") }}</span> {{ obj.year }}
+                </p>
+                <p>
+                    <span>{{ $t("semester") }}</span> {{ obj.semester }}
+                </p>
+                <p>
+                    <span>{{ $t("class") }}</span> {{ obj.class }}
+                </p>
+                </div>
+
+                <div class="social-container">
+                <button class="facebook">
+                    <i class="fab fa-facebook"></i>
+                </button>
+                <button class="instagram">
+                    <i class="fab fa-instagram"></i>
+                </button>
+                <button class="youtube">
+                    <i class="fab fa-youtube"></i>
+                </button>
+                <button class="github">
+                    <i class="fab fa-github"></i>
+                </button>
+                </div>
+
+                <button class="action">{{ $t('follow') }}</button>
+                <button class="action message">{{ $t('message') }}</button>
             </div>
-            <p class="info full-name">{{ obj.name }}</p>
-            <p class="info role">
-              <i class="fas fa-star"></i>
-              {{ obj.dutie }}
-            </p>
-            <p class="info place">
-              <i class="fas fa-map-marker-alt"></i>
-              {{ obj.university }}
-            </p>
-
-            <div class="posts-info">
-              <p>
-                <span>{{ $t("year") }}</span> {{ obj.year }}
-              </p>
-              <p>
-                <span>{{ $t("semester") }}</span> {{ obj.semester }}
-              </p>
-              <p>
-                <span>{{ $t("class") }}</span> {{ obj.class }}
-              </p>
-            </div>
-
-            <div class="social-container">
-              <button class="facebook">
-                <i class="fab fa-facebook"></i>
-              </button>
-              <button class="instagram">
-                <i class="fab fa-instagram"></i>
-              </button>
-              <button class="youtube">
-                <i class="fab fa-youtube"></i>
-              </button>
-              <button class="github">
-                <i class="fab fa-github"></i>
-              </button>
-            </div>
-
-            <button class="action">Follow</button>
-            <button class="action message">Message</button>
-          </div>
-        </vue-glide-slide>
-      </vue-glide>
+            </vue-glide-slide>
+        </vue-glide>
     </center>
   </div>
 </template>
@@ -61,7 +62,7 @@ export default {
     return {
       teamList: [
         {
-          photo: "phearoth.jpg",
+          photo: "phearoth.png",
           name: "THOEURN PHEAROTH",
           dutie: "System Analyst",
           university: "Royal University Of Phnom Penh",

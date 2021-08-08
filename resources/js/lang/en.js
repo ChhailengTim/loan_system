@@ -89,5 +89,7 @@ export default {
     year: 'Year',
     semester: 'Semester',
     class: 'Class',
+    follow: 'Follow',
+    message: 'Message',
 
 }

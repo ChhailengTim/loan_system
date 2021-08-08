@@ -89,5 +89,7 @@ export default {
     year: 'ឆ្នាំ',
     semester: 'ឆមាស',
     class: 'ថ្នាក់',
+    follow: 'តាមដាន',
+    message: 'សារ',
 
 }

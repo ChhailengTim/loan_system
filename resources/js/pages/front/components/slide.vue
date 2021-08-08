@@ -4,7 +4,7 @@
 
             <div id="work" class="carousel slide" data-ride="carousel">
                 <div class="banner-content text-left">
-                <h1 class="text-white">DESIGN WEBSITE<span> WHICH<br> MAKES</span> YOU PROUD</h1>
+                <h1 class="text-white">THE ONLY<span> ONE<br> WAY</span> STARTUP BUSINESS FUTURE</h1>
                 <p class="col-md-5 adjust text-white">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat veritatis iste, nulla architecto quam saepe? Totam quisquam nam officia dignissimos nesciunt quis molestias, sit hic nulla suscipit unde odit voluptates.
                 </p>
