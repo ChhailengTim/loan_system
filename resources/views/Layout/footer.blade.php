@@ -11,4 +11,11 @@
 
 {{--<script src="{{ asset('js/app.js')}} "></script>--}}
 <script src="{{ asset('js/main/app.js') }}"></script>
+<script>
+    $(document).ready(function () {
+      $(".carousel").carousel({
+        interval: 3000,
+      });
+    });
+    </script>
 </html>
