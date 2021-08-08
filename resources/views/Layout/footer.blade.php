@@ -5,6 +5,7 @@
 {{--<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>--}}
 <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 <!-- BEGIN PAGE LEVELs PLUGINS/CUSTOM SCRIPTS -->
 

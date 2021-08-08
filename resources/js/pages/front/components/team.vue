@@ -4,7 +4,7 @@
     <center>
         <h2 class="team-title" v-if="$i18n.locale == 'en'">Our Team</h2>
         <h2 class="team-title" v-if="$i18n.locale == 'kh'">ក្រុមយើង</h2>
-        <vue-glide :autoplay="3000" :hoverpause="true">
+        <vue-glide type="carousel" :autoplay="3000" :hoverpause="true">
             <vue-glide-slide v-for="(obj, index) in teamList" :key="index">
 
             <div class="profile-container">
