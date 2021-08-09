@@ -2,7 +2,7 @@
 
 ## Required Software
 
-- wampserver.
+- Wampserver.
 - Composer.
 - Node Js.
 - Git.
