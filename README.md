@@ -17,6 +17,8 @@ Run Command as following
 - php artisan db:seed.
 - php artisan serve.
 
+Config Database and Email In .env file
+
 ## Front
 
 Run Command as following
