@@ -2,20 +2,20 @@
 
 ## Required Software
 
-- Wampserver.
-- Composer.
-- Node Js.
-- Git.
+- Wampserver
+- Composer
+- Node Js
+- Git
 ## Api
 
 Run Command as following
 
-- composer install.
-- cp .env.example .env.
-- php artisan key:generate.
-- php artisan migrate.
-- php artisan db:seed.
-- php artisan serve.
+- composer install
+- cp .env.example .env
+- php artisan key:generate
+- php artisan migrate
+- php artisan db:seed
+- php artisan serve
 
 Config Database and Email In .env file
 
@@ -23,5 +23,5 @@ Config Database and Email In .env file
 
 Run Command as following
 
-- npm install.
-- npm run watch.
+- npm install
+- npm run watch
