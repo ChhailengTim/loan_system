@@ -20,7 +20,7 @@ class CreateCompanyTable extends Migration
             $table->string('alt_phone', 50);
             $table->string('logo', 100);
             $table->string('email', 100);
-            $table->string('address', 200);
+            $table->string('address', 200)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

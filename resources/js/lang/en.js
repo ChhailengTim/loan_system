@@ -91,5 +91,6 @@ export default {
     class: 'Class',
     follow: 'Follow',
     message: 'Message',
+    search: 'Search',
 
 }

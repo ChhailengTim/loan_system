@@ -28,7 +28,8 @@
                                 id="filter-input"
                                 v-model="filter.search"
                                 type="search"
-                                placeholder="Type to Search"
+                                :placeholder="$t('search')"
+                                @input="fetchRecord(false)"
                             ></b-form-input>
                         </b-input-group>
                     </b-col>
@@ -209,9 +210,10 @@
             }
         },
         methods: {
-            fetchRecord(){
+            fetchRecord(loading = true){
                 let vm = this;
                 const input = this.getInput();
+                input.loading = loading
 
                 axios.post('/loan/get_all', input).then(function (response) {
                     vm.setInput(response.data.data);

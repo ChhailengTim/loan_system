@@ -91,5 +91,6 @@ export default {
     class: 'ថ្នាក់',
     follow: 'តាមដាន',
     message: 'សារ',
+    search: 'ស្វែងរក',
 
 }

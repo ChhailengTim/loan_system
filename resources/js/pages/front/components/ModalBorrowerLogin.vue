@@ -46,15 +46,19 @@
                         <b-form-input
                             autocomplete="off"
                             v-model="form.password"
-                            v-validate="'required|max:191'"
+                            v-validate="'required|min:6|max:191'"
                             :state="veeErrors.has('password') ? false : null"
                             data-vv-name="password"
                             :data-vv-as="$t('password')"
-                            type="password"
+                            :type="showPassword ? 'text' : 'password'"
                             :placeholder="$t('password')"
                             @keydown.enter.prevent="onSubmitBorrowerLogin"
                         ></b-form-input>
                     </b-form-group>
+                    <b-form-checkbox name="check-button" switch @change="onSwitchShowPassword" id="switchPassword">
+                        <label v-if="$i18n.locale == 'en'" for="switchPassword">Show Password</label>
+                        <label v-if="$i18n.locale == 'kh'" for="switchPassword">បង្ហាញលេខសម្ងាត់</label>
+                    </b-form-checkbox>
                 </b-col>
             </b-row>
         </div>
@@ -84,12 +88,13 @@ export default {
             modalShow: false,
             form: {
                 email: 'sotthipornfree@gmail.com',
-                password: 164151
+                password: 123456
             },
             defaultForm: {
                 email: 'sotthipornfree@gmail.com',
-                password: 164151
+                password: 123456
             },
+            showPassword: false
         }
     },
     watch: {
@@ -168,6 +173,9 @@ export default {
             this.modalShow = false;
 
         },
+        onSwitchShowPassword(){
+            this.showPassword = !this.showPassword
+        }
     }
 }
 </script>

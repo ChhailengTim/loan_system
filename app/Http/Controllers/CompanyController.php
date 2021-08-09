@@ -19,7 +19,17 @@ class CompanyController extends Controller
             $table_size = 10;
         }
 
+        $filter = $request->input('filter');
+        $search = !empty($filter['search']) ? $filter['search'] : null;
+
         $data = Company::with(['companyInterest'])
+            ->when($search, function ($query) use ($search) {
+                $query->where('company.company_name', 'LIKE', "%{$search}%")
+                ->orWhere('company.phone', 'LIKE', "%{$search}%")
+                ->orWhere('company.alt_phone', 'LIKE', "%{$search}%")
+                ->orWhere('company.email', 'LIKE', "%{$search}%")
+                ->orWhere('company.address', 'LIKE', "%{$search}%");
+            })
             ->orderBy('id', 'desc')
             ->paginate($table_size);
 

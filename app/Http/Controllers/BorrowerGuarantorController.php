@@ -12,8 +12,21 @@ class BorrowerGuarantorController extends Controller
 
         $tableSize = empty($request->input('table_size')) ? 10 : $request->input('table_size');
 
+        $filter = $request->input('filter');
+        $search = !empty($filter['search']) ? $filter['search'] : null;
+
         $data = BorrowerGuarantor::join('borrower', 'borrower.id', 'borrower_guarantor.borrower_id')
             ->join('company', 'company.id', 'borrower.company_id')
+            ->when($search, function ($query) use ($search) {
+                $query->where('borrower_guarantor.first_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.last_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.address', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.email', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.dob', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.phone', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.alt_phone', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.business_name', 'LIKE', "%{$search}%");
+            })
             ->select(
                 'borrower_guarantor.id as id',
                 'company.id as company_id',

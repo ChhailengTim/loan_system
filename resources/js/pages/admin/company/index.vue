@@ -38,7 +38,8 @@
                                 id="filter-input"
                                 v-model="filter.txt_src"
                                 type="search"
-                                placeholder="Type to Search"
+                                :placeholder="$t('search')"
+                                @input="fetchRecord(false)"
                             ></b-form-input>
                         </b-input-group>
                     </b-col>
@@ -204,10 +205,11 @@
                 this.formItem = Object.assign({}, this.selectedItem);
                 this.modalType = 2 //set modal type 2 = edit
             },
-            fetchRecord(){
+            fetchRecord(loading = true){
                 let vm = this;
                 this.showOverlay = !this.showOverlay;
                 const input = this.getInput();
+                input.loading = loading
                 axios.post('/company/get', input).then(function (response) {
                     vm.showOverlay = !vm.showOverlay;
                     vm.setInput(response.data.data);

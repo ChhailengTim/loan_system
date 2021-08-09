@@ -178,10 +178,22 @@ class LoanController extends Controller
 
         $tableSize = empty($request->input('table_size')) ? 10 : $request->input('table_size');
 
+        $filter = $request->input('filter');
+        $search = !empty($filter['search']) ? $filter['search'] : null;
+
         $data = Loan::join('borrower', 'borrower.id', 'loan.borrower_id')
             ->join('borrower_guarantor', 'borrower_guarantor.borrower_id', 'borrower.id')
             ->join('company', 'company.id', 'borrower.company_id')
             ->where('loan.borrower_id', $request->input('borrower_id'))
+            ->when($search, function ($query) use ($search) {
+                $query->where('company.company_name', 'LIKE', "%{$search}%")
+                ->orWhere('loan.created_at', 'LIKE', "%{$search}%")
+                ->orWhere('loan.term', 'LIKE', "%{$search}%")
+                ->orWhere('loan.interest', 'LIKE', "%{$search}%")
+                ->orWhere('loan.outstanding_amount', 'LIKE', "%{$search}%")
+                ->orWhere('loan.appointment_date', 'LIKE', "%{$search}%")
+                ->orWhere('loan.status', 'LIKE', "%{$search}%");
+            })
             ->select(
                 'loan.id as id',
                 'company.id as company_id',
@@ -237,10 +249,32 @@ class LoanController extends Controller
 
         $tableSize = empty($request->input('table_size')) ? 10 : $request->input('table_size');
 
+        $filter = $request->input('filter');
+        $search = !empty($filter['search']) ? $filter['search'] : null;
+
         $data = Loan::join('borrower', 'borrower.id', 'loan.borrower_id')
             ->join('borrower_guarantor', 'borrower_guarantor.borrower_id', 'borrower.id')
             ->join('company', 'company.id', 'borrower.company_id')
             ->where('borrower.company_id', $request->input('company_id'))
+            ->when($search, function ($query) use ($search) {
+                $query->where('company.company_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower.first_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower.last_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower.address', 'LIKE', "%{$search}%")
+                ->orWhere('borrower.email', 'LIKE', "%{$search}%")
+                ->orWhere('borrower.business_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.first_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.last_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.address', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.email', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.business_name', 'LIKE', "%{$search}%")
+                ->orWhere('loan.created_at', 'LIKE', "%{$search}%")
+                ->orWhere('loan.term', 'LIKE', "%{$search}%")
+                ->orWhere('loan.interest', 'LIKE', "%{$search}%")
+                ->orWhere('loan.outstanding_amount', 'LIKE', "%{$search}%")
+                ->orWhere('loan.appointment_date', 'LIKE', "%{$search}%")
+                ->orWhere('loan.status', 'LIKE', "%{$search}%");
+            })
             ->select(
                 'loan.id as id',
                 'company.id as company_id',
@@ -340,11 +374,33 @@ class LoanController extends Controller
     //Get Loan All
     public function getAll(Request $request){
 
+        $filter = $request->input('filter');
+        $search = !empty($filter['search']) ? $filter['search'] : null;
+
         $tableSize = empty($request->input('table_size')) ? 10 : $request->input('table_size');
 
         $data = Loan::join('borrower', 'borrower.id', 'loan.borrower_id')
             ->join('borrower_guarantor', 'borrower_guarantor.borrower_id', 'borrower.id')
             ->join('company', 'company.id', 'borrower.company_id')
+            ->when($search, function ($query) use ($search) {
+                $query->where('company.company_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower.first_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower.last_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower.address', 'LIKE', "%{$search}%")
+                ->orWhere('borrower.email', 'LIKE', "%{$search}%")
+                ->orWhere('borrower.business_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.first_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.last_name', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.address', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.email', 'LIKE', "%{$search}%")
+                ->orWhere('borrower_guarantor.business_name', 'LIKE', "%{$search}%")
+                ->orWhere('loan.created_at', 'LIKE', "%{$search}%")
+                ->orWhere('loan.term', 'LIKE', "%{$search}%")
+                ->orWhere('loan.interest', 'LIKE', "%{$search}%")
+                ->orWhere('loan.outstanding_amount', 'LIKE', "%{$search}%")
+                ->orWhere('loan.appointment_date', 'LIKE', "%{$search}%")
+                ->orWhere('loan.status', 'LIKE', "%{$search}%");
+            })
             ->select(
                 'loan.id as id',
                 'company.id as company_id',

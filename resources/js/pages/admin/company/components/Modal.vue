@@ -145,7 +145,7 @@
                                 <b-textarea
                                     autocomplete="off"
                                     v-model="form.address"
-                                    v-validate="'required|max:200'"
+                                    v-validate="'max:200'"
                                     :state="veeErrors.has('address') ? false : null"
                                     data-vv-name="address"
                                     :data-vv-as="$t('address')"

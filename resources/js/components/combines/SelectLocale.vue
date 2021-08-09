@@ -27,7 +27,6 @@
                 langs: [
                     {value: 'en', text: 'English', logo: 'en.png'},
                     {value: 'kh', text: 'ខ្មែរ', logo: 'kh.png'},
-                    {value: 'th', text: 'ประเทศไทย', logo: 'th.png'},
                 ],
             }
         },

@@ -24,7 +24,6 @@
                 :reset="setIndex"
                 shape="circle"
                 ref="loan_form"
-                :startIndex="2"
               >
                 <tab-content
                   :title="$t('borrower')"
