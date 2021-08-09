@@ -1,4 +1,4 @@
-<p align="center">Setup Project</p>
+<h2 align="center">Setup Project</h2>
 
 ## Required Software
 
