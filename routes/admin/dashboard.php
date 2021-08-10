@@ -1,4 +1,4 @@
 <?php
-Route::get('/dashboard', function () {
+Route::get('/loan', function () {
     return view('pages.dashboard');
-})->name('dashboard');
+})->name('loan');

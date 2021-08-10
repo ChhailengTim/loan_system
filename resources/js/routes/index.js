@@ -16,23 +16,22 @@ Vue.component('app', require('../layouts/admin').default);
  */
 
 //home
- Vue.component('home-front', require('../pages/front/home/').default);
+Vue.component('home-front', require('../pages/front/home/').default);
 
- //Request Loan
- Vue.component('request-loan', require('../pages/front/request_loan/').default);
+//Request Loan
+Vue.component('request-loan', require('../pages/front/request_loan/').default);
 
- //Borrower Review
- Vue.component('borrower-review', require('../pages/front/borrower_review/').default);
+//Borrower Review
+Vue.component('borrower-review', require('../pages/front/borrower_review/').default);
 
-  //Bank Review
-  Vue.component('bank-review', require('../pages/front/bank_review/').default);
+//Bank Review
+Vue.component('bank-review', require('../pages/front/bank_review/').default);
 
 
 
 /**
  * Admin
  */
-import dashboard from '../pages/admin/dashboard/'
 import company from '../pages/admin/company/'
 import borrower from '../pages/admin/borrower/'
 import guarantor from '../pages/admin/guarantor/'
@@ -47,21 +46,20 @@ import pageNotPermission from '../pages/admin/errors/403.vue'
 
 const router = new VueRouter({
     mode: 'history',
-    routes: [
-        {
+    routes: [{
             path: '/admin',
-            name: 'dashboards',
-            component: dashboard,
+            name: 'loans',
+            component: loan,
             meta: {
-                title: 'dashboard',
+                title: 'loan',
             },
         },
         {
-            path: '/admin/dashboard',
-            name: 'dashboard',
-            component: dashboard,
+            path: '/admin/loan',
+            name: 'loan',
+            component: loan,
             meta: {
-                title: 'dashboard',
+                title: 'loan',
             },
         },
         {
@@ -86,14 +84,6 @@ const router = new VueRouter({
             component: guarantor,
             meta: {
                 title: 'guarantor',
-            },
-        },
-        {
-            path: '/admin/loan',
-            name: 'loan',
-            component: loan,
-            meta: {
-                title: 'loan',
             },
         },
         {

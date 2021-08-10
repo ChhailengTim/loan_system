@@ -26,7 +26,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect('/admin/dashboard');
+            return redirect('/admin/loan');
         }else{
             return redirect('/admin/Login')->with('status','Incorrect Username or password !');
         }
