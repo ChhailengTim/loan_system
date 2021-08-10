@@ -761,8 +761,7 @@
                             data-vv-name="outstanding_amount"
                             :data-vv-as="$t('outstanding_amount')"
                             data-vv-scope="loan_form"
-                            type="number"
-                            min="1"
+                            type="text"
                             disabled
                             :placeholder="$t('outstanding_amount')"
                           ></b-form-input>
@@ -1113,7 +1112,7 @@ export default {
         this.form.interest = data.interest;
 
         if (total !== NaN) {
-            this.form.outstanding_amount = total;
+            this.form.outstanding_amount = parseFloat(total)
         }
       }
     },

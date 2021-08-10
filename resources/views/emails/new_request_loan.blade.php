@@ -148,6 +148,12 @@
                 <p style="margin: 0;">Interest: <b>{{ $data->interest}}</b></p>
             </td>
         </tr>
+        <tr>
+            <td bgcolor="#ffffff" align="left"
+                style="padding-left: 30px;   color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
+                <p style="margin: 0;">Outstanding Amount: <b>{{ $data->outstanding_amount}}</b></p>
+            </td>
+        </tr>
     </table>
 </body>
 

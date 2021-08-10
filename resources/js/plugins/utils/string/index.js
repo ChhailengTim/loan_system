@@ -19,29 +19,31 @@ import pluralize from './pluralize'
 import jsonDecode from './jsonDecode'
 import nationalityFormat from './nationalityFormat'
 import currencyFormat from './currencyFormat'
+import currencyDecimalFormat from './currencyDecimalFormat'
 import getCurrencyDetail from './getCurrencyDetail'
 
 export {
-	capitalize,
-	uppercase,
-	lowercase,
+    capitalize,
+    uppercase,
+    lowercase,
     purchaseStatus,
-	placeholder,
-	truncate,
-	phoneFormat,
-	nullToVoid,
-	genderFormat,
-	dateFormat,
-	payBy,
-	paymentStage,
-	getAddress,
-	isEmpty,
-	getNameByLocal,
-	currency,
-	pluralize,
-	jsonDecode,
+    placeholder,
+    truncate,
+    phoneFormat,
+    nullToVoid,
+    genderFormat,
+    dateFormat,
+    payBy,
+    paymentStage,
+    getAddress,
+    isEmpty,
+    getNameByLocal,
+    currency,
+    pluralize,
+    jsonDecode,
     nationalityFormat,
     dateTimeFormat,
     currencyFormat,
+    currencyDecimalFormat,
     getCurrencyDetail
 }
