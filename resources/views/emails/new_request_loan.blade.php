@@ -139,7 +139,13 @@
         <tr>
             <td bgcolor="#ffffff" align="left"
                 style="padding-left: 30px;   color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
-                <p style="margin: 0;">Request Amount: <b>{{ $data->request_amount}}$</b></p>
+                <p style="margin: 0;">Term: <b>{{ $data->term}} Months</b></p>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ffffff" align="left"
+                style="padding-left: 30px;   color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400;">
+                <p style="margin: 0;">Interest: <b>{{ $data->interest}}</b></p>
             </td>
         </tr>
     </table>
