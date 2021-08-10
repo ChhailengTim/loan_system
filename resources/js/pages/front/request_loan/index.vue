@@ -1109,11 +1109,7 @@ export default {
             (obj) => obj.month === this.form.term
         );
 
-        let total =
-            parseInt(this.form.request_amount) *
-            parseFloat(data.interest) *
-            parseInt(this.form.term) +
-            parseFloat(this.form.request_amount);
+        let total = (parseInt(this.form.request_amount) * parseFloat(data.interest) * parseInt(this.form.term)) +  parseFloat(this.form.request_amount);
         this.form.interest = data.interest;
 
         if (total !== NaN) {
