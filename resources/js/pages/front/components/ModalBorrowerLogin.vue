@@ -87,12 +87,12 @@ export default {
         return{
             modalShow: false,
             form: {
-                email: 'sotthipornfree@gmail.com',
-                password: 123456
+                email: null,
+                password: null
             },
             defaultForm: {
-                email: 'sotthipornfree@gmail.com',
-                password: 123456
+                email: null,
+                password: null
             },
             showPassword: false
         }
