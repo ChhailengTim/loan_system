@@ -1113,7 +1113,7 @@ export default {
         this.form.interest = data.interest;
 
         if (total !== NaN) {
-            this.form.outstanding_amount = parseFloat(total).toFixed(2);
+            this.form.outstanding_amount = total;
         }
       }
     },
