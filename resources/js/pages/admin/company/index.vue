@@ -44,7 +44,7 @@
             <b-input-group>
               <b-form-input
                 id="filter-input"
-                v-model="filter.txt_src"
+                v-model="filter.search"
                 type="search"
                 :placeholder="$t('search')"
                 @input="fetchRecord(false)"
@@ -72,7 +72,6 @@
               show-empty
               hover
               striped
-              :filter="filter.txt_src"
               :fields="header"
               :items="items"
               @row-selected="rowItem"

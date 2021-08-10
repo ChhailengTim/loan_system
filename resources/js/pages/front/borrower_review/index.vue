@@ -51,7 +51,6 @@
                                 show-empty
                                 hover
                                 striped
-                                :filter="filter.txt_src"
                                 :fields="header"
                                 :items="items"
                                 @row-selected="rowItem"
