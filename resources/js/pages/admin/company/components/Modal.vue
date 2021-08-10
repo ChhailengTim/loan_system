@@ -71,6 +71,7 @@
                                     :data-vv-as="$t('name')"
                                     type="text"
                                     :placeholder="$t('name')"
+                                    @keydown.enter.prevent="onSubmit"
                                 ></b-form-input>
                             </b-form-group>
                         </b-col>
@@ -91,6 +92,7 @@
                                     :data-vv-as="$t('email')"
                                     type="email"
                                     :placeholder="$t('email')"
+                                    @keydown.enter.prevent="onSubmit"
                                 ></b-form-input>
                             </b-form-group>
                         </b-col>
@@ -111,6 +113,7 @@
                                     :data-vv-as="$t('phone')"
                                     type="text"
                                     :placeholder="$t('phone')"
+                                    @keydown.enter.prevent="onSubmit"
                                 ></b-form-input>
                             </b-form-group>
                         </b-col>
@@ -131,6 +134,7 @@
                                     :data-vv-as="$t('alt_phone')"
                                     type="text"
                                     :placeholder="$t('alt_phone')"
+                                    @keydown.enter.prevent="onSubmit"
                                 ></b-form-input>
                             </b-form-group>
                         </b-col>
@@ -184,6 +188,7 @@
                                         type="number"
                                         min="1"
                                         :placeholder="$t('month')"
+                                        @keydown.enter.prevent="onSubmit"
                                     ></b-form-input>
                                 </b-input-group>
                             </b-form-group>
