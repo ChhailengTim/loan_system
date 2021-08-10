@@ -132,7 +132,7 @@ class CompanyController extends Controller
             'alt_phone' => 'required|max:50',
             'logo' => 'required',
             'email' => 'required|max:100',
-            'address' => 'required|max:200',
+            'address' => 'max:200',
         ]);
     }
 
