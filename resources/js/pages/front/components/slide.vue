@@ -10,7 +10,7 @@
             >
             STARTUP BUSINESS FUTURE
           </h1>
-           <h1 class="text-white" v-if="$i18n.locale == 'kh'">
+          <h1 class="text-white" v-if="$i18n.locale == 'kh'">
             THE ONLY<span>
               ONE<br />
               WAY</span
@@ -18,10 +18,10 @@
             STARTUP BUSINESS FUTURE
           </h1>
           <p class="col-md-5 adjust text-white">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat
-            veritatis iste, nulla architecto quam saepe? Totam quisquam nam
-            officia dignissimos nesciunt quis molestias, sit hic nulla suscipit
-            unde odit voluptates.
+            Keep your time for work. A few minutes to complete and submit form.
+            Capture your document then send. Short time waiting for request.
+            Notify by your phone. Keep in touch together. Safe and truth. Early
+            approval with bank.
           </p>
           <br />
           <p class="pt-4">
@@ -33,18 +33,33 @@
               {{ $t("review") }}
             </button>
             <a class="btn btn-lg btnReviewLoan" href="/front/request_loan">
-            <i class="fas fa-landmark mr-2"></i>
-            {{
-              $t("loan")
-            }}</a>
+              <i class="fas fa-landmark mr-2"></i>
+              {{ $t("loan") }}</a
+            >
           </p>
 
           <div class="social-icon">
-           <ul>
-            <li><a href="javascript:;"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-            <li><a href="javascript:;"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-            <li><a href="javascript:;"><i class="fab fa-telegram" aria-hidden="true"></i></a></li>
-            <li><a href="javascript:;"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+            <ul>
+              <li>
+                <a href="javascript:;"
+                  ><i class="fab fa-facebook" aria-hidden="true"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:;"
+                  ><i class="fab fa-instagram" aria-hidden="true"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:;"
+                  ><i class="fab fa-telegram" aria-hidden="true"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:;"
+                  ><i class="fab fa-youtube" aria-hidden="true"></i
+                ></a>
+              </li>
             </ul>
           </div>
         </div>
@@ -182,13 +197,13 @@ export default {
 
 /* social icon */
 .social-icon ul {
-  position:absolute;
+  position: absolute;
   top: 383px;
   left: 9%;
   transform: translate(-50%, -50%);
-  margin:0;
-  padding:0;
-  display:flex;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .social-icon ul li {
@@ -197,35 +212,35 @@ export default {
 
 .social-icon ul li a {
   position: relative;
-  width:60px;
-  height:60px;
-  display:block;
-  text-align:center;
-  margin:0 10px;
+  width: 60px;
+  height: 60px;
+  display: block;
+  text-align: center;
+  margin: 0 10px;
   border-radius: 50%;
   padding: 6px;
   box-sizing: border-box;
-  text-decoration:none;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+  text-decoration: none;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
   background: linear-gradient(0deg, #ddd, #fff);
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .social-icon ul li a:hover {
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  text-decoration:none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
 }
 
 .social-icon ul li a .fab {
   width: 100%;
-  height:100%;
-  display:block;
+  height: 100%;
+  display: block;
   background: linear-gradient(0deg, #fff, #ddd);
   border-radius: 50%;
   line-height: calc(60px - 12px);
-  font-size:24px;
+  font-size: 24px;
   color: #262626;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .social-icon ul li:nth-child(1) a:hover .fab {
@@ -236,7 +251,14 @@ export default {
 .social-icon ul li:nth-child(2) a:hover .fab {
   color: white;
   background: #d6249f;
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
 }
 
 .social-icon ul li:nth-child(3) a:hover .fab {
@@ -246,7 +268,7 @@ export default {
 
 .social-icon ul li:nth-child(4) a:hover .fab {
   color: white;
-  background: #FF0000;
+  background: #ff0000;
 }
 </style>
 
