@@ -38,7 +38,7 @@
                             v-model="pagination.table_size"
                             @input="fetchRecord"
                         >
-                            <b-form-select-option value="10">10</b-form-select-option>
+                            <b-form-select-option value="5">5</b-form-select-option><b-form-select-option value="10">10</b-form-select-option>
                             <b-form-select-option value="50">50</b-form-select-option>
                             <b-form-select-option value="100">100</b-form-select-option>
                             <b-form-select-option value="1000">1000</b-form-select-option>
