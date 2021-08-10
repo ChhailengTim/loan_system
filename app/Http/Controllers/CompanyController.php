@@ -16,7 +16,7 @@ class CompanyController extends Controller
     {
         $table_size = $request->input('table_size');
         if (empty($table_size)) {
-            $table_size = 10;
+            $table_size = 5;
         }
 
         $filter = $request->input('filter');

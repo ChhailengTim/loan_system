@@ -176,7 +176,7 @@ class LoanController extends Controller
             'borrower_id' => 'required|exists:borrower,id'
         ]);
 
-        $tableSize = empty($request->input('table_size')) ? 10 : $request->input('table_size');
+        $tableSize = empty($request->input('table_size')) ? 5 : $request->input('table_size');
 
         $filter = $request->input('filter');
         $search = !empty($filter['search']) ? $filter['search'] : null;
@@ -247,7 +247,7 @@ class LoanController extends Controller
             'company_id' => 'required|exists:company,id'
         ]);
 
-        $tableSize = empty($request->input('table_size')) ? 10 : $request->input('table_size');
+        $tableSize = empty($request->input('table_size')) ? 5 : $request->input('table_size');
 
         $filter = $request->input('filter');
         $search = !empty($filter['search']) ? $filter['search'] : null;
@@ -377,7 +377,7 @@ class LoanController extends Controller
         $filter = $request->input('filter');
         $search = !empty($filter['search']) ? $filter['search'] : null;
 
-        $tableSize = empty($request->input('table_size')) ? 10 : $request->input('table_size');
+        $tableSize = empty($request->input('table_size')) ? 5 : $request->input('table_size');
 
         $data = Loan::join('borrower', 'borrower.id', 'loan.borrower_id')
             ->join('borrower_guarantor', 'borrower_guarantor.borrower_id', 'borrower.id')

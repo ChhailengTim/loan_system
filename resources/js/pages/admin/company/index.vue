@@ -153,7 +153,7 @@ export default {
         to: 0,
         from: 0,
         last_page: 0,
-        table_size: 10,
+        table_size: 5,
       },
       filter: {
         warehouses: {},

@@ -10,7 +10,7 @@ class BorrowerController extends Controller
     //Get
     public function get(Request $request){
 
-        $tableSize = empty($request->input('table_size')) ? 10 : $request->input('table_size');
+        $tableSize = empty($request->input('table_size')) ? 5 : $request->input('table_size');
 
         $filter = $request->input('filter');
         $search = !empty($filter['search']) ? $filter['search'] : null;
