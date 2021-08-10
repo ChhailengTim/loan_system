@@ -22,7 +22,11 @@ class CompanyController extends Controller
         $filter = $request->input('filter');
         $search = !empty($filter['search']) ? $filter['search'] : null;
 
-        $data = Company::with(['companyInterest'])
+        $data = Company::with([
+            'companyInterest' => function($query){
+                $query->orderBy('month', 'asc');
+            }
+            ])
             ->when($search, function ($query) use ($search) {
                 $query->where('company.company_name', 'LIKE', "%{$search}%")
                 ->orWhere('company.phone', 'LIKE', "%{$search}%")
@@ -137,7 +141,7 @@ class CompanyController extends Controller
     {
         $data = Company::with([
             'companyInterest' => function($query){
-                $query->orderBy('id', 'asc');
+                $query->orderBy('month', 'asc');
             }
             ])
             ->orderBy('id', 'desc')
