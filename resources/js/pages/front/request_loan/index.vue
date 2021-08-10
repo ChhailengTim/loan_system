@@ -1111,7 +1111,7 @@ export default {
 
         let total =
             parseInt(this.form.request_amount) *
-            data.interest *
+            parseFloat(data.interest) *
             parseInt(this.form.term) +
             parseFloat(this.form.request_amount);
         this.form.interest = data.interest;
