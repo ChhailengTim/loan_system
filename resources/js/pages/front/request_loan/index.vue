@@ -24,6 +24,7 @@
                 :reset="setIndex"
                 shape="circle"
                 ref="loan_form"
+                :startIndex="2"
               >
                 <tab-content
                   :title="$t('borrower')"
@@ -1112,7 +1113,7 @@ export default {
         this.form.interest = data.interest;
 
         if (total !== NaN) {
-            this.form.outstanding_amount = parseFloat(total)
+            this.form.outstanding_amount = this.$helpers.currencyDecimalFormat(total)
         }
       }
     },

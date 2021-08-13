@@ -133,7 +133,7 @@ class LoanController extends Controller
 
         //Insert Loan
         $loan_data = [
-            Loan::BORROWER_ID => $borrower->id,
+            Loan::BORROWER_ID => 1,
             Loan::REQUEST_AMOUNT => $request->input('request_amount'),
             Loan::TERM => $request->input('term'),
             Loan::INTEREST => $request->input('interest'),

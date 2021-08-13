@@ -198,8 +198,8 @@ export default {
 /* social icon */
 .social-icon ul {
   position: absolute;
-  top: 383px;
-  left: 9%;
+  top: 404px;
+    left: 10%;
   transform: translate(-50%, -50%);
   margin: 0;
   padding: 0;
